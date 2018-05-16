@@ -34,3 +34,4 @@ env.ts
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+src/app/env.ts
