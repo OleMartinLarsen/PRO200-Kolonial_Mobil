@@ -27,7 +27,8 @@ export class UserPage
   {
     this.makeToast("Logger ut...");
     this.af.auth.signOut();
-    this.navCtrl.setRoot(HomePage); //Sends user to HomePage (main/frontpage)
+    this.navCtrl.setRoot(HomePage); //Sends user to rootpage (main/frontpage)
+    this.navCtrl.popToRoot();
   }
 
   makeToast(toastMessage :string)
