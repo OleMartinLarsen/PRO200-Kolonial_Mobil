@@ -22,12 +22,6 @@ export class AuthPage
     private af :AngularFireAuth,
     private toastCtrl: ToastController) 
   {
-    const authObserver = this.af.auth.onAuthStateChanged((user) =>
-    {
-      //Send the user to UserPage if logged in (TODO sometimes pushes twice or thrice)
-      if (user)
-        this.navCtrl.push('UserPage');
-    });
   }
 
   loginUser()
@@ -37,6 +31,7 @@ export class AuthPage
       .signInWithEmailAndPassword(this.user.email, this.user.pass)
       .then((resp) =>
       {
+        this.navCtrl.push('UserPage');
         console.log(resp);
       })
       .catch((error) =>
@@ -53,6 +48,7 @@ export class AuthPage
     .createUserAndRetrieveDataWithEmailAndPassword(this.user.email, this.user.pass)
     .then((resp) =>
     {
+      this.navCtrl.push('UserPage');
       console.log(resp);
     })
     .catch((error) =>

@@ -11,11 +11,19 @@ import { HomePage } from '../home/home';
 })
 export class UserPage 
 {
+  private email :string;
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private af :AngularFireAuth,
     private toastCtrl: ToastController) 
   {
+    var user = af.auth.currentUser;
+    
+    if (user != null) 
+    {
+      this.email = user.email;
+    }
   }
 
   pushSettings()
