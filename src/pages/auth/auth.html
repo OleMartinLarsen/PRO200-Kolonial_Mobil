@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="green-gradient-background" padding>
+    <section class="container">
+  
+        <section>
+          <h1 class="loginTitle">Innlogging</h1>
+        </section>
+  
+      <section>
+        <ion-label fixed>Email</ion-label>
+        <ion-input class="textInputField" type="text" placeholder ="Email" [(ngModel)]="user.email"></ion-input>
+      </section>
+  
+      <section>
+        <ion-label fixed>Password</ion-label>
+        <ion-input class="textInputField" type="password" placeholder ="Passord" [(ngModel)]="user.pass"></ion-input>
+      </section>
+  
+      <section>
+        <button block ion-button (click)="loginUser()">Login</button>
+        <button block ion-button (click)="registerUser()">Register</button>
+      </section>
+    </section>
+  </ion-content>

@@ -1,0 +1,8 @@
+{
+  "name": "pro200-1_kolonial_mobil",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
