@@ -15,13 +15,9 @@ export class HomePage
 
   pushAuthUser()
   {
-    const authObserver = this.af.auth.onAuthStateChanged((user) =>
-    {
-      //Send the user to UserPage if logged in (TODO sometimes pushes twice or thrice)
-      if (user)
+      if (this.af.auth.currentUser)
         this.navCtrl.push('UserPage');
       else
         this.navCtrl.push('AuthPage');
-    });
   }
 }

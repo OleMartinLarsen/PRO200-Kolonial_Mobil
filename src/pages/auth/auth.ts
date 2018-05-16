@@ -22,6 +22,12 @@ export class AuthPage
     private af :AngularFireAuth,
     private toastCtrl: ToastController) 
   {
+    const authObserver = this.af.auth.onAuthStateChanged((user) =>
+    {
+      //Send the user to UserPage if logged in (TODO sometimes pushes twice or thrice)
+      if (user)
+        this.navCtrl.push('UserPage');
+    });
   }
 
   loginUser()
