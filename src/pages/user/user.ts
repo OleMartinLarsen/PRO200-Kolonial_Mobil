@@ -18,10 +18,11 @@ export class UserPage
     private af :AngularFireAuth,
     private toastCtrl: ToastController) 
   {
+    //Globalize
     var user = af.auth.currentUser;
-    
     if (user != null) 
     {
+      //username..
       this.email = user.email;
     }
   }
@@ -38,6 +39,7 @@ export class UserPage
     this.navCtrl.pop();
   }
 
+  //Globalize
   makeToast(toastMessage :string)
   {
     this.toastCtrl.create({
