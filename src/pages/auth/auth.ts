@@ -24,7 +24,7 @@ export class AuthPage
   {
     const authObserver = af.auth.onAuthStateChanged((user) =>
     {
-      //Send the user to UserPage if logged in (TODO can be improved)
+      //Send the user to UserPage if logged in (TODO can be improved, sometimes pushes twice or thrice)
       if (user)
        this.navCtrl.push('UserPage');
     });
@@ -37,7 +37,6 @@ export class AuthPage
       .signInWithEmailAndPassword(this.user.email, this.user.pass)
       .then((resp) =>
       {
-        this.navCtrl.push('UserPage');
         console.log(resp);
       })
       .catch((error) =>
@@ -54,7 +53,6 @@ export class AuthPage
     .createUserAndRetrieveDataWithEmailAndPassword(this.user.email, this.user.pass)
     .then((resp) =>
     {
-      this.navCtrl.push('UserPage');
       console.log(resp);
     })
     .catch((error) =>

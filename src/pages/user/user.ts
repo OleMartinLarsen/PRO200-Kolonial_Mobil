@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 
+import { HomePage } from '../home/home';
+
 @IonicPage()
 @Component({
   selector: 'page-user',
@@ -23,9 +25,9 @@ export class UserPage
 
   logoutUser()
   {
-    this.af.auth.signOut();
-    this.navCtrl.push('HomePage'); //TODO virker ikke
     this.makeToast("Logger ut...");
+    this.af.auth.signOut();
+    this.navCtrl.setRoot(HomePage); //Sends user to HomePage (main/frontpage)
   }
 
   makeToast(toastMessage :string)
