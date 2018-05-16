@@ -20,7 +20,6 @@ export class UserPage
     var user = af.auth.currentUser;
     if (user != null) 
     {
-      //username..
       this.email = user.email;
     }
   }
