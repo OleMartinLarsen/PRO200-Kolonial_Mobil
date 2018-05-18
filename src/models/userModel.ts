@@ -1,7 +1,12 @@
-export interface UserModel
+export class UserModel 
 {
-    userName? :string;
-    userSurname? :string;
-    userPhone :number;
-    userEmail :string;
+    constructor(
+        public userPhone :number,
+        public userAdress :string,
+        public userEmail :string,
+        public userName? :string,
+        public userSurname? :string,
+        public id? :string) 
+    {
+    }
 }

@@ -12,28 +12,24 @@ import { UserModel } from '../../models/userModel';
 })
 export class RegisterPage 
 {
-  users :any[] = [];
-  private userCollection :AngularFirestoreCollection<UserModel>;
-  private userName :string;
-  private userSurname :string;
-  private userPhone :number;
-  private userEmail :string;
-
+  public userCollection :AngularFirestoreCollection<UserModel>;
   public user =
   {
     name :"",
     surname :"",
-    phone :"",
+    phone :0,
     email :"",
+    adress :"",
     password :""
   }
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private af :AngularFireAuth,
+    private af :AngularFirestore,
+    private afAuth :AngularFireAuth,
     private toastCtrl: ToastController) 
   {
-    this.userCollection = navParams.get('usersCollection');
+    this.userCollection = af.collection<UserModel>('users');
   }
 
   registerUser()
@@ -41,12 +37,13 @@ export class RegisterPage
     //If pass1 == pass2..
 
     //Register with email and password
-    this.af.auth
+    this.afAuth.auth
     .createUserAndRetrieveDataWithEmailAndPassword(this.user.email, this.user.password)
     .then((resp) =>
     {
-      // this.registerUserDB(); //Store userdata in db
       console.log(resp);
+      this.registerUserInDB(); //Store userdata in db
+      this.navCtrl.push('UserPage');
     })
     .catch((error) =>
     {
@@ -55,17 +52,17 @@ export class RegisterPage
     })
   }
 
-  registerUserDB()
+  registerUserInDB()
   {
+    //DO NOT store password
     this.userCollection.add(
       {
-        userName: this.userName,
-        userSurname: this.userSurname,
-        userPhone: this.userPhone,
-        userEmail: this.userEmail
+        userName: this.user.name,
+        userSurname: this.user.surname,
+        userPhone: this.user.phone,
+        userEmail: this.user.email,
+        userAdress: this.user.adress
       } as UserModel);
-      
-      this.navCtrl.push('UserPage');
   }
 
   makeToast(toastMessage :string)
