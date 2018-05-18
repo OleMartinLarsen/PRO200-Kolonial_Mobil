@@ -26,12 +26,12 @@ export class RegisterPage
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    // private af :AngularFirestore,
-    private afAuth :AngularFireAuth,
+    private af: AngularFirestore,
+    private afAuth: AngularFireAuth,
     private toastCtrl: ToastController) 
   {
     console.log("const start");
-    // this.userCollection = af.collection<UserModel>('users');
+    this.userCollection = af.collection<UserModel>('users');
     console.log("const end");
   }
 
