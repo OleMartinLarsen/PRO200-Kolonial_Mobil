@@ -4,6 +4,7 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ToastController } from 'ionic-angular';
 import { UserModel } from '../../models/userModel';
+import { AngularFireModule } from 'angularfire2';
 
 @IonicPage()
 @Component({
@@ -25,11 +26,13 @@ export class RegisterPage
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private af :AngularFirestore,
+    // private af :AngularFirestore,
     private afAuth :AngularFireAuth,
     private toastCtrl: ToastController) 
   {
-    this.userCollection = af.collection<UserModel>('users');
+    console.log("const start");
+    // this.userCollection = af.collection<UserModel>('users');
+    console.log("const end");
   }
 
   registerUser()
@@ -54,6 +57,7 @@ export class RegisterPage
 
   registerUserInDB()
   {
+    console.log("reg i db start");
     //DO NOT store password
     this.userCollection.add(
       {
