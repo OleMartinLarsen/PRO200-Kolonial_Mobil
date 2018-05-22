@@ -9,13 +9,13 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class HomePage 
 {
   constructor(public navCtrl: NavController,
-    private af :AngularFireAuth) 
+    private afAuth :AngularFireAuth) 
   {
   }
 
   pushAuthUser()
   {
-      if (this.af.auth.currentUser)
+      if (this.afAuth.auth.currentUser)
         this.navCtrl.push('UserPage');
       else
         this.navCtrl.push('AuthPage');

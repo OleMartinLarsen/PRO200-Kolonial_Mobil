@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { ToastController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -19,7 +19,7 @@ export class AuthPage
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private af :AngularFireAuth,
+    private afAuth: AngularFireAuth,
     private toastCtrl: ToastController) 
   {
   }
@@ -27,7 +27,7 @@ export class AuthPage
   loginUser()
   {
     //Sign in with email and password
-    this.af.auth
+    this.afAuth.auth
       .signInWithEmailAndPassword(this.user.email, this.user.pass)
       .then((resp) =>
       {
@@ -41,21 +41,9 @@ export class AuthPage
       });
   }
 
-  registerUser()
+  pushRegister()
   {
-    //Register with email and password
-    this.af.auth
-    .createUserAndRetrieveDataWithEmailAndPassword(this.user.email, this.user.pass)
-    .then((resp) =>
-    {
-      this.navCtrl.push('UserPage');
-      console.log(resp);
-    })
-    .catch((error) =>
-    {
-      this.makeToast("Kunne ikke registrere bruker!");
-      console.log(error);
-    })
+    this.navCtrl.push('RegisterPage');
   }
 
   makeToast(toastMessage :string)
