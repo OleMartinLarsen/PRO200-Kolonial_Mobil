@@ -61,7 +61,7 @@ export class RegisterPage
 
   registerUserInDB()
   {
-    //DO NOT store password, user.email and user.password is store (hashed) with afAuth
+    //DO NOT store password, user.email and user.password is stored (hashed) with afAuth
     this.userCollection.add(
       {
         userName: this.user.name,
