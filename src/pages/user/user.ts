@@ -12,7 +12,16 @@ import { GlobalFunctionsProvider } from '../../providers/global-functions/global
 })
 export class UserPage 
 {
-  private email :string;
+  private email: string;
+  //TODO get userdata from db
+  public user =
+  {
+    name: "",
+    surname: "",
+    phone: 0,
+    email: "",
+    adress: ""
+  };
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,

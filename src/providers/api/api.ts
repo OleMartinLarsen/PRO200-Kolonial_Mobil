@@ -9,24 +9,30 @@ export class ApiProvider
   {
   }
   
-  // getApi()
-  // {
-  //   let endPoint = 'https://kolonial.no/api/v1/products/9329/';
-  //   let headersObj = new Headers({'Token':'BbG99xs8f8wHnXupMf0ow0NZhcOVPWCOa37GfaiQJ0Qtnk77Rf',
-  //                                   'User-Agent': 'AlexanderTg_Test'});
+  getApi(pID :number)
+  {
+    let endPoint = 'https://kolonial.no/api/v1/products/' + pID + '/';
     
-  //   this.http.get(endPoint, Headers:headersObj)
-  //   .map(res => 
-  //     {
-  //       console.log('res: ', res);
-  //       if (res.status < 200 || res.status > 300) 
-  //       {
-  //         throw new Error("Error in your code with status" + res.status);
-  //       }
-  //       return res.json()
-  //     })
-  //     .catch(error =>
-  //       console.log(error)
-  //     );
-  // }
+    this.http.get(endPoint)
+    .map(res => 
+      {
+        console.log('res: ', res);
+        return res;
+      });
+
+      //Reddit version
+      return new Promise((resolve, reject) => 
+      {
+        this.http.get(endPoint)
+          .subscribe(
+          (resp) => 
+          {
+            resolve(resp);
+          },
+          (error) => 
+          {
+            reject(error);
+          });
+      });
+  }
 }
