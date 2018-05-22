@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { HomePage } from '../home/home';
+import { TabsPage } from '../tabs/tabs';
 
 @IonicPage()
 @Component({
@@ -27,7 +28,7 @@ export class UserPage
   {
     this.makeToast("Logger ut...");
     this.af.auth.signOut();
-    this.navCtrl.setRoot(HomePage); //Sends user to HomePage (main/frontpage)
+    this.navCtrl.setRoot(TabsPage); //Sends user to HomePage (main/frontpage)
   }
 
   makeToast(toastMessage :string)
