@@ -44,10 +44,7 @@ export class AuthPage
 
   pushRegister()
   {
-    this.navCtrl.push('RegisterPage')
-    .then(() => {
-      this.navCtrl.remove(1); //Removes this page from backstack
-    });
+    this.navCtrl.push('RegisterPage');
   }
 
   ionViewDidLoad() 

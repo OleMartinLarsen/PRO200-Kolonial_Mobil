@@ -45,10 +45,10 @@ export class RegisterPage
       {
         console.log(resp);
         this.registerUserInDB(); //Store userdata in db
-        
+
         this.navCtrl.push('UserPage')
         .then(() => {
-          this.navCtrl.remove(1); //Removes this page from backstack
+          this.navCtrl.remove(1, 2); //Removes this and the previous(auth) page from backstack
         });
       })
       .catch((error) =>
