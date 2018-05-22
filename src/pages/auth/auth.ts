@@ -32,7 +32,7 @@ export class AuthPage
       .signInWithEmailAndPassword(this.user.email, this.user.pass)
       .then((resp) =>
       {
-        this.navCtrl.push('UserPage');
+        this.navCtrl.push('TabsPage');
         console.log(resp);
       })
       .catch((error) =>

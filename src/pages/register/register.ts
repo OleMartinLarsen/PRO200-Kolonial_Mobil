@@ -46,7 +46,7 @@ export class RegisterPage
         console.log(resp);
         this.registerUserInDB(); //Store userdata in db
         
-        this.navCtrl.push('UserPage')
+        this.navCtrl.push('HomePage')
         .then(() => {
           this.navCtrl.remove(1); //Removes this page from backstack
         });
