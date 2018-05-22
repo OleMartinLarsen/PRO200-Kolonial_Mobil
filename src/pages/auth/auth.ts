@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ToastController } from 'ionic-angular';
+import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 
 @IonicPage()
 @Component({
@@ -20,7 +21,7 @@ export class AuthPage
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private afAuth: AngularFireAuth,
-    private toastCtrl: ToastController) 
+    private functions : GlobalFunctionsProvider) 
   {
   }
 
@@ -36,7 +37,7 @@ export class AuthPage
       })
       .catch((error) =>
       {
-        this.makeToast("Kunne ikke logge inn bruker!");
+        this.functions.makeToast("Kunne ikke logge inn bruker!");
         console.log(error);
       });
   }
@@ -44,15 +45,6 @@ export class AuthPage
   pushRegister()
   {
     this.navCtrl.push('RegisterPage');
-  }
-
-  makeToast(toastMessage :string)
-  {
-    this.toastCtrl.create({
-      message: toastMessage,
-      duration: 3000,
-      position: 'bottom'
-    }).present();
   }
 
   ionViewDidLoad() 

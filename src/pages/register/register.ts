@@ -4,6 +4,7 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ToastController } from 'ionic-angular';
 import { UserModel } from '../../models/userModel';
+import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 
 @IonicPage()
 @Component({
@@ -28,7 +29,7 @@ export class RegisterPage
     public navParams: NavParams,
     private af: AngularFirestore,
     private afAuth: AngularFireAuth,
-    private toastCtrl: ToastController) 
+    private functions :GlobalFunctionsProvider) 
   {
     this.userCollection = af.collection<UserModel>('users');
   }
@@ -48,13 +49,13 @@ export class RegisterPage
       })
       .catch((error) =>
       {
-        this.makeToast("Kunne ikke registrere bruker!");
+        this.functions.makeToast("Kunne ikke registrere bruker!");
         console.log(error);
       });
     }
     else
     {
-      this.makeToast("Passordene er ikke like!");
+      this.functions.makeToast("Passordene er ikke like!");
     }
   }
 
@@ -69,15 +70,6 @@ export class RegisterPage
         userEmail: this.user.email,
         userAdress: this.user.adress
       } as UserModel);
-  }
-
-  makeToast(toastMessage :string)
-  {
-    this.toastCtrl.create({
-      message: toastMessage,
-      duration: 3000,
-      position: 'bottom'
-    }).present();
   }
 
   ionViewDidLoad() 
