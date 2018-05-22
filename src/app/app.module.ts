@@ -12,13 +12,10 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 
 import env from './env';
-<<<<<<< HEAD
 import { TabsPageModule } from '../pages/tabs/tabs.module';
 import { HomePage } from '../pages/home/home';
 import { RecipesPage } from '../pages/recipes/recipes';
-=======
 import { GlobalFunctionsProvider } from '../providers/global-functions/global-functions';
->>>>>>> 0439d7f411f0e9ba1ba89642991580a17b1d41b2
 
 @NgModule({
   declarations: [

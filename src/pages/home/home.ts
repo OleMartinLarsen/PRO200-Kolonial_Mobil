@@ -8,13 +8,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class HomePage 
 {
-<<<<<<< HEAD
-
-  constructor(public navCtrl: NavController) 
-=======
   constructor(public navCtrl: NavController,
     private afAuth :AngularFireAuth) 
->>>>>>> 0439d7f411f0e9ba1ba89642991580a17b1d41b2
   {
   }
 
