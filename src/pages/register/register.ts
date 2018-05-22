@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ToastController } from 'ionic-angular';
-import { UserModel } from '../../models/userModel';
+import { User } from '../../models/user';
 import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 
 @IonicPage()
@@ -13,7 +13,7 @@ import { GlobalFunctionsProvider } from '../../providers/global-functions/global
 })
 export class RegisterPage 
 {
-  public userCollection :AngularFirestoreCollection<UserModel>;
+  public userCollection :AngularFirestoreCollection<User>;
   public user =
   {
     name: "",
@@ -31,7 +31,7 @@ export class RegisterPage
     private afAuth: AngularFireAuth,
     private functions :GlobalFunctionsProvider) 
   {
-    this.userCollection = af.collection<UserModel>('users');
+    this.userCollection = af.collection<User>('users');
   }
 
   registerUser()
@@ -69,7 +69,7 @@ export class RegisterPage
         userPhone: this.user.phone,
         userEmail: this.user.email,
         userAdress: this.user.adress
-      } as UserModel);
+      } as User);
   }
 
   ionViewDidLoad() 

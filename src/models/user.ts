@@ -1,4 +1,4 @@
-export class UserModel 
+export class User 
 {
     constructor(
         public userPhone :number,

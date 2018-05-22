@@ -5,8 +5,7 @@ import { ToastController } from 'ionic-angular';
 @Injectable()
 export class GlobalFunctionsProvider 
 {
-  constructor(public http: HttpClient,
-    private toastCtrl: ToastController) 
+  constructor(private toastCtrl: ToastController) 
   {
   }
 
