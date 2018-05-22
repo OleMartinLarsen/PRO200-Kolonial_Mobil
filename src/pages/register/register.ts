@@ -4,7 +4,6 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { AngularFireAuth } from 'angularfire2/auth';
 import { ToastController } from 'ionic-angular';
 import { UserModel } from '../../models/userModel';
-import { AngularFireModule } from 'angularfire2';
 
 @IonicPage()
 @Component({
@@ -16,13 +15,14 @@ export class RegisterPage
   public userCollection :AngularFirestoreCollection<UserModel>;
   public user =
   {
-    name :"",
-    surname :"",
-    phone :0,
-    email :"",
-    adress :"",
-    password :""
-  }
+    name: "",
+    surname: "",
+    phone: 0,
+    email: "",
+    adress: "",
+    password: "",
+    repeatPassword: ""
+  };
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -30,35 +30,37 @@ export class RegisterPage
     private afAuth: AngularFireAuth,
     private toastCtrl: ToastController) 
   {
-    console.log("const start");
     this.userCollection = af.collection<UserModel>('users');
-    console.log("const end");
   }
 
   registerUser()
   {
-    //If pass1 == pass2..
-
-    //Register with email and password
-    this.afAuth.auth
-    .createUserAndRetrieveDataWithEmailAndPassword(this.user.email, this.user.password)
-    .then((resp) =>
+    if(this.user.password.match(this.user.repeatPassword)) //Make sure the user has typed the correct password twice
+    { 
+      //Register with email and password
+      this.afAuth.auth
+      .createUserAndRetrieveDataWithEmailAndPassword(this.user.email, this.user.password)
+      .then((resp) =>
+      {
+        console.log(resp);
+        this.registerUserInDB(); //Store userdata in db
+        this.navCtrl.push('UserPage');
+      })
+      .catch((error) =>
+      {
+        this.makeToast("Kunne ikke registrere bruker!");
+        console.log(error);
+      });
+    }
+    else
     {
-      console.log(resp);
-      this.registerUserInDB(); //Store userdata in db
-      this.navCtrl.push('UserPage');
-    })
-    .catch((error) =>
-    {
-      this.makeToast("Kunne ikke registrere bruker!");
-      console.log(error);
-    })
+      this.makeToast("Passordene er ikke like!");
+    }
   }
 
   registerUserInDB()
   {
-    console.log("reg i db start");
-    //DO NOT store password
+    //DO NOT store password, user.email and user.password is store (hashed) with afAuth
     this.userCollection.add(
       {
         userName: this.user.name,

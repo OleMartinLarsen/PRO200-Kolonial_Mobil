@@ -19,7 +19,7 @@ export class AuthPage
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private af :AngularFireAuth,
+    private afAuth: AngularFireAuth,
     private toastCtrl: ToastController) 
   {
   }
@@ -27,7 +27,7 @@ export class AuthPage
   loginUser()
   {
     //Sign in with email and password
-    this.af.auth
+    this.afAuth.auth
       .signInWithEmailAndPassword(this.user.email, this.user.pass)
       .then((resp) =>
       {
