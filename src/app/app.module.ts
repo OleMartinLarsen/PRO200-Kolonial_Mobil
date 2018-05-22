@@ -13,6 +13,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 
 import env from './env';
+import { GlobalFunctionsProvider } from '../providers/global-functions/global-functions';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import env from './env';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    GlobalFunctionsProvider
   ]
 })
 export class AppModule {}

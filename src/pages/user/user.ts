@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 
 @IonicPage()
 @Component({
@@ -14,7 +15,7 @@ export class UserPage
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private af :AngularFireAuth,
-    private toastCtrl: ToastController) 
+    private functions :GlobalFunctionsProvider) 
   {
     //Globalize
     var user = af.auth.currentUser;
@@ -31,19 +32,9 @@ export class UserPage
 
   logoutUser()
   {
-    this.makeToast("Logger ut...");
+    this.functions.makeToast("Logger ut...");
     this.af.auth.signOut();
     this.navCtrl.pop();
-  }
-
-  //Globalize
-  makeToast(toastMessage :string)
-  {
-    this.toastCtrl.create({
-      message: toastMessage,
-      duration: 3000,
-      position: 'bottom'
-    }).present();
   }
 
   ionViewDidLoad() 
