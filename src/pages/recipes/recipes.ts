@@ -9,7 +9,7 @@ import { ApiProvider } from '../../providers/api/api';
 })
 export class RecipesPage 
 {
-  private resp: string ="You can do it";
+  private resp: string = "You can do it";
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
