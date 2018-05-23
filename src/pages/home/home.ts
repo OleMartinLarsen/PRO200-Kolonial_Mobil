@@ -20,4 +20,8 @@ export class HomePage
       else
         this.navCtrl.push('AuthPage');
   }
+  apiTest()
+  {
+    
+  }
 }
