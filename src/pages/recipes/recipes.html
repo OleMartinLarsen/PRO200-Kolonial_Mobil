@@ -23,14 +23,13 @@
     </div>
   <div *ngIf="!loading">
     <ion-list no-lines>
-      <ion-item *ngFor="let recipe of recipes | async" (click)="pushRecipeDetails(recipe)">
+      <!-- <ion-item *ngFor="let recipe of recipes | async" (click)="pushRecipeDetails(recipe)">
         <ion-thumbnail item-start>
           <img [src]="post.postImg">
         </ion-thumbnail>
         <h2 text-wrap>{{recipename}} Name</h2>
         <p>{{recipetime}} Time/portions/ w/e</p>
-      </ion-item>
-  
+      </ion-item> -->
     </ion-list>
   </div>
 </ion-content>
