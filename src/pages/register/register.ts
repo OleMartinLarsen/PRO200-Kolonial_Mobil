@@ -45,7 +45,7 @@ export class RegisterPage
         console.log(resp);
         this.registerUserInDB(); //Store userdata in db
         
-        this.navCtrl.push('HomePage');
+        this.navCtrl.push('TabsPage');
       })
       .catch((error) =>
       {

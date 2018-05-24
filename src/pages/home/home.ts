@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'page-home',
@@ -9,15 +9,15 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class HomePage 
 {
   constructor(public navCtrl: NavController,
-    private afAuth :AngularFireAuth) 
+    private af :AngularFirestore) 
   {
   }
 
   pushAuthUser()
   {
-      if (this.afAuth.auth.currentUser)
-        this.navCtrl.push('UserPage');
-      else
-        this.navCtrl.push('AuthPage');
+    if (this.af.app.auth().currentUser)
+      this.navCtrl.push('UserPage');
+    else
+      this.navCtrl.push('AuthPage');
   }
 }

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { RecipesPage } from '../recipes/recipes';
 import { HomePage } from '../home/home';
 
@@ -9,16 +8,15 @@ import { HomePage } from '../home/home';
   selector: 'page-tabs',
   templateUrl: 'tabs.html',
 })
-export class TabsPage {
+export class TabsPage 
+{
+  homePage: any;
+  recipesPage: any;
 
-  homePage:any;
-  recipesPage:any;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private af: AngularFireAuth) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams) 
+    {
     this.homePage = HomePage;
     this.recipesPage = RecipesPage;
   }
-
 }
-
-

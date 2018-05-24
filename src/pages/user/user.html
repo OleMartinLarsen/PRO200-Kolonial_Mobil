@@ -14,13 +14,20 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-item text-wrap *ngFor="let user of users | async">
-      <!-- TODO picture -->
-      <p>Navn: {{user.userSurname}}, {{user.userName}}</p>
-      <p>Email: {{user.userEmail}}</p>
-      <p>Telefon: {{user.userPhone}}</p>
-      <p>Adresse: {{user.userAdress}}</p>
-    </ion-item>
+  <div *ngIf="loading">
+      <p>Laster</p>
+      <ion-spinner></ion-spinner>
+    </div>
+  <div *ngIf="!loading">
+      <ion-item text-wrap *ngFor="let user of users | async">
+        <!-- TODO? picture -->
+        <p>Navn: {{user.userSurname}}, {{user.userName}}</p>
+        <p>Email: {{user.userEmail}}</p>
+        <p>Telefon: {{user.userPhone}}</p>
+        <p>Adresse: {{user.userAdress}}</p>
+      </ion-item>
+  </div>
+
   <br>
   <button block ion-button (click)="pushSettings()">Historikk</button>
   <button block ion-button (click)="pushSettings()">Innstillinger</button>

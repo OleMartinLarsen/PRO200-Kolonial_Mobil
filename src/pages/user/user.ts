@@ -3,8 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { User } from '../../models/user';
-import { TabsPage } from '../tabs/tabs';
 import { Observable } from 'rxjs/Observable';
+import { AuthPage } from '../auth/auth';
 
 @IonicPage()
 @Component({
@@ -13,6 +13,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class UserPage 
 {
+  private loading: boolean = true;
   private collection :AngularFirestoreCollection<User>;
   private currentUserEmail: string;
   private users :Observable<any[]>;
@@ -49,6 +50,14 @@ export class UserPage
       });
   }
 
+  pushAuthUser()
+  {
+      if (this.af.app.auth().currentUser)
+        this.navCtrl.push('UserPage');
+      else
+        this.navCtrl.push('AuthPage');
+  }
+
   pushSettings()
   {
     // this.navCtrl.push('SettingsPage');
@@ -58,11 +67,12 @@ export class UserPage
   {
     this.functions.makeToast("Logger ut...");
     this.af.app.auth().signOut();
-    this.navCtrl.setRoot(TabsPage); //Sends user to HomePage (main/frontpage)
+    this.navCtrl.setRoot(AuthPage); //Sends user to AuthPage TODO remove tabs from authpage
   }
 
   ionViewDidLoad() 
   {
     console.log('ionViewDidLoad UserPage');
+    this.loading = false;
   }
 }
