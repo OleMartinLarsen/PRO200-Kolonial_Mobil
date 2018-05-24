@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { ToastController } from 'ionic-angular';
 import { User } from '../../models/user';
 import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 
@@ -45,16 +44,8 @@ export class RegisterPage
       {
         console.log(resp);
         this.registerUserInDB(); //Store userdata in db
-<<<<<<< HEAD
         
-        this.navCtrl.push('HomePage')
-=======
-
-        this.navCtrl.push('UserPage')
->>>>>>> f0323165996d517fd86b14aa1828a0585ca3a0ad
-        .then(() => {
-          this.navCtrl.remove(1, 2); //Removes this and the previous(auth) page from backstack
-        });
+        this.navCtrl.push('HomePage');
       })
       .catch((error) =>
       {
