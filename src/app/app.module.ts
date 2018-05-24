@@ -16,6 +16,8 @@ import { TabsPageModule } from '../pages/tabs/tabs.module';
 import { HomePage } from '../pages/home/home';
 import { RecipesPage } from '../pages/recipes/recipes';
 import { GlobalFunctionsProvider } from '../providers/global-functions/global-functions';
+import { ApiProvider } from '../providers/api/api';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { GlobalFunctionsProvider } from '../providers/global-functions/global-fu
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,7 +44,8 @@ import { GlobalFunctionsProvider } from '../providers/global-functions/global-fu
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    GlobalFunctionsProvider
+    GlobalFunctionsProvider,
+    ApiProvider,
   ]
 })
 export class AppModule {}
