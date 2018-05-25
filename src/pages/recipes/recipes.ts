@@ -50,6 +50,11 @@ export class RecipesPage
   //   });
   // }
 
+  pushAuthUser()
+  {
+      this.navCtrl.push('UserPage');
+  }
+
   ionViewDidLoad() 
   {
     console.log('ionViewDidLoad RecipesPage');

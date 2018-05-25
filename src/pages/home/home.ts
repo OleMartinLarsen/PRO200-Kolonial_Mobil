@@ -15,9 +15,6 @@ export class HomePage
 
   pushAuthUser()
   {
-    if (this.af.app.auth().currentUser)
       this.navCtrl.push('UserPage');
-    else
-      this.navCtrl.push('AuthPage');
   }
 }
