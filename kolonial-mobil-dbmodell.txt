@@ -1,0 +1,11 @@
+
+	users---+
+		+userName
+		+userSurname
+		+userPhone
+		+userEmail
+		+userPostAdress
+		+userAdress
+		|
+		+(TODO: subs)
+		

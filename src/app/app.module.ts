@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -13,11 +12,16 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 
 import env from './env';
+import { TabsPageModule } from '../pages/tabs/tabs.module';
+import { HomePage } from '../pages/home/home';
+import { RecipesPage } from '../pages/recipes/recipes';
+import { GlobalFunctionsProvider } from '../providers/global-functions/global-functions';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    RecipesPage
   ],
   imports: [
     BrowserModule,
@@ -25,17 +29,19 @@ import env from './env';
     AngularFireModule.initializeApp(env),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    RecipesPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    GlobalFunctionsProvider
   ]
 })
 export class AppModule {}

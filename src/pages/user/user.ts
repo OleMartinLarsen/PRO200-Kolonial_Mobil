@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { User } from '../../models/user';
+import { Observable } from 'rxjs/Observable';
+import { AuthPage } from '../auth/auth';
 
 @IonicPage()
 @Component({
@@ -9,20 +13,49 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class UserPage 
 {
-  private email :string;
+  private loading: boolean = true;
+  private collection :AngularFirestoreCollection<User>;
+  private currentUserEmail: string;
+  private users :Observable<any[]>;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private af :AngularFireAuth,
-    private toastCtrl: ToastController) 
+    private af :AngularFirestore,
+    private functions :GlobalFunctionsProvider) 
   {
-    //Globalize
-    var user = af.auth.currentUser;
-    if (user != null) 
+    this.currentUserEmail = af.app.auth().currentUser.email;
+    
+    //NB: this method fetches the userdata async from the DB with a query, so it might take some time.
+    //TODO find a btter way to load userdata
+    this.collection = af.collection<User>('users', (ref) => 
     {
-      //username..
-      this.email = user.email;
-    }
+      //Get correct user (limit 1 in case of duplicate emails in database 
+      //(which shouldn't really happens as we use FirebaseAuth which will handle this automatically))
+      return ref.where('userEmail', '==', this.currentUserEmail).limit(1); 
+    });
+
+    this.users = this.collection.snapshotChanges()
+      .map(actions =>
+      {
+        return actions.map(action =>
+        {
+          let data = action.payload.doc.data() as User;
+          let id = action.payload.doc.id;
+          
+          return {
+            id, 
+            ...data
+          }
+        });
+      });
+  }
+
+  pushAuthUser()
+  {
+      if (this.af.app.auth().currentUser)
+        this.navCtrl.push('UserPage');
+      else
+        this.navCtrl.push('AuthPage');
   }
 
   pushSettings()
@@ -32,23 +65,14 @@ export class UserPage
 
   logoutUser()
   {
-    this.makeToast("Logger ut...");
-    this.af.auth.signOut();
-    this.navCtrl.pop();
-  }
-
-  //Globalize
-  makeToast(toastMessage :string)
-  {
-    this.toastCtrl.create({
-      message: toastMessage,
-      duration: 3000,
-      position: 'bottom'
-    }).present();
+    this.functions.makeToast("Logger ut...");
+    this.af.app.auth().signOut();
+    this.navCtrl.popToRoot; //Sends user to root (AuthPage)
   }
 
   ionViewDidLoad() 
   {
     console.log('ionViewDidLoad UserPage');
+    this.loading = false;
   }
 }
