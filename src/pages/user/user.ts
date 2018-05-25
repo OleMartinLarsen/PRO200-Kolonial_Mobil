@@ -67,7 +67,7 @@ export class UserPage
   {
     this.functions.makeToast("Logger ut...");
     this.af.app.auth().signOut();
-    this.navCtrl.setRoot(AuthPage); //Sends user to AuthPage TODO remove tabs from authpage
+    this.navCtrl.setRoot(AuthPage); //Sends user to AuthPage | TODO remove tabs from authpage
   }
 
   ionViewDidLoad() 
