@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { ToastController } from 'ionic-angular';
 import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 
 @IonicPage()

@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Legg til oppskrift
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <section class="container">
+      <section>
+        <h1 class="loginTitle">Min Oppskrift</h1>
+      </section>
+  
+      <section>
+        <!-- TODO button (+) to add ingredients from API -->
+        <button ion-button block (click)="addIngredient()">Legg til ingrediens</button>
+      </section>
+  
+      <section>
+        <!-- TODO list of ingredients added to list (ingredients added from Kolonials API) -->
+        Ingrediense liste...
+      </section>
+  
+      <section>
+        <ion-label fixed>Instrukser</ion-label>
+        <ion-input type="text" [(ngModel)]="instructions"></ion-input>
+        <button ion-button block (click)="saveRecipe()">Lagre oppskrift</button>
+      </section>
+  
+
+      <section>
+        <ion-label fixed>test</ion-label>
+        <ion-input type="text" [(ngModel)]="data"></ion-input>
+      </section>
+    </section>
+  </ion-content>

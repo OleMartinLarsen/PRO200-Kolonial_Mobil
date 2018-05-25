@@ -4,7 +4,6 @@ import { GlobalFunctionsProvider } from '../../providers/global-functions/global
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { User } from '../../models/user';
 import { Observable } from 'rxjs/Observable';
-import { AuthPage } from '../auth/auth';
 
 @IonicPage()
 @Component({
@@ -58,6 +57,11 @@ export class UserPage
   pushRecipeHistory()
   {
     this.navCtrl.push('RecipehistoryPage');
+  }
+
+  pushAddRecipe() //TODO move
+  {
+    this.navCtrl.push('CreaterecipePage');
   }
 
   logoutUser()

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Recipe } from '../../models/recipe';
 import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 
 @IonicPage()
