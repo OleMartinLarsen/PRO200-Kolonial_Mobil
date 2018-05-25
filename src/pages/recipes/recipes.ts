@@ -52,7 +52,7 @@ export class RecipesPage
 
   pushAuthUser()
   {
-      this.navCtrl.push('UserPage');
+    this.navCtrl.push('UserPage');
   }
 
   ionViewDidLoad() 
