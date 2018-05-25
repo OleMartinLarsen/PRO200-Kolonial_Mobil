@@ -11,8 +11,8 @@ import { Recipe } from '../../models/recipe';
 export class RecipesPage 
 {
   private loading: boolean = true;
-  history :Array<String> = [];
-  recipes :any[] = [];
+  recipehistory :any[] = [];
+  allrecipes :any[] = [];
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -28,7 +28,7 @@ export class RecipesPage
     //   .then((response :any) =>
     //   {
     //     this.loading = false;
-    //     this.recipes = response; //May need to adjust the path
+    //     this.allrecipes = response; //May need to adjust the path
     //   })
     //   .catch((error) =>
     //   {
@@ -39,6 +39,7 @@ export class RecipesPage
   pushRecipeDetails() //Example
   {
     this.navCtrl.push("RecipedetailsPage");
+    this.recipehistory.push("Eksempeloppskrift");
   }
 
   // pushDetails(recipe :any) //Actual
@@ -48,9 +49,10 @@ export class RecipesPage
   //     recipe,
   //     recipeCollection: this.collection
   //   });
+    // this.recipehistory.push(recipe);
   // }
 
-  pushAuthUser()
+  pushUser()
   {
     this.navCtrl.push('UserPage');
   }

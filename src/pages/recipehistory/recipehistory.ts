@@ -3,17 +3,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-recipedetails',
-  templateUrl: 'recipedetails.html',
+  selector: 'page-recipehistory',
+  templateUrl: 'recipehistory.html',
 })
-export class RecipedetailsPage 
+export class RecipehistoryPage 
 {
-  recipe :any;
-
   constructor(public navCtrl: NavController, 
     public navParams: NavParams) 
   {
-    this.recipe = navParams.get('recipe');
+    this.navParams.get('recipehistory');
   }
 
   pushUser()
@@ -23,6 +21,6 @@ export class RecipedetailsPage
 
   ionViewDidLoad() 
   {
-    console.log('ionViewDidLoad RecipedetailsPage');
+    console.log('ionViewDidLoad RecipehistoryPage');
   }
 }

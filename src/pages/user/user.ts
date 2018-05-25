@@ -63,6 +63,11 @@ export class UserPage
     // this.navCtrl.push('SettingsPage');
   }
 
+  pushRecipeHistory()
+  {
+    this.navCtrl.push('RecipehistoryPage');
+  }
+
   logoutUser()
   {
     this.functions.makeToast("Logger ut...");
