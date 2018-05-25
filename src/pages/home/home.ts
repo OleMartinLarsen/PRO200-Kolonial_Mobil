@@ -13,7 +13,7 @@ export class HomePage
   {
   }
 
-  pushAuthUser()
+  pushUser()
   {
       this.navCtrl.push('UserPage');
   }

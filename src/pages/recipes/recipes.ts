@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Recipe } from '../../models/recipe';
+import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 
 @IonicPage()
 @Component({
@@ -11,12 +12,11 @@ import { Recipe } from '../../models/recipe';
 export class RecipesPage 
 {
   private loading: boolean = true;
-  history :Array<String> = [];
-  recipes :any[] = [];
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private af: AngularFirestore) 
+    private af: AngularFirestore,
+    private functions: GlobalFunctionsProvider) 
   {
     this.getData();
   }
@@ -28,7 +28,7 @@ export class RecipesPage
     //   .then((response :any) =>
     //   {
     //     this.loading = false;
-    //     this.recipes = response; //May need to adjust the path
+    //     this.allrecipes = response; //May need to adjust the path
     //   })
     //   .catch((error) =>
     //   {
@@ -39,6 +39,7 @@ export class RecipesPage
   pushRecipeDetails() //Example
   {
     this.navCtrl.push("RecipedetailsPage");
+    this.functions.addRecipeToHistory("Eggerøre");
   }
 
   // pushDetails(recipe :any) //Actual
@@ -48,9 +49,10 @@ export class RecipesPage
   //     recipe,
   //     recipeCollection: this.collection
   //   });
+  //   this.functions.addRecipeToHistory("eksempel");
   // }
 
-  pushAuthUser()
+  pushUser()
   {
     this.navCtrl.push('UserPage');
   }

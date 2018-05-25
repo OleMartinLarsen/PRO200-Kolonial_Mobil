@@ -16,6 +16,11 @@ export class RecipedetailsPage
     this.recipe = navParams.get('recipe');
   }
 
+  pushUser()
+  {
+    this.navCtrl.push('UserPage');
+  }
+
   ionViewDidLoad() 
   {
     console.log('ionViewDidLoad RecipedetailsPage');

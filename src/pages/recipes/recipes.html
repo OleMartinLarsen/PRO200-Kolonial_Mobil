@@ -1,10 +1,12 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Recipes</ion-title>
+    <ion-title>
+      Recipes
+    </ion-title>
     <ion-buttons end>
         <!-- User -->
-        <button ion-button icon-only color="royal" (click)="pushAuthUser()"> 
+        <button ion-button icon-only color="royal" (click)="pushUser()"> 
           <ion-icon name="contact"></ion-icon>
         </button>
       </ion-buttons>
@@ -23,7 +25,7 @@
     </div>
   <div *ngIf="!loading">
     <ion-list no-lines>
-      <!-- <ion-item *ngFor="let recipe of recipes | async" (click)="pushRecipeDetails(recipe)">
+      <!-- <ion-item *ngFor="let recipe of allrecipes | async" (click)="pushRecipeDetails(recipe)">
         <ion-thumbnail item-start>
           <img [src]="post.postImg">
         </ion-thumbnail>
