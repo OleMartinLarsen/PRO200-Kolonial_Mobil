@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -10,7 +11,7 @@ import { GlobalFunctionsProvider } from '../../providers/global-functions/global
 export class CreaterecipePage 
 {
   private instructions: string = "";
-  private data: string = "";
+  private data: any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -28,14 +29,14 @@ export class CreaterecipePage
   saveRecipe() 
   {
     //TODO save data
-    this.storage.setItem("test", "tests");
+    this.storage.set("test", "tests");
     this.functions.makeToast("Lagrer...");
     this.get();
   }
 
   get() 
   {
-    this.data = this.storage.getItem("test");
+    // this.data = this.storage.get("test");
   }
 
   ionViewDidLoad() 
