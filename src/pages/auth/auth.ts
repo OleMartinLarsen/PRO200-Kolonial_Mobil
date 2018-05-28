@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { ToastController } from 'ionic-angular';
+import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 
 @IonicPage()
 @Component({
@@ -19,52 +20,31 @@ export class AuthPage
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private af :AngularFireAuth,
-    private toastCtrl: ToastController) 
+    private afAuth: AngularFireAuth,
+    private functions : GlobalFunctionsProvider) 
   {
   }
 
   loginUser()
   {
     //Sign in with email and password
-    this.af.auth
+    this.afAuth.auth
       .signInWithEmailAndPassword(this.user.email, this.user.pass)
       .then((resp) =>
       {
-        this.navCtrl.push('UserPage');
+        this.navCtrl.push('TabsPage');
         console.log(resp);
       })
       .catch((error) =>
       {
-        this.makeToast("Kunne ikke logge inn bruker!");
+        this.functions.makeToast("Kunne ikke logge inn bruker!");
         console.log(error);
       });
   }
 
-  registerUser()
+  pushRegister()
   {
-    //Register with email and password
-    this.af.auth
-    .createUserAndRetrieveDataWithEmailAndPassword(this.user.email, this.user.pass)
-    .then((resp) =>
-    {
-      this.navCtrl.push('UserPage');
-      console.log(resp);
-    })
-    .catch((error) =>
-    {
-      this.makeToast("Kunne ikke registrere bruker!");
-      console.log(error);
-    })
-  }
-
-  makeToast(toastMessage :string)
-  {
-    this.toastCtrl.create({
-      message: toastMessage,
-      duration: 3000,
-      position: 'bottom'
-    }).present();
+    this.navCtrl.push('RegisterPage');
   }
 
   ionViewDidLoad() 
