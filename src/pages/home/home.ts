@@ -23,6 +23,6 @@ export class HomePage
 
   test()
   {
-
+    this.navCtrl.push('TestPage');
   }
 }
