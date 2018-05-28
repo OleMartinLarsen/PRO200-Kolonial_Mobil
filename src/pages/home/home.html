@@ -1,23 +1,17 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Kolonial
-    </ion-title>
+  <ion-navbar class="navbarStyle">
+    <ion-title>Min ukesliste</ion-title>
     <ion-buttons end>
-      <!-- User -->
-      <button ion-button icon-only color="royal" (click)="pushUser()"> 
+      <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
         <ion-icon name="contact"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="contentStyle">
   <section>
-    <button block ion-button large block (click)="navCtrl.push('CreateListPage')">oprett middagsliste</button>
-    <div style="padding-top: 3%;"></div>
-    <button block ion-button large block (click)="navCtrl.push('BrowseRecipes')">browse middager</button>
-    <div style="padding-top: 3%;"></div>
-    <button block ion-button large (click)="test()">test</button>
+    <button class="button" block ion-button large block (click)="navCtrl.push('CreateListPage')">Oprett middagsliste</button>
+    <button class="button" block ion-button large block (click)="navCtrl.push('BrowseRecipes')">Browse middager</button>
   </section>
 </ion-content>

@@ -1,17 +1,17 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar class="navbarStyle">
     <ion-title>
       Historikk
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only color="royal" (click)="pushUser()"> 
+      <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
         <ion-icon name="contact"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="contentStyle">
   <ion-list no-lines>
     <ion-item *ngFor="let recipe of history" (click)="pushRecipeDetails(recipe)">
       <h2 text-wrap> Name</h2>

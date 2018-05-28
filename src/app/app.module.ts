@@ -16,12 +16,16 @@ import { TabsPageModule } from '../pages/tabs/tabs.module';
 import { HomePage } from '../pages/home/home';
 import { RecipesPage } from '../pages/recipes/recipes';
 import { GlobalFunctionsProvider } from '../providers/global-functions/global-functions';
+import { CartPage } from '../pages/cart/cart';
+import { RecipehistoryPage } from '../pages/recipehistory/recipehistory';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    RecipesPage
+    RecipesPage,
+    CartPage,
+    RecipehistoryPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import { GlobalFunctionsProvider } from '../providers/global-functions/global-fu
   entryComponents: [
     MyApp,
     HomePage,
-    RecipesPage
+    RecipesPage,
+    CartPage,
+    RecipehistoryPage
   ],
   providers: [
     StatusBar,

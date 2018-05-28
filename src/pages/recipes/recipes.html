@@ -1,12 +1,9 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>
-      Recipes
-    </ion-title>
+  <ion-navbar class="navbarStyle">
+    <ion-searchbar placeholder="Søk etter en oppskrift..."></ion-searchbar>
     <ion-buttons end>
-        <!-- User -->
-        <button ion-button icon-only color="royal" (click)="pushUser()"> 
+        <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
           <ion-icon name="contact"></ion-icon>
         </button>
       </ion-buttons>
@@ -15,7 +12,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="contentStyle">
   <h1>Recipes</h1>
   <button block ion-button (click)="pushRecipeDetails()">Eksempeloppskrift</button>
   
