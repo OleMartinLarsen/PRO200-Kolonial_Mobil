@@ -14,6 +14,8 @@ export class CreatedummydataPage
 {
   public wareCollection :AngularFirestoreCollection<Ware>;
   public recipeCollection :AngularFirestoreCollection<Recipe>;
+  private addWare: any;
+  private ingredients :Array<any> = [];
   public ware =
   {
     name: "",
@@ -21,7 +23,6 @@ export class CreatedummydataPage
     type: "",
     img: ""
   };
-
   public recipe =
   {
     name: "",
@@ -40,6 +41,14 @@ export class CreatedummydataPage
   {
     this.wareCollection = af.collection<Ware>("wares");
     this.recipeCollection = af.collection<Recipe>("recipes");
+
+    this.addWare = navParams.get("addWare");
+    if(this.addWare)
+    {
+      this.ingredients.push(this.addWare);
+      // functions.makeToast("La til " + this.addWare.wareName);
+      console.log("Ware added: " + this.addWare.wareName);
+    }
   }
 
   saveWare()
@@ -90,6 +99,7 @@ export class CreatedummydataPage
       this.recipe.grade = "";
       this.recipe.timeInMins = 0;
       this.recipe.portions = 0;
+      this.ingredients = [];
     }
     else
     {

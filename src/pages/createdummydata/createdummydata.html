@@ -50,6 +50,8 @@
       </section>
     </section>
 
+    <hr>
+
     <section class="container">
       <section>
         <h1>Legg til oppskrift</h1>
@@ -81,8 +83,16 @@
   
       <section>
         <ion-label fixed>Ingredienser</ion-label>
+        
+        <!-- List over ingredients added -->
+        <ion-list no-lines>
+          <ion-item *ngFor="let ingredient of ingredients">
+            <!-- TODO quantitiy, remove ware(pop from array) -->
+            <p>{{ingredient.wareName}}</p>
+          </ion-item>
+        </ion-list>
+
         <button block ion-button (click)="pushWareslist()">Legg til vare</button>
-        <!-- <ion-input class="textInputField" type="text" placeholder="Ingredienser" [(ngModel)]="recipe.ingredients"></ion-input>     -->
       </section>
   
       <section>

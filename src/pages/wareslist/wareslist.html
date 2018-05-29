@@ -8,9 +8,9 @@
 
 <ion-content padding>
   <ion-list no-lines>
-    <ion-item *ngFor="let ware of wares" (click)="addToIngredients(ware)">
-      <h2 text-wrap>{{wares.wareName}}</h2>
-      <p>Time/portions/ w/e</p>
+    <ion-item *ngFor="let ware of wares | async" (click)="addToIngredients(ware)">
+      <h2 text-wrap>{{ware.wareName}}</h2>
+      <p>{{ware.wareType}}, {{ware.warePrice}} kroner</p>
     </ion-item>
   </ion-list>
 </ion-content>

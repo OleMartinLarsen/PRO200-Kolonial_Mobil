@@ -18,7 +18,13 @@ export class WareslistPage
     public navParams: NavParams,
     private af :AngularFirestore) 
   {
-    this.wareCollection = af.collection<Ware>('wares');
+    this.wareCollection = af.collection<Ware>('wares', ref =>
+      {
+        //Order by name (alphabetically
+        //Alternativly one could order by type ("kjøtt", "frukt" etc.) by using wareType 
+        //or price by using warePrice)
+        return ref.orderBy("wareName", "asc");     
+      });
 
     this.wares = this.wareCollection.snapshotChanges()
       .map(actions =>
@@ -36,9 +42,12 @@ export class WareslistPage
       });
   }
 
-  addToIngredients(ware: any)
+  addToIngredients(addWare: any)
   {
-    //add id to list, go back to add data page wiht udated ingredientslist
+    this.navCtrl.push("CreatedummydataPage",
+    {
+      addWare
+    });
   }
 
   ionViewDidLoad() 
