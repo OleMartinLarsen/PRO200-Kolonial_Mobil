@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFirestore } from 'angularfire2/firestore';
-import { Recipe } from '../../models/recipe';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
+import { Recipe } from '../../models/recipe';
+import { Observable } from 'rxjs/observable';
 
 @IonicPage()
 @Component({
@@ -12,45 +13,43 @@ import { GlobalFunctionsProvider } from '../../providers/global-functions/global
 export class RecipesPage 
 {
   private loading: boolean = true;
+  public recipeCollection: AngularFirestoreCollection<Recipe>;
+  private allrecipes: Observable<Recipe[]>;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private af: AngularFirestore,
     private functions: GlobalFunctionsProvider) 
   {
-    this.getData();
+    this.recipeCollection = af.collection<Recipe>("recipes", ref =>
+    {
+      //Order by name (alphabetically)
+      //Alternativly one could order by time, grade("enkel", "vanskelig" etc.) by using recipeGrade 
+      //or price by adding warePrice in array (might be harder that it sounds)
+      return ref.orderBy("recipeName", "asc");     
+    });
+
+    this.allrecipes = this.recipeCollection.snapshotChanges()
+      .map(actions =>
+      {
+        return actions.map(action =>
+        {
+          let data = action.payload.doc.data() as Recipe;
+          let id = action.payload.doc.id;
+          
+          return {
+            id, 
+            ...data
+          }
+        });
+      });
   }
 
-  getData()
+  pushRecipeDetails(recipe :any)
   {
-    //Get data from API
-    // this.apiProvider.getData() //Adjust to final methodname
-    //   .then((response :any) =>
-    //   {
-    //     this.loading = false;
-    //     this.allrecipes = response; //May need to adjust the path
-    //   })
-    //   .catch((error) =>
-    //   {
-    //     console.log(error);
-    //   });
+    this.navCtrl.push('RecipedetailsPage', { recipe });
+    this.functions.addRecipeToHistory(recipe.recipeName);
   }
-
-  pushRecipeDetails() //Example
-  {
-    this.navCtrl.push("RecipedetailsPage");
-    this.functions.addRecipeToHistory("Eggerøre");
-  }
-
-  // pushDetails(recipe :any) //Actual
-  // {
-  //   this.navCtrl.push('RecipedetailsPage', 
-  //   {
-  //     recipe,
-  //     recipeCollection: this.collection
-  //   });
-  //   this.functions.addRecipeToHistory("eksempel");
-  // }
 
   pushUser()
   {

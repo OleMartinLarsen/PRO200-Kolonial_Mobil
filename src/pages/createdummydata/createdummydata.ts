@@ -29,7 +29,6 @@ export class CreatedummydataPage
     grade: "",
     timeInMins: 0,
     portions: 0,
-    // ingredients: Array,
     instructions: "",
     img: ""
   };
@@ -82,8 +81,6 @@ export class CreatedummydataPage
   {
     if(this.recipe.name != "" && this.recipe.grade != "")
     {
-      // this.recipe.ingredients = this.functions.getRecipeIngredients();
-
       this.recipeCollection.add(
         {
           recipeName: this.recipe.name,

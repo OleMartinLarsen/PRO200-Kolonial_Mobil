@@ -45,6 +45,7 @@ export class GlobalFunctionsProvider
   clearRecipeIngredients()
   {
     this.recipeIngredients = [];
+    // this.recipeIngredients.length = 0; //TODO propeprly empty array
     return true;
   }
 }
