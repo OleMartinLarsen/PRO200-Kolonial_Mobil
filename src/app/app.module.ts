@@ -18,6 +18,7 @@ import { RecipesPage } from '../pages/recipes/recipes';
 import { GlobalFunctionsProvider } from '../providers/global-functions/global-functions';
 import { CartPage } from '../pages/cart/cart';
 import { RecipehistoryPage } from '../pages/recipehistory/recipehistory';
+import { AccordionComponent } from '../components/accordion/accordion';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { RecipehistoryPage } from '../pages/recipehistory/recipehistory';
     HomePage,
     RecipesPage,
     CartPage,
-    RecipehistoryPage
+    RecipehistoryPage,
+    AccordionComponent
   ],
   imports: [
     BrowserModule,
