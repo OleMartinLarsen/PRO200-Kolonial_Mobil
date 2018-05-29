@@ -1,32 +1,26 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Eggerøre
+      {{recipe.recipeName}}
     </ion-title>
     <ion-buttons end>
-        <!-- User -->
         <button ion-button icon-only color="royal" (click)="pushUser()"> 
           <ion-icon name="contact"></ion-icon>
         </button>
       </ion-buttons>
+      <!-- Favorittknapp -->
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <h1>Eggerøre</h1>
-    <p>10 min, 1 prosjon</p>
-    <p>
-      <!-- Formating... -->
-      2 egg
-      Gressløk
-      Salt
-      Pepper
-    </p>
-    <p>Bland alt og stek i 5 min</p>
+    <h1>{{recipe.recipeName}}</h1>
+    <p>{{recipe.recipeTimeInMinutes}} minutter, {{recipe.recipePortions}} porsjoner</p>
 
-    <!-- <img [src]="recipe.img">
-    <h1>{{recipe.title}}</h1>
-    <p>{{recipe.time}}, {{recipe.portions}}</p>
-    <p>{{recipe.ingredients}}</p>
-    <p>{{recipe.instructions}}</p> -->
+    <ion-list no-lines>
+      <ion-item *ngFor="let ingredient of ingredients">
+        <h2 text-wrap>{{ingredient.wareName}}</h2>
+      </ion-item>
+    </ion-list>
+
+    <p>{{recipe.recipeInstructions}}</p>
 </ion-content>
