@@ -48,7 +48,7 @@ export class RecipesPage
   pushRecipeDetails(recipe :any)
   {
     this.navCtrl.push('RecipedetailsPage', { recipe });
-    this.functions.addRecipeToHistory(recipe.recipeName);
+    this.functions.addRecipeToHistory(recipe);
   }
 
   pushUser()
