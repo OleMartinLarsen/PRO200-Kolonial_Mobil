@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Lad dummydata
+      Lag dummydata
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,46 +9,44 @@
 <ion-content padding>
     <section class="container">
       <section>
-        <h1 class="loginTitle">Registrering</h1>
+        <h1>Legg til vare</h1>
       </section>
   
       <section>
-        <ion-label fixed>Fornavn</ion-label>
-        <ion-input class="textInputField" type="text" placeholder="Fornavn" [(ngModel)]="user.name"></ion-input>
+        <ion-label fixed>Varenavn</ion-label>
+        <ion-input class="textInputField" type="text" placeholder="Varenavn" [(ngModel)]="ware.name"></ion-input>
       </section>
   
       <section>
-        <ion-label fixed>Etternavn</ion-label>
-        <ion-input class="textInputField" type="text" placeholder="Etternavn" [(ngModel)]="user.surname"></ion-input>    
+        <ion-label fixed>Pris per enhet i kroner</ion-label>
+        <ion-input class="textInputField" type="number" placeholder="Pris per enhet" [(ngModel)]="ware.price"></ion-input>    
       </section>
   
       <section>
-        <ion-label fixed>Mobilnummer</ion-label>
-        <ion-input class="textInputField" type="number" placeholder="Mobilnummer" [(ngModel)]="user.phone"></ion-input>
+        <ion-label fixed>Varetype</ion-label>
+        <select [(ngModel)]="ware.type">
+            <option selected>Velg type</option>
+            <option value="Frukt">Frukt</option>
+            <option value="Grønnsak">Grønnsak</option>
+            <option value="Meieri">Meieri</option>
+            <option value="Kjøtt">Kjøtt</option>
+            <option value="Fjærkre">Fjærkre</option>
+            <option value="Fisk">Fisk</option>
+            <option value="Ferdigmatmat">Ferdigmatmat</option>
+            <option value="Desert">Desert</option>
+            <!-- <option value="Grønnsak">Grønnsak</option>
+            <option value="Grønnsak">Grønnsak</option>
+            <option value="Grønnsak">Grønnsak</option> -->
+          </select>
       </section>
   
       <section>
-        <ion-label fixed>Email</ion-label>
-        <ion-input class="textInputField" type="text" placeholder="Email" [(ngModel)]="user.email"></ion-input>
-      </section>
-  
-      <section>
-        <ion-label fixed>Adresse</ion-label>
-        <ion-input class="textInputField" type="text" placeholder="Adresse" [(ngModel)]="user.adress"></ion-input>
-      </section>
-  
-      <section>
-        <ion-label fixed>Passord</ion-label>
-        <ion-input class="textInputField" type="password" placeholder="Passord" [(ngModel)]="user.password"></ion-input>
-      </section>
-  
-      <section>
-          <ion-label fixed>Gjenta Passord</ion-label>
-        <ion-input class="textInputField" type="password" placeholder="Passord" [(ngModel)]="user.repeatPassword"></ion-input>
+        <p>Ferdigmatmat: frossenpizza, rett-i-koppen</p>
+        <p>Desert: kjeks, kake, is</p>  
       </section>
     
       <section>
-        <button block ion-button color="light" (click)="registerUser()">Register</button>
+        <button block ion-button (click)="saveWare()">Lagre vare</button>
       </section>
     </section>
 </ion-content>
