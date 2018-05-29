@@ -81,7 +81,8 @@
   
       <section>
         <ion-label fixed>Ingredienser</ion-label>
-        <ion-input class="textInputField" type="text" placeholder="Ingredienser" [(ngModel)]="recipe.ingredients"></ion-input>    
+        <button block ion-button (click)="pushWareslist()">Legg til vare</button>
+        <!-- <ion-input class="textInputField" type="text" placeholder="Ingredienser" [(ngModel)]="recipe.ingredients"></ion-input>     -->
       </section>
   
       <section>
