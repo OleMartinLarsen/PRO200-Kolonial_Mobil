@@ -60,6 +60,11 @@ export class UserPage
     this.navCtrl.push('RecipehistoryPage');
   }
 
+  pushAddWares()
+  {
+    this.navCtrl.push('CreatedummydataPage');
+  }
+
   logoutUser()
   {
     this.functions.makeToast("Logger ut...");

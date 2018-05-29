@@ -5,8 +5,8 @@ import { ToastController } from 'ionic-angular';
 @Injectable()
 export class GlobalFunctionsProvider 
 {
-  // recipehistory :any[] = [];
-  recipehistory :Array<any> = [];
+  recipeHistory: Array<any> = [];
+  recipeIngredients: Array<any> = [];
 
   constructor(private toastCtrl: ToastController) 
   {
@@ -23,11 +23,28 @@ export class GlobalFunctionsProvider
 
   addRecipeToHistory(recipe: any)
   {
-    this.recipehistory.push(recipe);
+    this.recipeHistory.push(recipe);
   }
 
   getRecipeHistory()
   {
-    return this.recipehistory;
+    return this.recipeHistory;
+  }
+
+  addIngredientToRecipeIngredients(ingredient: any)
+  {
+    this.recipeIngredients.push(ingredient);
+    console.log(ingredient.wareName + " added to recipe");
+  }
+
+  getRecipeIngredients()
+  {
+    return this.recipeIngredients;
+  }
+
+  clearRecipeIngredients()
+  {
+    this.recipeIngredients = [];
+    return true;
   }
 }
