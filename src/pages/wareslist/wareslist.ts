@@ -44,10 +44,10 @@ export class WareslistPage
 
   addToIngredients(addWare: any)
   {
-    this.navCtrl.push("CreatedummydataPage",
-    {
-      addWare
-    });
+    this.navCtrl.push("CreatedummydataPage", { addWare })
+      .then(() => { this.navCtrl.remove(1) }); 
+      //TODO remove from backstack isn't woking correctly, 
+      //the user should not be able to press back and get to the list of wares
   }
 
   ionViewDidLoad() 

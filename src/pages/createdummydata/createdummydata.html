@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Lag dummydata
+      Legg til data
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -50,7 +50,9 @@
       </section>
     </section>
 
+    <br>
     <hr>
+    <br>
 
     <section class="container">
       <section>
@@ -83,7 +85,6 @@
   
       <section>
         <ion-label fixed>Ingredienser</ion-label>
-        
         <!-- List over ingredients added -->
         <ion-list no-lines>
           <ion-item *ngFor="let ingredient of recipeIngredients">
@@ -91,7 +92,6 @@
             <p>{{ingredient.wareName}}</p>
           </ion-item>
         </ion-list>
-
         <button block ion-button (click)="pushWareslist()">Legg til vare</button>
       </section>
   

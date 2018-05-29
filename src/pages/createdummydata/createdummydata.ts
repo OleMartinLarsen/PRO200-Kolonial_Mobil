@@ -90,7 +90,7 @@ export class CreatedummydataPage
           recipeGrade: this.recipe.grade,
           recipeTimeInMinutes: this.recipe.timeInMins,
           recipePortions: this.recipe.portions,
-          recipeIngredients: this.functions.getRecipeIngredients,
+          recipeIngredients: this.functions.getRecipeIngredients(),
           recipeInstructions: this.recipe.instructions,
           // recipeImg: this.recipe.img
         } as Recipe);
