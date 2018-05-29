@@ -56,7 +56,7 @@ export class CreatedummydataPage
     {
       this.wareCollection.add(
         {
-          wareName: this.ware.name,
+          wareName: this.ware.name.charAt(0).toUpperCase() + this.ware.name.slice(1),
           warePrice: this.ware.price,
           wareType: this.ware.type,
           // wareImg: this.ware.img
