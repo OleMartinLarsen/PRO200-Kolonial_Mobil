@@ -3,6 +3,10 @@ page-tabs {
         background: color($colors, color2);
     }
 
+    .tabs-ios .tab-button[aria-selected=true] {
+        background: color($colors, color2);
+    }
+
     .tabsStyle {
         //border-top: 5px color($colors, color2) solid;
     }
