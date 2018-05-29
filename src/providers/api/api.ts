@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import apikeys from '../../app/apikeys';
 
 @Injectable()
@@ -18,20 +16,29 @@ export class ApiProvider
   {
     return new Promise((resolve, reject) =>
     {
-      //Headers 1 (seems to work)
-      var headers = new Headers();
-      headers.append("Accept",  "application/json");
-      headers.append("Content-Type", "application/json");
+      var apiUrl :string = "https://kolonial.no/api/v1/products/9329/";
 
-      //"Usage"
-      headers.append("User-Agent", this.agent);
-      headers.append("X-Client-Token", this.token);
-      let options = ({ headers: headers });
+      //Headers 1 (seems to work)
+      // var headers = new Headers();
+      // headers.append("Accept",  "application/json");
+      // headers.append("Content-Type", "application/json");
+
+      // //"Usage"
+      // headers.append("User-Agent", this.agent);
+      // headers.append("X-Client-Token", this.token);
+      // let options = ({ headers: headers });
 
       //"Usage->Authentication" (probably not)
       // headers.append("Cookie", "sessionid=" + this.token);
 
-      this.http.post("https://www.kolonial.no/api/v1/products/9329", options)
+      //Headers 2
+      const headers = new HttpHeaders()
+        // .set("Accept",  "application/json")
+        // .set("Content-Type", "application/json")
+        // .set("User-Agent", this.agent)
+        .set("X-Client-Token", this.token);
+
+      this.http.post(apiUrl, headers)
         .subscribe(
           (resp) => 
           { 

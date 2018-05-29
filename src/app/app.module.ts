@@ -11,12 +11,14 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 
-import env from './env';
 import { TabsPageModule } from '../pages/tabs/tabs.module';
 import { HomePage } from '../pages/home/home';
 import { RecipesPage } from '../pages/recipes/recipes';
 import { GlobalFunctionsProvider } from '../providers/global-functions/global-functions';
 import { ApiProvider } from '../providers/api/api';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+import env from './env';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { ApiProvider } from '../providers/api/api';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
