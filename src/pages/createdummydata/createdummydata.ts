@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 import { Ware } from '../../models/ware';
-import { Recipe } from '../../models/recipemodel';
+import { Recipe } from '../../models/recipe';
 
 @IonicPage()
 @Component({
@@ -12,10 +12,10 @@ import { Recipe } from '../../models/recipemodel';
 })
 export class CreatedummydataPage 
 {
-  public wareCollection :AngularFirestoreCollection<Ware>;
-  public recipeCollection :AngularFirestoreCollection<Recipe>;
+  public wareCollection: AngularFirestoreCollection<Ware>;
+  public recipeCollection: AngularFirestoreCollection<Recipe>;
+  private recipeIngredients: Array<any> = [];
   private addWare: any;
-  private ingredients :Array<any> = [];
   public ware =
   {
     name: "",
@@ -29,7 +29,7 @@ export class CreatedummydataPage
     grade: "",
     timeInMins: 0,
     portions: 0,
-    ingredients: "",
+    // ingredients: Array,
     instructions: "",
     img: ""
   };
@@ -41,13 +41,12 @@ export class CreatedummydataPage
   {
     this.wareCollection = af.collection<Ware>("wares");
     this.recipeCollection = af.collection<Recipe>("recipes");
+    this.recipeIngredients = functions.getRecipeIngredients();
 
     this.addWare = navParams.get("addWare");
     if(this.addWare)
     {
-      this.ingredients.push(this.addWare);
-      // functions.makeToast("La til " + this.addWare.wareName);
-      console.log("Ware added: " + this.addWare.wareName);
+      this.functions.addIngredientToRecipeIngredients(this.addWare);
     }
   }
 
@@ -83,13 +82,15 @@ export class CreatedummydataPage
   {
     if(this.recipe.name != "" && this.recipe.grade != "")
     {
+      // this.recipe.ingredients = this.functions.getRecipeIngredients();
+
       this.recipeCollection.add(
         {
           recipeName: this.recipe.name,
           recipeGrade: this.recipe.grade,
           recipeTimeInMinutes: this.recipe.timeInMins,
           recipePortions: this.recipe.portions,
-          recipeIngredients: this.recipe.ingredients,
+          recipeIngredients: this.functions.getRecipeIngredients,
           recipeInstructions: this.recipe.instructions,
           // recipeImg: this.recipe.img
         } as Recipe);
@@ -99,7 +100,7 @@ export class CreatedummydataPage
       this.recipe.grade = "";
       this.recipe.timeInMins = 0;
       this.recipe.portions = 0;
-      this.ingredients = [];
+      this.functions.clearRecipeIngredients();
     }
     else
     {

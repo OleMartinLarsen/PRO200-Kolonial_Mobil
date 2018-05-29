@@ -20,9 +20,9 @@ export class WareslistPage
   {
     this.wareCollection = af.collection<Ware>('wares', ref =>
       {
-        //Order by name (alphabetically
+        //Order by name (alphabetically)
         //Alternativly one could order by type ("kjøtt", "frukt" etc.) by using wareType 
-        //or price by using warePrice)
+        //or price by using warePrice
         return ref.orderBy("wareName", "asc");     
       });
 
