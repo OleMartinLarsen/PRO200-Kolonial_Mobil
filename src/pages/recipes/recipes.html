@@ -2,10 +2,9 @@
 
   <ion-navbar>
     <ion-title>
-      Recipes
+      Oppskrifter
     </ion-title>
     <ion-buttons end>
-        <!-- User -->
         <button ion-button icon-only color="royal" (click)="pushUser()"> 
           <ion-icon name="contact"></ion-icon>
         </button>
@@ -16,19 +15,37 @@
 
 
 <ion-content padding>
-  <h1>Recipes</h1>
-  <button block ion-button (click)="pushRecipeDetails()">Eksempeloppskrift</button>
-  
-  <div *ngIf="loading">
-      <p>Laster</p>
-      <ion-spinner></ion-spinner>
+  <section>
+    <h1>Alle oppskrifter</h1>
+    <div *ngIf="loading">
+        <p>Laster</p>
+        <ion-spinner></ion-spinner>
+      </div>
+    <div *ngIf="!loading">
+      <ion-list no-lines>
+        <ion-item *ngFor="let recipe of allrecipes | async" (click)="pushRecipeDetails(recipe)">
+          <h2 text-wrap>{{recipe.recipeName}}</h2>
+          <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p>
+        </ion-item>
+      </ion-list>
     </div>
-  <div *ngIf="!loading">
-    <ion-list no-lines>
-      <ion-item *ngFor="let recipe of allrecipes | async" (click)="pushRecipeDetails(recipe)">
-        <h2 text-wrap>{{recipe.recipeName}}</h2>
-        <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p>
-      </ion-item>
-    </ion-list>
-  </div>
+  </section>
+
+  <br>
+
+  <!--TODO <section>
+    <h1>Favoritter</h1> 
+      <div *ngIf="loading">
+        <p>Laster</p>
+        <ion-spinner></ion-spinner>
+      </div>
+      <div *ngIf="!loading">
+        <ion-list no-lines>
+          <ion-item *ngFor="let recipe of allrecipes | async" (click)="pushRecipeDetails(recipe)">
+            <h2 text-wrap>{{recipe.recipeName}}</h2>
+            <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p>
+          </ion-item>
+        </ion-list>
+      </div>
+  </section> -->
 </ion-content>
