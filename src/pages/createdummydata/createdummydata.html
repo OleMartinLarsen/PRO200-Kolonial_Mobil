@@ -94,7 +94,9 @@
         <ion-list no-lines>
           <ion-item *ngFor="let ingredient of recipeIngredients">
             <!-- TODO quantitiy, remove ware(pop from array) -->
-            <p>{{ingredient.wareName}}</p>
+            <p>{{ingredient.wareName}}
+            <ion-icon name="trash" (click)="popWare(ingredient.wareName)" style="float: right; right: 0;"></ion-icon>
+            </p>
           </ion-item>
         </ion-list>
         <button block ion-button (click)="pushWareslist()">Legg til vare</button>
