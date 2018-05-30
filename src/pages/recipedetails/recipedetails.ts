@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
+import { forEach } from '@firebase/util';
 
 @IonicPage()
 @Component({
@@ -9,6 +10,7 @@ import { GlobalFunctionsProvider } from '../../providers/global-functions/global
 })
 export class RecipedetailsPage 
 {
+  private isFavorited: boolean = false;
   recipe: any;
   ingredients: any;
   instructions: any;
@@ -20,6 +22,11 @@ export class RecipedetailsPage
     this.recipe = navParams.get('recipe');
     this.ingredients = this.recipe.recipeIngredients;
     this.instructions = this.recipe.recipeInstructions;
+
+    //If recipe is favorited, remove "add-to-favorite" button
+    var res = this.functions.getRecipeFavorites().find((found) => { return found == this.recipe; });
+    if(res)
+      this.isFavorited = true;
   }
 
   pushUser()
@@ -29,9 +36,12 @@ export class RecipedetailsPage
 
   addToFavorites()
   {
-    //TODO save recipe to local storage
-    this.functions.addRecipeFavorites(this.recipe);
-    this.functions.makeToast("Oppskrift lagt til i favoritter");
+    if(!this.isFavorited)
+    {
+      //TODO save recipe to local storage
+      this.functions.addRecipeFavorites(this.recipe);
+      this.functions.makeToast("Oppskrift lagt til i favoritter");
+    }
   }
 
   ionViewDidLoad() 
