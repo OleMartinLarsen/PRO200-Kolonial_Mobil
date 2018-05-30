@@ -15,7 +15,9 @@ export class CreatedummydataPage
   public wareCollection: AngularFirestoreCollection<Ware>;
   public recipeCollection: AngularFirestoreCollection<Recipe>;
   private recipeIngredients: Array<any> = [];
+  private recipeInstructions: Array<any> = [];
   private addWare: any;
+  private step: string;
   public ware =
   {
     name: "",
@@ -41,6 +43,7 @@ export class CreatedummydataPage
     this.wareCollection = af.collection<Ware>("wares");
     this.recipeCollection = af.collection<Recipe>("recipes");
     this.recipeIngredients = functions.getRecipeIngredients();
+    this.recipeInstructions = functions.getRecipeInstructions();
 
     this.addWare = navParams.get("addWare");
     if(this.addWare)
@@ -77,6 +80,12 @@ export class CreatedummydataPage
     this.navCtrl.push("WareslistPage");
   }
 
+  saveStep(step: string) 
+  {
+    this.functions.addInstructionsToRecipeInstructions(step);
+    this.step = "";
+  }
+
   saveRecipe()
   {
     if(this.recipe.name != "" && this.recipe.grade != "")
@@ -88,7 +97,7 @@ export class CreatedummydataPage
           recipeTimeInMinutes: this.recipe.timeInMins,
           recipePortions: this.recipe.portions,
           recipeIngredients: this.functions.getRecipeIngredients(),
-          recipeInstructions: this.recipe.instructions,
+          recipeInstructions: this.functions.getRecipeInstructions(),
           // recipeImg: this.recipe.img
         } as Recipe);
 
@@ -98,6 +107,7 @@ export class CreatedummydataPage
       this.recipe.timeInMins = 0;
       this.recipe.portions = 0;
       this.functions.clearRecipeIngredients();
+      this.functions.clearRecipeInstructions();
     }
     else
     {
