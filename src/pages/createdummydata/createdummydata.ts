@@ -43,12 +43,6 @@ export class CreatedummydataPage
     this.recipeCollection = af.collection<Recipe>("recipes");
     this.recipeIngredients = functions.getRecipeIngredients();
     this.recipeInstructions = functions.getRecipeInstructions();
-
-    this.addWare = navParams.get("addWare");
-    if(this.addWare)
-    {
-      this.functions.addIngredientToRecipeIngredients(this.addWare);
-    }
   }
 
   saveWare()
