@@ -7,6 +7,7 @@ export class GlobalFunctionsProvider
 {
   recipeHistory: Array<any> = [];
   recipeIngredients: Array<any> = [];
+  recipeInstructions: Array<any> = [];
 
   constructor(private toastCtrl: ToastController) 
   {
@@ -45,7 +46,23 @@ export class GlobalFunctionsProvider
   clearRecipeIngredients()
   {
     this.recipeIngredients = [];
-    // this.recipeIngredients.length = 0; //TODO propeprly empty array
+    return true;
+  }
+
+  addInstructionsToRecipeInstructions(instructions: any)
+  {
+    this.recipeInstructions.push(instructions);
+    console.log("instructions added to recipe");
+  }
+
+  getRecipeInstructions()
+  {
+    return this.recipeInstructions;
+  }
+
+  clearRecipeInstructions()
+  {
+    this.recipeInstructions = [];
     return true;
   }
 }

@@ -6,20 +6,13 @@ import { AngularFirestore } from 'angularfire2/firestore';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage 
-{
+export class HomePage {
+
   constructor(public navCtrl: NavController,
-    private af :AngularFirestore) 
-  {
+    private af: AngularFirestore) {
   }
 
-  pushUser()
-  {
-      this.navCtrl.push('UserPage');
-  }
-
-  test()
-  {
-
+  pushUser() {
+    this.navCtrl.push('UserPage');
   }
 }

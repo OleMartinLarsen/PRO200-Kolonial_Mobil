@@ -1,10 +1,10 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar class="navbarStyle">
     <ion-title>
       {{recipe.recipeName}}
     </ion-title>
-    <ion-buttons end>
-        <button ion-button icon-only color="royal" (click)="pushUser()"> 
+     <ion-buttons end>
+        <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
           <ion-icon name="contact"></ion-icon>
         </button>
       </ion-buttons>
@@ -12,15 +12,22 @@
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
     <h1>{{recipe.recipeName}}</h1>
     <p>{{recipe.recipeTimeInMinutes}} minutter, {{recipe.recipePortions}} porsjoner</p>
-
+    
+    <p>Ingredienser</p>
     <ion-list no-lines>
       <ion-item *ngFor="let ingredient of ingredients">
-        <h2 text-wrap>{{ingredient.wareName}}</h2>
+        <p text-wrap>{{ingredient.wareName}}</p>
       </ion-item>
     </ion-list>
-
-    <p>{{recipe.recipeInstructions}}</p>
+    
+    <p>Instrukser</p>
+    <ion-list no-lines>
+      <ion-item *ngFor="let step of instructions">
+        <p text-wrap>{{step}}</p>
+      </ion-item>
+    </ion-list>
 </ion-content>

@@ -10,12 +10,14 @@ export class RecipedetailsPage
 {
   recipe: any;
   ingredients: any;
+  instructions: any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams) 
   {
     this.recipe = navParams.get('recipe');
     this.ingredients = this.recipe.recipeIngredients;
+    this.instructions = this.recipe.recipeInstructions;
   }
 
   pushUser()

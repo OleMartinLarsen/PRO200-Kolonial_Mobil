@@ -6,7 +6,7 @@ export class Recipe
         public recipeTimeInMinutes: number,
         public recipePortions: number,
         public recipeIngredients: any,
-        public recipeInstructions: string,
+        public recipeInstructions: any,
         public recipeImg?: string, 
         public id?: string) 
     {
