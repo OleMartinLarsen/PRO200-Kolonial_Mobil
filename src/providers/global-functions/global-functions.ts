@@ -6,6 +6,7 @@ import { ToastController } from 'ionic-angular';
 export class GlobalFunctionsProvider 
 {
   recipeHistory: Array<any> = [];
+  recipeFavorites: Array<any> = [];
   recipeIngredients: Array<any> = [];
   recipeInstructions: Array<any> = [];
 
@@ -32,6 +33,16 @@ export class GlobalFunctionsProvider
     return this.recipeHistory;
   }
 
+  addRecipeFavorites(recipe: any)
+  {
+    this.recipeFavorites.push(recipe);
+  }
+
+  getRecipeFavorites()
+  {
+    return this.recipeFavorites;
+  }
+
   addIngredientToRecipeIngredients(ingredient: any)
   {
     this.recipeIngredients.push(ingredient);
@@ -52,7 +63,7 @@ export class GlobalFunctionsProvider
   addInstructionsToRecipeInstructions(instructions: any)
   {
     this.recipeInstructions.push(instructions);
-    console.log("instructions added to recipe");
+    console.log(instructions + " added to recipe");
   }
 
   getRecipeInstructions()

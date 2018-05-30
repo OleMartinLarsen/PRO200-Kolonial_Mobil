@@ -15,6 +15,7 @@ export class RecipesPage
   private loading: boolean = true;
   public recipeCollection: AngularFirestoreCollection<Recipe>;
   private allrecipes: Observable<Recipe[]>;
+  private favorites :Array<any> = [];
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -43,6 +44,9 @@ export class RecipesPage
           }
         });
       });
+
+      // this.favorites = this.storage.get("recipeFavlorites..."); //For phones internal storage
+      this.favorites = this.functions.getRecipeFavorites();
   }
 
   pushRecipeDetails(recipe :any)
