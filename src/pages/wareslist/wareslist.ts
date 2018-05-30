@@ -48,6 +48,7 @@ export class WareslistPage
       .then(() => { this.navCtrl.remove(1) }); 
       //TODO remove from backstack isn't woking correctly, 
       //the user should not be able to press back and get to the list of wares
+      //pop?
   }
 
   ionViewDidLoad() 
