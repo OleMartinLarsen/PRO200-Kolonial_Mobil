@@ -1,0 +1,11 @@
+accordion {
+    .card-header{
+        background-color: color($colors, primary);
+        color: #fff;
+    }
+
+    .card-content {
+        padding: 0px 16px;
+        max-height: 0px;
+    }
+}

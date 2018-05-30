@@ -1,16 +1,17 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar class="navbarStyle">
     <ion-title>
       {{recipe.recipeName}}
     </ion-title>
-    <ion-buttons end>
-        <button ion-button icon-only color="royal" (click)="pushUser()"> 
+     <ion-buttons end>
+        <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
           <ion-icon name="contact"></ion-icon>
         </button>
       </ion-buttons>
       <!-- Favorittknapp -->
   </ion-navbar>
 </ion-header>
+
 
 <ion-content padding>
     <h1>{{recipe.recipeName}}</h1>
