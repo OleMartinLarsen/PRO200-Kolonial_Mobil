@@ -25,6 +25,11 @@ export class RecipedetailsPage
     this.navCtrl.push('UserPage');
   }
 
+  addToFavorites()
+  {
+    //TODO save recipe to local storage
+  }
+
   ionViewDidLoad() 
   {
     console.log('ionViewDidLoad RecipedetailsPage');
