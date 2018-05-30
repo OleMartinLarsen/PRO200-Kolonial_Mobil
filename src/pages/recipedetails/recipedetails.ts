@@ -8,12 +8,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RecipedetailsPage 
 {
-  recipe :any;
+  recipe: any;
+  ingredients: any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams) 
   {
     this.recipe = navParams.get('recipe');
+    this.ingredients = this.recipe.recipeIngredients;
   }
 
   pushUser()

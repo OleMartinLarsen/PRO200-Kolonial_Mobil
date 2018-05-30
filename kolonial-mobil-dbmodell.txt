@@ -1,11 +1,22 @@
 
 	users---+
-		+userName
-		+userSurname
-		+userPhone
-		+userEmail
-		+userPostAdress
-		+userAdress
-		|
-		+(TODO: subs)
-		
+			+userName: string
+			+userSurname: string
+			+userPhone: number
+			+userEmail: string
+			+userPostAdress: number
+			+userAdress: string
+			|
+			+(TODO: subcollections (mine oppskrifter, favoritter etc))
+
+	wares---+
+			+wareName: string
+			+wareType: string(enum)
+			+warePrice: number
+
+	recipes-+
+			+recipeName: string
+			+recipeTimeInMinutes: number
+			+recipePortions: number
+			+recipeIngredients: object[]
+			+recipeInstructions: string

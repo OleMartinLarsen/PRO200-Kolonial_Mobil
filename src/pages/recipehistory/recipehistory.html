@@ -14,8 +14,8 @@
 <ion-content padding class="contentStyle">
   <ion-list no-lines>
     <ion-item *ngFor="let recipe of history" (click)="pushRecipeDetails(recipe)">
-      <h2 text-wrap> Name</h2>
-      <p>Time/portions/ w/e</p>
+      <h2 text-wrap>{{recipe.recipeName}}</h2>
+      <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p>
     </ion-item>
   </ion-list>
 </ion-content>

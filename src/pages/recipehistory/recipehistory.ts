@@ -18,9 +18,9 @@ export class RecipehistoryPage
     this.history = this.functions.getRecipeHistory();
   }
 
-  pushRecipeDetails() //Example
+  pushRecipeDetails(recipe: any)
   {
-    this.navCtrl.push("RecipedetailsPage");
+    this.navCtrl.push('RecipedetailsPage', { recipe });
   }
 
   pushUser()
