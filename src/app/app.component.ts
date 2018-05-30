@@ -23,7 +23,7 @@ export class MyApp
         if (user)
           this.rootPage = 'TabsPage';
         else
-          this.rootPage = 'AuthPage';
+          this.rootPage = 'WelcomePage';
       });
 
 
