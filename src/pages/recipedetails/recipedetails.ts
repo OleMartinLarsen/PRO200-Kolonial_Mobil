@@ -11,7 +11,7 @@ import { forEach } from '@firebase/util';
 export class RecipedetailsPage 
 {
   private isFavorited: boolean = false;
-  private isPlanning: boolean = true;
+  private isPlanning: boolean = false;
   recipe: any;
   ingredients: any;
   instructions: any;
@@ -26,8 +26,9 @@ export class RecipedetailsPage
 
     //If recipe is favorited, remove "add-to-favorite" button
     var res = this.functions.getRecipeFavorites().find((found) => { return found == this.recipe; });
-    if(res)
-      this.isFavorited = true;
+    if(res) { this.isFavorited = true; }
+
+    this.isPlanning = this.navParams.get("isPlanning");
   }
 
   pushUser()
@@ -47,7 +48,7 @@ export class RecipedetailsPage
 
   addRecipeToDay()
   {
-    //TODO save to planner
+    this.functions.addRecipeToDayPlans(this.recipe);
     this.navCtrl.popTo("HomePage");
   }
 

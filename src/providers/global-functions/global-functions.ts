@@ -10,7 +10,7 @@ export class GlobalFunctionsProvider
   recipeIngredients: Array<any> = [];
   recipeInstructions: Array<any> = [];
   plannedWeeks: Array<any> = [];
-  plannedDays: Array<any> = [];
+  dayPlans: Array<any> = [];
 
   constructor(private toastCtrl: ToastController) 
   {
@@ -89,14 +89,14 @@ export class GlobalFunctionsProvider
     return this.plannedWeeks;
   }
 
-  addDayToPlannedDays(recipe: any)
+  addRecipeToDayPlans(recipe: any)
   {
-    this.plannedDays.push(recipe);
-    console.log(recipe + " added to plannedDays");
+    this.dayPlans.push(recipe);
+    console.log(recipe + " added to dayPlans");
   }
 
-  getPlannedDays()
+  getDayPlans()
   {
-    return this.plannedDays;
+    return this.dayPlans;
   }
 }

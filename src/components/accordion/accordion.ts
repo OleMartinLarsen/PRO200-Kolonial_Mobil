@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit, Renderer } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 
 @Component({
   selector: 'accordion',
@@ -15,11 +16,13 @@ export class AccordionComponent implements OnInit
   private planned: boolean = false;
   private currentDay :string = "";
   private daysArrayNo :Array<string> = [];
+  private plannedDays :Array<string> = [];
 
   constructor(public renderer: Renderer,
-    public navCtrl: NavController) 
+    public navCtrl: NavController,
+    private functions: GlobalFunctionsProvider) 
   {
-    this.getDinnerPlans();
+    this.plannedDays = this.functions.getDayPlans();
 
     this.populateDaysArrayNo();
     this.currentDay = this.daysArrayNo[new Date().getDay() - 1]; //Get current day in norwegian
@@ -27,15 +30,11 @@ export class AccordionComponent implements OnInit
     this.displaydate = this.currentDay + " " + new Date().getDate() + "." + (new Date().getMonth() + 1);
   }
 
-  getDinnerPlans()
-  {
-    // TODO get stored dinnerplans from storage to display
-  }
-
   addRecipes()
   {
-    // TODO go to special list with recipe?
-    this.navCtrl.push("RecipesPage");
+    var isPlanning = true;
+    // TODO check planning add-recipe-to-day button in recipedetails is showing up/hidden as expected
+    this.navCtrl.push("RecipesPage", { isPlanning }).then(() => { isPlanning = false; });
     //get recipe object
     //save plans (recipe + date)
     this.planned = true;
