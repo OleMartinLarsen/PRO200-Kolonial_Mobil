@@ -5,12 +5,13 @@ import { NavController } from 'ionic-angular';
   selector: 'accordion',
   templateUrl: 'accordion.html'
 })
-export class AccordionComponent implements OnInit {
-
+export class AccordionComponent implements OnInit 
+{
   accordionExpanded = false;
   @ViewChild("cc") content: any;
   icon: string = "arrow-forward";
 
+  private displaydate: string;
   private planned: boolean = false;
   private currentDay :string = "";
   private daysArrayNo :Array<string> = [];
@@ -22,6 +23,8 @@ export class AccordionComponent implements OnInit {
 
     this.populateDaysArrayNo();
     this.currentDay = this.daysArrayNo[new Date().getDay() - 1]; //Get current day in norwegian
+
+    this.displaydate = this.currentDay + " " + new Date().getDate() + "." + (new Date().getMonth() + 1);
   }
 
   getDinnerPlans()
@@ -33,12 +36,13 @@ export class AccordionComponent implements OnInit {
   {
     // TODO go to special list with recipe, then days?
     this.navCtrl.push("RecipesPage");
-    //...
+    //get recipe/dinner
+    //save plans (dinner + date)
     this.planned = true;
   }
 
   ngOnInit(){
-    console.log(this.content.nativeElement);
+    // console.log(this.content.nativeElement);
     this.renderer.setElementStyle(this.content.nativeElement, "webkitTransition", "max-height 400ms, padding 400ms");
   }
 

@@ -1,7 +1,7 @@
 <ion-card>
   <ion-card-header (click)="toggleAccordion()">
     <ion-item color="primary">
-      Mandag 21.9
+      {{displaydate}}
       <button ion-button clear small icon-only item-right>
         <ion-icon color="light" [name]="icon"></ion-icon>
       </button>
@@ -11,7 +11,7 @@
 
   <div *ngIf="planned">
     <p>dag planlagt</p>
-    <!-- TODO dinner model/design
+    <!-- TODO dinner model/design onclick til RecipedetailsPage
     <img [src]="recipe.recipeImg">
     {{recipe.recipeName}}
     {{recipe.recipeTimeInMinutes}}

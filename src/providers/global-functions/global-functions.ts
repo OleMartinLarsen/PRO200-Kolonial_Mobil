@@ -79,9 +79,9 @@ export class GlobalFunctionsProvider
     return true;
   }
 
-  addWeekToPlannedWeeks()
+  addWeekToPlannedWeeks(weeknumber: number)
   {
-    this.plannedWeeks.push("test");
+    this.plannedWeeks.push("Uke " + weeknumber);
   }
 
   getPlannedWeeks()

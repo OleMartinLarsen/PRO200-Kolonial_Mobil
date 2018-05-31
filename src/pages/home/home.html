@@ -1,6 +1,8 @@
 <ion-header>
   <ion-navbar class="navbarStyle">
-    <ion-title>Min ukesliste</ion-title>
+    <ion-title>
+      Min ukesliste
+    </ion-title>
     <ion-buttons end>
       <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
         <ion-icon name="contact"></ion-icon>
@@ -13,8 +15,14 @@
   <ion-list no-lines>
       <ion-item *ngFor="let week of weeksPlanned">
         <!-- <ion-title gravity="left"> -->
-          <h1>Uke 21</h1>
+          <h1>{{week}}</h1>
         <!-- </ion-title> -->
+        <accordion></accordion>
+        <accordion></accordion>
+        <accordion></accordion>
+        <accordion></accordion>
+        <accordion></accordion>
+        <accordion></accordion>
         <accordion></accordion>
     </ion-item>
   </ion-list>
