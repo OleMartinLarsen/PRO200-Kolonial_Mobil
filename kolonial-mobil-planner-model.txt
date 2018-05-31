@@ -1,6 +1,13 @@
+Weeklist (list of all planned weeks)
+	Dayslist (list of all planned days in that week)
+		Recipes  (recipes planned for that day)
+			Ingredientslist (all ingredients for this recipe)
+			Instructionslist (list of all instructions is this recipe)
 
-	Ukesliste (liste over alle uker planlagt)
-		Dagsliste (liste over alle dager planlagt i uken)
-			Middager (middager planlagt for dagen)
-				Ingredienseliste (alle ingrediensene i oppskriften)
-				Instruksliste (liste over instrukser for oppskriften)
+
+How to plan:
+1. Go to homepage
+2. Add a week (set weekname/get next avaliable week?)
+3. Add day/from the list of unplanned day, select a day to plan
+4. Select a recipe from the list of recipes
+5. Confirm you want this recipe

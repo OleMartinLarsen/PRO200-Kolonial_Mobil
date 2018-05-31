@@ -11,6 +11,7 @@ import { forEach } from '@firebase/util';
 export class RecipedetailsPage 
 {
   private isFavorited: boolean = false;
+  private isPlanning: boolean = true;
   recipe: any;
   ingredients: any;
   instructions: any;
@@ -31,7 +32,7 @@ export class RecipedetailsPage
 
   pushUser()
   {
-    this.navCtrl.push('UserPage');
+    this.navCtrl.push("UserPage");
   }
 
   addToFavorites()
@@ -42,6 +43,12 @@ export class RecipedetailsPage
       this.functions.addRecipeFavorites(this.recipe);
       this.functions.makeToast("Oppskrift lagt til i favoritter");
     }
+  }
+
+  addRecipeToDay()
+  {
+    //TODO save to planner
+    this.navCtrl.popTo("HomePage");
   }
 
   ionViewDidLoad() 

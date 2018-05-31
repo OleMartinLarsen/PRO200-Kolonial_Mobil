@@ -34,4 +34,9 @@
         <p text-wrap>{{step}}</p>
       </ion-item>
     </ion-list>
+
+    <div *ngIf="isPlanning">
+      <!-- TODO better button name -->
+      <button block ion-button (click)="addRecipeToDay()">Legg til middag</button>
+    </div>
 </ion-content>

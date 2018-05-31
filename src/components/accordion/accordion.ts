@@ -34,11 +34,17 @@ export class AccordionComponent implements OnInit
 
   addRecipes()
   {
-    // TODO go to special list with recipe, then days?
+    // TODO go to special list with recipe?
     this.navCtrl.push("RecipesPage");
-    //get recipe/dinner
-    //save plans (dinner + date)
+    //get recipe object
+    //save plans (recipe + date)
     this.planned = true;
+  }
+
+  pushRecipeDetails(recipe: any)
+  {
+    //TODO get recipe for this day from gerDinnerPlans()
+    this.navCtrl.push('RecipedetailsPage', { recipe });
   }
 
   ngOnInit(){

@@ -10,14 +10,16 @@
   <ion-card-content #cc>
 
   <div *ngIf="planned">
-    <p>dag planlagt</p>
-    <!-- TODO dinner model/design onclick til RecipedetailsPage
-    <img [src]="recipe.recipeImg">
-    {{recipe.recipeName}}
-    {{recipe.recipeTimeInMinutes}}
-    {{recipe.recipePortions}}
-    {{recipe.recipeGrade}} 
-    -->
+    <ion-item (click)="pushRecipeDetails(recipe)">
+        <p>(Oppskrift)</p>
+        <!-- TODO dinner model/design onclick til RecipedetailsPage
+        <img [src]="recipe.recipeImg">
+        {{recipe.recipeName}}
+        {{recipe.recipeTimeInMinutes}}
+        {{recipe.recipePortions}}
+        {{recipe.recipeGrade}} 
+        -->
+    </ion-item>
   </div>
   <div *ngIf="!planned">
     <!-- TODO white space under accordion due to button -->
