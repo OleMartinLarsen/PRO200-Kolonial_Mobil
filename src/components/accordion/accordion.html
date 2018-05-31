@@ -8,6 +8,21 @@
     </ion-item>
   </ion-card-header>
   <ion-card-content #cc>
-    Fiksesuppe
+
+  <div *ngIf="planned">
+    <p>dag planlagt</p>
+    <!-- TODO dinner model/design
+    <img [src]="recipe.recipeImg">
+    {{recipe.recipeName}}
+    {{recipe.recipeTimeInMinutes}}
+    {{recipe.recipePortions}}
+    {{recipe.recipeGrade}} 
+    -->
+  </div>
+  <div *ngIf="!planned">
+    <!-- TODO white space under accordion due to button -->
+    <button block ion-button (click)="addRecipes()">Legg til middag</button>
+  </div>
+
   </ion-card-content>
 </ion-card>

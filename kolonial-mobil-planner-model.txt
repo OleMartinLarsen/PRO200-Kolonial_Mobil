@@ -1,0 +1,6 @@
+
+	Ukesliste (liste over alle uker planlagt)
+		Dagsliste (liste over alle dager planlagt i uken)
+			Middager (middager planlagt for dagen)
+				Ingredienseliste (alle ingrediensene i oppskriften)
+				Instruksliste (liste over instrukser for oppskriften)

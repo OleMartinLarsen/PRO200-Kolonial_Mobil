@@ -1,11 +1,6 @@
 import { Component, ViewChild, OnInit, Renderer } from '@angular/core';
+import { NavController } from 'ionic-angular';
 
-/**
- * Generated class for the AccordionComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'accordion',
   templateUrl: 'accordion.html'
@@ -16,8 +11,30 @@ export class AccordionComponent implements OnInit {
   @ViewChild("cc") content: any;
   icon: string = "arrow-forward";
 
-  constructor(public renderer: Renderer) {
-    
+  private planned: boolean = false;
+  private currentDay :string = "";
+  private daysArrayNo :Array<string> = [];
+
+  constructor(public renderer: Renderer,
+    public navCtrl: NavController) 
+  {
+    this.getDinnerPlans();
+
+    this.populateDaysArrayNo();
+    this.currentDay = this.daysArrayNo[new Date().getDay() - 1]; //Get current day in norwegian
+  }
+
+  getDinnerPlans()
+  {
+    // TODO get stored dinnerplans from storage to display
+  }
+
+  addRecipes()
+  {
+    // TODO go to special list with recipe, then days?
+    this.navCtrl.push("RecipesPage");
+    //...
+    this.planned = true;
   }
 
   ngOnInit(){
@@ -38,4 +55,14 @@ export class AccordionComponent implements OnInit {
       this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
   }
 
+  populateDaysArrayNo()
+  {
+    this.daysArrayNo.push("Mandag");
+    this.daysArrayNo.push("Tirsdag");
+    this.daysArrayNo.push("Onsdag");
+    this.daysArrayNo.push("Torsdag");
+    this.daysArrayNo.push("Fredag");
+    this.daysArrayNo.push("Lørdag");
+    this.daysArrayNo.push("Søndag");
+  }
 }

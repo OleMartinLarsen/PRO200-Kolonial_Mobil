@@ -9,6 +9,8 @@ export class GlobalFunctionsProvider
   recipeFavorites: Array<any> = [];
   recipeIngredients: Array<any> = [];
   recipeInstructions: Array<any> = [];
+  plannedWeeks: Array<any> = [];
+  plannedDays: Array<any> = [];
 
   constructor(private toastCtrl: ToastController) 
   {
@@ -75,5 +77,26 @@ export class GlobalFunctionsProvider
   {
     this.recipeInstructions = [];
     return true;
+  }
+
+  addWeekToPlannedWeeks()
+  {
+    this.plannedWeeks.push("test");
+  }
+
+  getPlannedWeeks()
+  {
+    return this.plannedWeeks;
+  }
+
+  addDayToPlannedDays(recipe: any)
+  {
+    this.plannedDays.push(recipe);
+    console.log(recipe + " added to plannedDays");
+  }
+
+  getPlannedDays()
+  {
+    return this.plannedDays;
   }
 }
