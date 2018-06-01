@@ -9,29 +9,21 @@ import { GlobalFunctionsProvider } from '../../providers/global-functions/global
 })
 export class HomePage 
 {
-
-  weeksPlanned: Array<any> = [];
+  private displayWeek: string = "";
 
   constructor(public navCtrl: NavController,
     private af: AngularFirestore,
     private functions: GlobalFunctionsProvider) 
   {
-    this.weeksPlanned = this.functions.getPlannedWeeks();
+    this.displayWeek = "Uke " + this.functions.getWeekNumber();
+    // console.log(this.functions);
   }
 
-  addWeek() 
-  {
-    this.functions.addWeekToPlannedWeeks(this.getWeekNumber());
-  }
-
-  getWeekNumber()
-  {
-    var month = new Date().getMonth();
-    var day = new Date().getDate();
-
-    //Not accurate on a month to month basis, does not take leap year into account
-    return Math.round((month * 4.348214) + (day / 7));
-  }
+  //to be mocked
+  // addWeek() 
+  // {
+  //   this.functions.addWeekToPlannedWeeks(this.getWeekNumber());
+  // }
 
   mockAddToCart()
   {

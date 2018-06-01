@@ -12,18 +12,12 @@
 </ion-header>
 
 <ion-content padding class="contentStyle">
+  <!-- <ion-title gravity="left"> -->
+    <h1>{{displayWeek}}</h1>
+  <!-- </ion-title> -->
   <ion-list no-lines>
-      <ion-item *ngFor="let week of weeksPlanned">
-        <!-- <ion-title gravity="left"> -->
-          <h1>{{week}}</h1>
-        <!-- </ion-title> -->
-        <accordion></accordion>
-        <accordion></accordion>
-        <accordion></accordion>
-        <accordion></accordion>
-        <accordion></accordion>
-        <accordion></accordion>
-        <accordion></accordion>
+    <ion-item *ngFor="let days of week">
+      <accordion></accordion>
     </ion-item>
   </ion-list>
 

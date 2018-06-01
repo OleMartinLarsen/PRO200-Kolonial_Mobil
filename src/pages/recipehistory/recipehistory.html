@@ -12,6 +12,7 @@
 </ion-header>
 
 <ion-content padding class="contentStyle">
+  <!-- TODO mock accordian week/month with recipes from an array -->
   <ion-list no-lines>
     <ion-item *ngFor="let recipe of history" (click)="pushRecipeDetails(recipe)">
       <h2 text-wrap>{{recipe.recipeName}}</h2>
