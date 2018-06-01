@@ -26,14 +26,16 @@ export class RecipedetailsPage
     public navParams: NavParams,
     private functions: GlobalFunctionsProvider) 
   {
-    this.recipe = navParams.get('recipe');
+    this.recipe = navParams.get("recipe");
     this.ingredients = this.recipe.recipeIngredients;
     this.instructions = this.recipe.recipeInstructions;
 
     //If recipe is favorited, remove "add-to-favorite" button
     var res = this.functions.getRecipeFavorites().find((found) => { return found == this.recipe; });
-    if(res) { this.isFavorited = true; }
-
+    if(res) 
+    { 
+      this.isFavorited = true; 
+    }
     
     this.isPlanning = this.functions.getIsPlanning();
     this.planningDay.date = this.functions.getDayPlanningFor();

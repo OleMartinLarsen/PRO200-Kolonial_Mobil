@@ -14,14 +14,14 @@ export class AuthPage
 {
   public user =
   {
-    email :"",
-    pass :""
+    email: "",
+    pass: ""
   }
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private afAuth: AngularFireAuth,
-    private functions : GlobalFunctionsProvider) 
+    private functions: GlobalFunctionsProvider) 
   {
   }
 

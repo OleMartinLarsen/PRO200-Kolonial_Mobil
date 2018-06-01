@@ -33,8 +33,9 @@ export class AccordionComponent implements OnInit
 
   addRecipes()
   {
+    //TODO implement abort option for choosing recipe for day
     this.functions.setIsPlanning(true);
-    //NB: the value in setDayPlanningFor will be set on add-button in RecipeDetails!
+    //NB: the value(string) in setDayPlanningFor will be set on add-button in RecipeDetails!
     this.functions.setDayPlanningFor(this.displaydate); //TODO this.date for each day
     this.navCtrl.push("RecipesPage");
 
