@@ -14,34 +14,48 @@ export class AccordionComponent implements OnInit
 
   private displaydate: string;
   private planned: boolean = false;
-  private currentDay :string = "";
-  private daysArrayNo :Array<string> = [];
-  private plannedDays :Array<string> = [];
+  private currentDay: string = "";
+  private currentDate: string = "";
+  private daysArrayNo: Array<string> = [];
+  private plannedDays: Array<string> = [];
+  
+  private date: string;
+  private recipe: any = "";
 
   constructor(public renderer: Renderer,
     public navCtrl: NavController,
     private functions: GlobalFunctionsProvider) 
   {
-    this.plannedDays = this.functions.getDayPlans();
-
     this.populateDaysArrayNo();
     this.currentDay = this.daysArrayNo[new Date().getDay() - 1]; //Get current day in norwegian
-
-    this.displaydate = this.currentDay + " " + new Date().getDate() + "." + (new Date().getMonth() + 1);
+    this.currentDate = new Date().getDate() + "." + (new Date().getMonth() + 1);
+    this.displaydate = this.currentDay + " " + this.currentDate;
+    
+    this.plannedDays = this.functions.getDayPlans();
+    // this.recipe = this.plannedDays[0];
   }
 
   addRecipes()
   {
-    var isPlanning = true;
-    var day = "DayPlannedFor";
-    // TODO check planning add-recipe-to-day button in recipedetails is showing up/hidden as expected
-    this.navCtrl.push("RecipesPage", { isPlanning, day }).then(() => { isPlanning = true; });
-    this.planned = true;
+    this.functions.setIsPlanning(true);
+    this.functions.setDayPlanningFor(this.currentDate); //TODO this.date for each day
+    this.navCtrl.push("RecipesPage");
+
+    var days = this.functions.getDayPlans();
+    // TODO find a better way to update this.planned
+    // TODO set isPlanning to false if the user does not add a recipe
+    if(days.length > 0)
+    {
+      this.date = days[0].date;
+      this.recipe = days[0].recipe;
+      console.log("Day: " + this.date + ", Recipe: " + this.recipe.recipeName);
+      this.planned = true;
+    }
   }
 
-  pushRecipeDetails(recipe: any)
+  pushRecipeDetails()
   {
-    //TODO get recipe for this day from gerDinnerPlans()
+    var recipe = this.recipe;
     this.navCtrl.push('RecipedetailsPage', { recipe });
   }
 
