@@ -31,8 +31,6 @@ export class CreatedummydataPage
     grade: "",
     timeInMins: 0,
     portions: 0,
-    // ingredients: Array,
-    instructions: "",
     img: ""
   };
 
@@ -45,12 +43,6 @@ export class CreatedummydataPage
     this.recipeCollection = af.collection<Recipe>("recipes");
     this.recipeIngredients = functions.getRecipeIngredients();
     this.recipeInstructions = functions.getRecipeInstructions();
-
-    this.addWare = navParams.get("addWare");
-    if(this.addWare)
-    {
-      this.functions.addIngredientToRecipeIngredients(this.addWare);
-    }
   }
 
   saveWare()
@@ -81,7 +73,7 @@ export class CreatedummydataPage
   {
     this.navCtrl.push("WareslistPage");
   }
-  //private recipeIngredients: Array<any> = [];
+  
   popWare(ingredient)
   {
     var i = 0;
@@ -91,23 +83,23 @@ export class CreatedummydataPage
       {
         this.recipeIngredients.splice(i, 1);
         //this.navCtrl.push("createdummydataPage")
-        
       }
     }
   }
 
   saveStep(step: string) 
   {
-    this.functions.addInstructionsToRecipeInstructions(step);
-    this.step = "";
+    if(step != "")
+    {
+      this.functions.addInstructionsToRecipeInstructions(step);
+      this.step = "";
+    }
   }
 
   saveRecipe()
   {
     if(this.recipe.name != "" && this.recipe.grade != "")
     {
-      // this.recipe.ingredients = this.functions.getRecipeIngredients();
-
       this.recipeCollection.add(
         {
           recipeName: this.recipe.name,

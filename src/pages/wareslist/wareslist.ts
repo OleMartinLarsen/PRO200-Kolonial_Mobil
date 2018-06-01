@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { Ware } from '../../models/ware';
+import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 
 @IonicPage()
 @Component({
@@ -16,7 +17,8 @@ export class WareslistPage
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private af :AngularFirestore) 
+    private af :AngularFirestore, 
+    private functions: GlobalFunctionsProvider) 
   {
     this.wareCollection = af.collection<Ware>('wares', ref =>
       {
@@ -44,10 +46,8 @@ export class WareslistPage
 
   addToIngredients(addWare: any)
   {
-    this.navCtrl.push("CreatedummydataPage", { addWare })
-      .then(() => { this.navCtrl.remove(1) }); 
-      //TODO remove from backstack isn't woking correctly, 
-      //the user should not be able to press back and get to the list of wares
+    this.navCtrl.pop();
+    this.functions.addIngredientToRecipeIngredients(addWare);
   }
 
   ionViewDidLoad() 

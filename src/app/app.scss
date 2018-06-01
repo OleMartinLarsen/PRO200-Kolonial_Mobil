@@ -1,5 +1,9 @@
 .userbutton {}
 
+ion-navbar {
+    height: 66px;
+  }
+
 .navbarStyle {
     border-bottom: 1px color($colors, color2) solid;
     color: color($colors, color1);
@@ -8,4 +12,5 @@
 .contentStyle {
     background-color: color($colors, color1);
 }  
+
 
