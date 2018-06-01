@@ -19,12 +19,12 @@ import { GlobalFunctionsProvider } from '../providers/global-functions/global-fu
 import { CartPage } from '../pages/cart/cart';
 import { RecipehistoryPage } from '../pages/recipehistory/recipehistory';
 import { AccordionComponent } from '../components/accordion/accordion';
+import { RecipesPageModule } from '../pages/recipes/recipes.module';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    RecipesPage,
     CartPage,
     RecipehistoryPage,
     AccordionComponent
@@ -36,6 +36,7 @@ import { AccordionComponent } from '../components/accordion/accordion';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+    RecipesPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
