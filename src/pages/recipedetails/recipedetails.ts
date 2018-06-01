@@ -13,6 +13,7 @@ export class RecipedetailsPage
   ingredients: any;
   instructions: any;
 
+  private addDinnerButtonText = "";
   private isFavorited: boolean = false;
   private isPlanning: boolean = false;
   private planningDay =
@@ -33,7 +34,11 @@ export class RecipedetailsPage
     var res = this.functions.getRecipeFavorites().find((found) => { return found == this.recipe; });
     if(res) { this.isFavorited = true; }
 
+    
     this.isPlanning = this.functions.getIsPlanning();
+    this.planningDay.date = this.functions.getDayPlanningFor();
+    this.planningDay.recipe = this.recipe;
+    this.addDinnerButtonText = "Legg til for " + this.planningDay.date;
   }
 
   pushUser()
@@ -53,11 +58,9 @@ export class RecipedetailsPage
 
   addRecipeToDay()
   {
-    this.planningDay.date = this.functions.getDayPlanningFor();
-    this.planningDay.recipe = this.recipe;
-
     this.functions.addRecipeToDayPlans(this.planningDay);
     this.functions.setIsPlanning(false);
+    // this.functions.addRecipeToHistory(this.planningDay.recipe); //Pushes only recipes added to plans to history
     this.navCtrl.popToRoot();
   }
 

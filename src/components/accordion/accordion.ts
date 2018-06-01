@@ -17,7 +17,6 @@ export class AccordionComponent implements OnInit
   private currentDay: string = "";
   private currentDate: string = "";
   private daysArrayNo: Array<string> = [];
-  private plannedDays: Array<string> = [];
   
   private date: string;
   private recipe: any = "";
@@ -30,20 +29,17 @@ export class AccordionComponent implements OnInit
     this.currentDay = this.daysArrayNo[new Date().getDay() - 1]; //Get current day in norwegian
     this.currentDate = new Date().getDate() + "." + (new Date().getMonth() + 1);
     this.displaydate = this.currentDay + " " + this.currentDate;
-    
-    this.plannedDays = this.functions.getDayPlans();
-    // this.recipe = this.plannedDays[0];
   }
 
   addRecipes()
   {
     this.functions.setIsPlanning(true);
-    this.functions.setDayPlanningFor(this.currentDate); //TODO this.date for each day
+    //NB: the value in setDayPlanningFor will be set on add-button in RecipeDetails!
+    this.functions.setDayPlanningFor(this.displaydate); //TODO this.date for each day
     this.navCtrl.push("RecipesPage");
 
     var days = this.functions.getDayPlans();
     // TODO find a better way to update this.planned
-    // TODO set isPlanning to false if the user does not add a recipe
     if(days.length > 0)
     {
       this.date = days[0].date;

@@ -52,7 +52,7 @@ export class RecipesPage
   pushRecipeDetails(recipe :any)
   {
     this.navCtrl.push('RecipedetailsPage', { recipe });
-    this.functions.addRecipeToHistory(recipe);
+    this.functions.addRecipeToHistory(recipe); //Pushes all recipes viewd to history
   }
 
   pushUser()
