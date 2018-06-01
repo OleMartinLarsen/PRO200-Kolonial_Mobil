@@ -27,6 +27,8 @@ export class GlobalFunctionsProvider
     }).present();
   }
 
+  //Getters and setters
+
   addRecipeToHistory(recipe: any)
   {
     this.recipeHistory.push(recipe);

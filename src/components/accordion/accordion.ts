@@ -38,7 +38,11 @@ export class AccordionComponent implements OnInit
     //NB: the value(string) in setDayPlanningFor will be set on add-button in RecipeDetails!
     this.functions.setDayPlanningFor(this.displaydate); //TODO this.date for each day
     this.navCtrl.push("RecipesPage");
+    this.checkPlannedStatus();
+  }
 
+  checkPlannedStatus()
+  {
     var days = this.functions.getDayPlans();
     // TODO find a better way to update this.planned
     if(days.length > 0)
@@ -56,7 +60,8 @@ export class AccordionComponent implements OnInit
     this.navCtrl.push('RecipedetailsPage', { recipe });
   }
 
-  ngOnInit(){
+  ngOnInit()
+  {
     // console.log(this.content.nativeElement);
     this.renderer.setElementStyle(this.content.nativeElement, "webkitTransition", "max-height 400ms, padding 400ms");
   }
@@ -72,6 +77,7 @@ export class AccordionComponent implements OnInit
 
       this.accordionExpanded = !this.accordionExpanded;
       this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
+      this.checkPlannedStatus();
   }
 
   populateDaysArrayNo()
