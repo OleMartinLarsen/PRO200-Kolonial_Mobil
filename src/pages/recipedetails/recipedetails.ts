@@ -48,6 +48,9 @@ export class RecipedetailsPage
 
   addRecipeToDay()
   {
+    var day = this.navParams.get("day");
+    // TODO key/values or array of array to store day/recipe values together
+    this.functions.addRecipeToDayPlans(day);
     this.functions.addRecipeToDayPlans(this.recipe);
     this.navCtrl.popTo("HomePage");
   }
