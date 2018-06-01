@@ -11,7 +11,7 @@ import { forEach } from '@firebase/util';
 export class RecipedetailsPage 
 {
   private isFavorited: boolean = false;
-  private isPlanning: boolean = false;
+  private isPlanning: boolean = true;
   recipe: any;
   ingredients: any;
   instructions: any;
@@ -28,7 +28,7 @@ export class RecipedetailsPage
     var res = this.functions.getRecipeFavorites().find((found) => { return found == this.recipe; });
     if(res) { this.isFavorited = true; }
 
-    this.isPlanning = this.navParams.get("isPlanning");
+    this.isPlanning = navParams.get("isPlanning");
   }
 
   pushUser()
