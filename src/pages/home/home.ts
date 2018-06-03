@@ -10,20 +10,19 @@ import { GlobalFunctionsProvider } from '../../providers/global-functions/global
 export class HomePage 
 {
   private displayWeek: string = "";
+  private week: Array<any> = [];
 
   constructor(public navCtrl: NavController,
     private af: AngularFirestore,
     private functions: GlobalFunctionsProvider) 
   {
     this.displayWeek = "Uke " + this.functions.getWeekNumber();
-    // console.log(this.functions);
+    var i;
+    for (i = 0; i < 6; i++) 
+    { 
+      this.week.push("");
+    }
   }
-
-  //to be mocked
-  // addWeek() 
-  // {
-  //   this.functions.addWeekToPlannedWeeks(this.getWeekNumber());
-  // }
 
   mockAddToCart()
   {

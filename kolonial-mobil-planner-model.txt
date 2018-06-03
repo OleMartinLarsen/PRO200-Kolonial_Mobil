@@ -13,6 +13,8 @@ How to plan:
 5. Confirm you want this recipe
 
 idea:
-GFP holds days (now and in future)
-accordion gets name from GFP
+X GFP holds days (now and in future) 
+X accordion gets name from GFP
 recipes/dayplans are matched with accordions title (day)
+
+TODO match day/recipe.date in accordion

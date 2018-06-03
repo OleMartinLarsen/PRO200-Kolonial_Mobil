@@ -19,10 +19,12 @@ export class GlobalFunctionsProvider
   private currentWeek :string = "";
   private daysArrayNo: Array<string> = [];
   private oneWeakAheadArray: Array<string> = [];
+  private nextDayFromOneWeakAheadArrayIndex = 0;
 
   constructor(private toastCtrl: ToastController) 
   {
     this.populateDaysArrayNo();
+    this.populateOneWeakAheadArray();
     this.currentDay = this.getDayInNorwegian(new Date().getDay());
     this.currentDate = new Date().getDate() + "." + (new Date().getMonth() + 1);
     this.currentDayDate = this.currentDay + " " + this.currentDate;
@@ -32,9 +34,12 @@ export class GlobalFunctionsProvider
 
   getNextDay(day: number, month: number)
   {
+    //NB: does not take into account leap years
+    day++;
+
     if(month == 2)
     {
-      if(day == 28)
+      if(day > 27)
       {
         day = 1;
         month++;
@@ -42,48 +47,67 @@ export class GlobalFunctionsProvider
     }
     else if(month == 4 || month == 6 || month == 9 || month == 11)
     {
-      if(day == 30)
+      if(day > 29)
       {
         day = 1;
         month++;
       }
     }
-    else if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+    else if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10)
     {
-      if(day == 31)
+      if(day > 30)
       {
         day = 1;
         month++;
       }
     }
-    else
+    else if(month == 12)
     {
-      day++;
+      if(day > 30)
+      {
+        day = 1;
+        month = 1;
+      }
     }
 
-    
-    return this.getDayInNorwegian(day) + " " + day + "." + month;
+    return day + "." + month;
   }
 
   populateOneWeakAheadArray()
   {
-    var day = new Date().getDay();
-    var month = new Date().getMonth();
+    var day = new Date().getDate();
+    var month = new Date().getMonth() + 1;
     //Get the next week
-    var next1 = this.getNextDay(day, month);
+    var next0 = day + "." + month; //today
+    var next1 = this.getNextDay(day++, month);
     var next2 = this.getNextDay(day++, month);
     var next3 = this.getNextDay(day++, month);
     var next4 = this.getNextDay(day++, month);
     var next5 = this.getNextDay(day++, month);
-    var next6 = this.getNextDay(day++, month);
+    var next6 = this.getNextDay(day, month);
 
-    this.oneWeakAheadArray.push(this.currentDayDate);
+    this.oneWeakAheadArray.push(next0);
     this.oneWeakAheadArray.push(next1);
     this.oneWeakAheadArray.push(next2);
     this.oneWeakAheadArray.push(next3);
     this.oneWeakAheadArray.push(next4);
     this.oneWeakAheadArray.push(next5);
     this.oneWeakAheadArray.push(next6);
+  }
+
+  //Unused, can be used for testing 
+  getOneWeakAheadArrayDay(i: number)
+  {
+    console.log("oneWeakAheadArray: " + this.oneWeakAheadArray.toString());
+    console.log("nextday test: " + this.getNextDay(30, 6));
+    return this.oneWeakAheadArray[i];
+  }
+
+  getNextDayFromOneWeakAheadArray()
+  {
+    var res = this.oneWeakAheadArray[this.nextDayFromOneWeakAheadArrayIndex];
+    this.nextDayFromOneWeakAheadArrayIndex++;
+    return res;
   }
 
   populateDaysArrayNo()

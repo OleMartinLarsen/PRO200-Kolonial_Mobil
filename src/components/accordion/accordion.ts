@@ -22,7 +22,7 @@ export class AccordionComponent implements OnInit
     public navCtrl: NavController,
     private functions: GlobalFunctionsProvider) 
   {
-    this.displaydate = this.functions.getCurrentDayDate();
+    this.displaydate = this.functions.getNextDayFromOneWeakAheadArray();
   }
 
   addRecipes()
