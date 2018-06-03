@@ -18,7 +18,7 @@ export class HomePage
   {
     this.displayWeek = "Uke " + this.functions.getWeekNumber();
     var i;
-    for (i = 0; i < 6; i++) 
+    for (i = 0; i < 7; i++) 
     { 
       this.week.push("");
     }
