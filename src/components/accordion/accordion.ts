@@ -13,7 +13,6 @@ export class AccordionComponent implements OnInit
   icon: string = "arrow-forward";
 
   private planned: boolean = false;
-  
   private displaydate: string;
   private date: string;
   private recipe: any = "";
@@ -35,14 +34,16 @@ export class AccordionComponent implements OnInit
     this.checkPlannedStatus();
   }
 
-  checkPlannedStatus()
+  checkPlannedStatus() //TODO rename
   {
     var days = this.functions.getDayPlans();
-    // TODO find a better way to update this.planned
-    if(days.length > 0)
+    // TODO! find a better way to update this.planned
+    if(days[this.functions.getNumberOfDaysPlanned() - 1])
     {
-      this.date = days[0].date;
-      this.recipe = days[0].recipe;
+      var index = days.map((d) => { return d.date; }).indexOf(this.displaydate);
+      console.log("index for displaydate: " + index + " and " + this.displaydate)
+      this.date = days[index].date;
+      this.recipe = days[index].recipe;
       console.log("Day: " + this.date + ", Recipe: " + this.recipe.recipeName);
       this.planned = true;
     }

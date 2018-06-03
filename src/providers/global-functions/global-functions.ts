@@ -19,7 +19,8 @@ export class GlobalFunctionsProvider
   private currentWeek :string = "";
   private daysArrayNo: Array<string> = [];
   private oneWeakAheadArray: Array<string> = [];
-  private nextDayFromOneWeakAheadArrayIndex = 0;
+  private nextDayFromOneWeakAheadArrayIndex: number = 0;
+  private numberOfDaysPlanned: number = 0;
 
   constructor(private toastCtrl: ToastController) 
   {
@@ -31,6 +32,8 @@ export class GlobalFunctionsProvider
   }
 
   //Days
+
+  //TODO tests?
 
   getNextDay(day: number, month: number)
   {
@@ -108,6 +111,21 @@ export class GlobalFunctionsProvider
     var res = this.oneWeakAheadArray[this.nextDayFromOneWeakAheadArrayIndex];
     this.nextDayFromOneWeakAheadArrayIndex++;
     return res;
+  }
+
+  getNextDayFromOneWeakAheadArrayIndex()
+  {
+    return this.nextDayFromOneWeakAheadArrayIndex;
+  }
+
+  getNumberOfDaysPlanned()
+  {
+    return this.numberOfDaysPlanned;
+  }
+
+  incrementNumberOfDaysPlanned()
+  {
+    this.numberOfDaysPlanned++;
   }
 
   populateDaysArrayNo()
@@ -197,6 +215,7 @@ export class GlobalFunctionsProvider
   {
     this.dayPlans.push(recipe);
     console.log(recipe.recipe.recipeName + " added to dayPlans");
+    this.incrementNumberOfDaysPlanned();
   }
 
   getDayPlans()
