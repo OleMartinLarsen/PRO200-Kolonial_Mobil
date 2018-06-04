@@ -22,6 +22,7 @@ export class GlobalFunctionsProvider
   private nextDayFromOneWeakAheadArrayIndex: number = 0;
   private recipesCart: Array<string> = [];
   private ingredientsCart: Array<string> = [];
+  private cartPrice: number = 0;
 
   constructor(private toastCtrl: ToastController) 
   {
@@ -43,6 +44,7 @@ export class GlobalFunctionsProvider
 
   getIngredientsCart()
   {
+    this.addIngredientsToCart();
     return this.ingredientsCart;
   }
 
@@ -67,14 +69,21 @@ export class GlobalFunctionsProvider
       {
         console.log("Add ingredients: " + days[i].recipe.recipeIngredients[j].wareName);
         this.ingredientsCart.push(days[i].recipe.recipeIngredients[j]);
+        this.cartPrice += days[i].recipe.recipeIngredients[j].warePrice;
+        console.log("cartprice " + this.cartPrice); //TODO concats numbers, not string
       }
     }
+  }
+
+  getCartPrice()
+  {
+    return this.cartPrice;
   }
 
   getRecipeOfPlannedDayInDayPlans(displaydate: any)
   {
     var days = this.getDayPlans();
-    let day = days.find(o => o.date === displaydate);
+    let day = days.find(d => d.date === displaydate);
 
     if(day)
     {

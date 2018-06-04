@@ -19,15 +19,7 @@ export class CartPage
   {
     this.recipesInCart = this.functions.getRecipesCart();
     this.waresInCart = this.functions.getIngredientsCart();
-  }
-
-  calculateCartPrice()//TODO
-  {
-    // var i;
-    // for(i = 0; i < this.waresInCart.length; i++)
-    // {
-    //   this.cartPrice += this.waresInCart[i].warePrice;
-    // }
+    this.cartPrice = this.functions.getCartPrice();
   }
 
   pushRecipeDetails(recipe: any)

@@ -24,11 +24,11 @@ export class HomePage
     }
   }
 
-  addIngredientsToCart()
+  addToCart()
   {
-    this.functions.makeToast("Lagt til i handlekurv!");
-    // this.navCtrl.push("CartPage");
     this.functions.addRecipeToCart();
+    this.functions.makeToast("Lagt til i handlevogn.");
+    // this.navCtrl.push("CartPage"); //TODO bug
   }
 
   pushUser() 
