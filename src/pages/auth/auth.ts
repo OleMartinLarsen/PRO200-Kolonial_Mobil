@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { ToastController } from 'ionic-angular';
 import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @IonicPage()
 @Component({
@@ -20,7 +19,7 @@ export class AuthPage
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private afAuth: AngularFireAuth,
+    private af: AngularFirestore,
     private functions: GlobalFunctionsProvider) 
   {
   }
@@ -28,7 +27,7 @@ export class AuthPage
   loginUser()
   {
     //Sign in with email and password
-    this.afAuth.auth
+    this.af.app.auth()
       .signInWithEmailAndPassword(this.user.email, this.user.pass)
       .then((resp) =>
       {

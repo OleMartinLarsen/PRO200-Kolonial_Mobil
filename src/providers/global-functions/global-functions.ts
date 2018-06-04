@@ -87,6 +87,7 @@ export class GlobalFunctionsProvider
     }
 
     //TODO daynames?
+    //currentday + days to targetday?
     return day + "." + month;
   }
 
