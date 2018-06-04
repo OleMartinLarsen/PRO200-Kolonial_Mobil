@@ -33,18 +33,24 @@ export class AccordionComponent implements OnInit
     this.navCtrl.push("RecipesPage");
     this.checkPlannedStatus();
   }
-
-  checkPlannedStatus() //TODO rename
+  
+  search(nameKey, myArray)
   {
-    var days = this.functions.getDayPlans();
-    // TODO! find a better way to update this.planned
-    if(days[this.functions.getNumberOfDaysPlanned() - 1])
+    for (var i=0; i < myArray.length; i++) 
     {
-      var index = days.map((d) => { return d.date; }).indexOf(this.displaydate);
-      console.log("index for displaydate: " + index + " and " + this.displaydate)
-      this.date = days[index].date;
-      this.recipe = days[index].recipe;
-      console.log("Day: " + this.date + ", Recipe: " + this.recipe.recipeName);
+        if (myArray[i].date === nameKey) 
+        {
+            return myArray[i];
+        }
+    }
+  }
+
+  checkPlannedStatus()
+  {
+    this.recipe = this.functions.getRecipeOfPlannedDayInDayPlans(this.displaydate).recipe;
+
+    if(this.recipe)
+    {
       this.planned = true;
     }
   }

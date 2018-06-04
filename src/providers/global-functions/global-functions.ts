@@ -20,7 +20,6 @@ export class GlobalFunctionsProvider
   private daysArrayNo: Array<string> = [];
   private oneWeakAheadArray: Array<string> = [];
   private nextDayFromOneWeakAheadArrayIndex: number = 0;
-  private numberOfDaysPlanned: number = 0;
 
   constructor(private toastCtrl: ToastController) 
   {
@@ -34,6 +33,20 @@ export class GlobalFunctionsProvider
   //Days
 
   //TODO tests?
+
+  getRecipeOfPlannedDayInDayPlans(displaydate: any)
+  {
+    var days = this.getDayPlans();
+    let day = days.find(o => o.date === displaydate);
+
+    if(day)
+    {
+      var index = days.map((d) => { return d.date; }).indexOf(displaydate);
+      console.log("index for displaydate: " + index + " and " + displaydate);
+      return days[index];
+    }
+    return false;
+  }
 
   getNextDay(day: number, month: number)
   {
@@ -73,6 +86,7 @@ export class GlobalFunctionsProvider
       }
     }
 
+    //TODO daynames?
     return day + "." + month;
   }
 
@@ -116,16 +130,6 @@ export class GlobalFunctionsProvider
   getNextDayFromOneWeakAheadArrayIndex()
   {
     return this.nextDayFromOneWeakAheadArrayIndex;
-  }
-
-  getNumberOfDaysPlanned()
-  {
-    return this.numberOfDaysPlanned;
-  }
-
-  incrementNumberOfDaysPlanned()
-  {
-    this.numberOfDaysPlanned++;
   }
 
   populateDaysArrayNo()
@@ -215,7 +219,6 @@ export class GlobalFunctionsProvider
   {
     this.dayPlans.push(recipe);
     console.log(recipe.recipe.recipeName + " added to dayPlans");
-    this.incrementNumberOfDaysPlanned();
   }
 
   getDayPlans()
@@ -261,7 +264,9 @@ export class GlobalFunctionsProvider
   getWeekNumber()
   {
     var month = new Date().getMonth();
-    var day = new Date().getDate();
+    var day = new Date().getDate() + 2;
+
+    // console.log("getweek date: " + day + "." + month);
 
     //Not accurate on a month to month basis, does not take leap year into account
     return Math.round((month * 4.348214) + (day / 7));
