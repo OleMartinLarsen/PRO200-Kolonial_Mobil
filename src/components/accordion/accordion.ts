@@ -35,13 +35,13 @@ export class AccordionComponent implements OnInit
     var isPlanning = true;
     var day = "DayPlannedFor";
     // TODO check planning add-recipe-to-day button in recipedetails is showing up/hidden as expected
-    this.navCtrl.push("RecipesPage", { isPlanning, day }).then(() => { isPlanning = true; });
+    this.navCtrl.push("RecipesPage", { isPlanning, day }).then(() => { isPlanning = false; });
     this.planned = true;
   }
 
   pushRecipeDetails(recipe: any)
   {
-    //TODO get recipe for this day from gerDinnerPlans()
+    //TODO get recipe for this day from getDinnerPlans()
     this.navCtrl.push('RecipedetailsPage', { recipe });
   }
 

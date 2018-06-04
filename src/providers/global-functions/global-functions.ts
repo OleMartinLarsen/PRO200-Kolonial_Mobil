@@ -99,4 +99,11 @@ export class GlobalFunctionsProvider
   {
     return this.dayPlans;
   }
+
+  removeItemFromList(item, array: Array<any>)
+  {
+
+    array.splice(array.indexOf(item), 1);
+    return array;
+  }
 }

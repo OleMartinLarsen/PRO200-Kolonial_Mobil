@@ -76,15 +76,8 @@ export class CreatedummydataPage
   
   popWare(ingredient)
   {
-    var i = 0;
-    for(i; i < this.recipeIngredients.length; i++)
-    {
-      if (ingredient == this.recipeIngredients[i].wareName)
-      {
-        this.recipeIngredients.splice(i, 1);
-        //this.navCtrl.push("createdummydataPage")
-      }
-    }
+    this.recipeIngredients = this.functions.removeItemFromList(ingredient, this.recipeIngredients)
+    //this.recipeIngredients = this.functions.removeItemFromList(week, this.weeksPlanned)
   }
 
   saveStep(step: string) 

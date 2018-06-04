@@ -11,6 +11,8 @@ export class HomePage
 {
 
   weeksPlanned: Array<any> = [];
+  public weekId = 3;
+  private debugUkeNavn = 0;
 
   constructor(public navCtrl: NavController,
     private af: AngularFirestore,
@@ -21,7 +23,17 @@ export class HomePage
 
   addWeek() 
   {
-    this.functions.addWeekToPlannedWeeks(this.getWeekNumber());
+    this.weekId ++;
+    var pass = this.getWeekNumber() + this.debugUkeNavn;
+    this.debugUkeNavn ++;
+    this.functions.addWeekToPlannedWeeks(pass);
+  }
+
+  removeWeekFromList(week)
+  {
+    this.weeksPlanned = this.functions.removeItemFromList(week, this.weeksPlanned)
+   // this.weeksPlanned.splice(this.weeksPlanned.indexOf(week), 1);
+        //this.navCtrl.push("createdummydataPage")
   }
 
   getWeekNumber()
@@ -37,6 +49,11 @@ export class HomePage
   {
     this.functions.makeToast("Lagt til i handlekurv!");
     // this.navCtrl.push("CartPage");
+  }
+
+  mockAddWeekToCart()
+  {
+    this.functions.makeToast("lagt uken til handlekurv!");
   }
 
   pushUser() 

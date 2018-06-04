@@ -12,9 +12,15 @@
 </ion-header>
 
 <ion-content padding class="contentStyle">
+
+  
+    <button block ion-button (click)="addWeek()">Legg til uke</button>
+    <button block ion-button (click)="mockAddToCart()">Legg alle uker til i handlekurv</button>
+
   <ion-list no-lines>
-      <ion-item *ngFor="let week of weeksPlanned">
+      <ion-item *ngFor="let week of weeksPlanned" id="{{weekId}}">
         <!-- <ion-title gravity="left"> -->
+          
           <h1>{{week}}</h1>
         <!-- </ion-title> -->
         <accordion></accordion>
@@ -24,10 +30,12 @@
         <accordion></accordion>
         <accordion></accordion>
         <accordion></accordion>
-    </ion-item>
+        <button block ion-button (click)="mockAddWeekToCart()">Legg til uke</button>
+        <button block ion-button (click)="removeWeekFromList(week)">slett uke</button>
+      </ion-item>
   </ion-list>
 
   <!-- TODO add week location? -->
   <button block ion-button (click)="addWeek()">Legg til uke</button>
-  <button block ion-button (click)="mockAddToCart()">Legg til i handlekurv</button>
+  <button block ion-button (click)="mockAddToCart()">Legg alle uker til i handlekurv</button>
 </ion-content>
