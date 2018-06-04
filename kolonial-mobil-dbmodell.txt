@@ -6,6 +6,8 @@
 			+userEmail: string
 			+userPostAdress: number
 			+userAdress: string
+			|
+			+(TODO: subcollections (mine oppskrifter, favoritter etc))
 
 	wares---+
 			+wareName: string
@@ -17,4 +19,4 @@
 			+recipeTimeInMinutes: number
 			+recipePortions: number
 			+recipeIngredients: object[]
-			+recipeInstructions: string[]
+			+recipeInstructions: string

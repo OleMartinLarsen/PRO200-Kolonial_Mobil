@@ -15,7 +15,7 @@ export class RecipesPage
   private loading: boolean = true;
   public recipeCollection: AngularFirestoreCollection<Recipe>;
   private allrecipes: Observable<Recipe[]>;
-  private favorites: Array<any> = [];
+  private favorites :Array<any> = [];
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -51,13 +51,13 @@ export class RecipesPage
 
   pushRecipeDetails(recipe :any)
   {
-    this.navCtrl.push("RecipedetailsPage", { recipe });
-    this.functions.addRecipeToHistory(recipe); //Pushes all recipes viewd to history
+    this.navCtrl.push('RecipedetailsPage', { recipe });
+    this.functions.addRecipeToHistory(recipe);
   }
 
   pushUser()
   {
-    this.navCtrl.push("UserPage");
+    this.navCtrl.push('UserPage');
   }
 
   ionViewDidLoad() 
