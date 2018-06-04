@@ -10,12 +10,11 @@
   <ion-card-content #cc>
 
   <div *ngIf="planned">
-    <ion-item (click)="pushRecipeDetails(recipe)">
-        <p>(Oppskrift)</p>
+    <ion-item (click)="pushRecipeDetails()">
         <!-- TODO dinner model/design onclick til RecipedetailsPage
-        <img [src]="recipe.recipeImg">
-        {{recipe.recipeName}}
-        {{recipe.recipeTimeInMinutes}}
+        <img [src]="recipe.recipeImg"> -->
+        <p>{{recipe.recipeName}}</p>
+        <!-- {{recipe.recipeTimeInMinutes}}
         {{recipe.recipePortions}}
         {{recipe.recipeGrade}} 
         -->

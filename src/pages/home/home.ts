@@ -11,21 +11,26 @@ export class HomePage
 {
 
   weeksPlanned: Array<any> = [];
-  public weekId = 3;
   private debugUkeNavn = 0;
 
   constructor(public navCtrl: NavController,
     private af: AngularFirestore,
     private functions: GlobalFunctionsProvider) 
   {
-    this.weeksPlanned = this.functions.getPlannedWeeks();
+    //nye konstruktøren
+    this.displayWeek = "Uke " + this.functions.getWeekNumber();
+    var i;
+    for (i = 0; i < 7; i++) 
+    { 
+      this.week.push("");
+    } 
   }
 
   addWeek() 
   {
-    this.weekId ++;
     var pass = this.getWeekNumber() + this.debugUkeNavn;
     this.debugUkeNavn ++;
+    //addweekto plannedweeks var i den forige konstruktøren
     this.functions.addWeekToPlannedWeeks(pass);
   }
 

@@ -11,3 +11,10 @@ How to plan:
 3. Add day/from the list of unplanned day, select a day to plan
 4. Select a recipe from the list of recipes
 5. Confirm you want this recipe
+
+idea:
+X GFP holds days (now and in future) 
+X accordion gets name from GFP
+recipes/dayplans are matched with accordions title (day)
+
+TODO match day/recipe.date in accordion
