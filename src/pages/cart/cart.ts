@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 
 @IonicPage()
 @Component({
@@ -8,10 +9,35 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CartPage 
 {
+  private recipesInCart: Array<string> = [];
+  private waresInCart: Array<string> = [];
+  private cartPrice = 0;
 
   constructor(public navCtrl: NavController, 
-    public navParams: NavParams) 
+    public navParams: NavParams,
+    private functions: GlobalFunctionsProvider) 
   {
+    this.recipesInCart = this.functions.getRecipesCart();
+    this.waresInCart = this.functions.getIngredientsCart();
+  }
+
+  calculateCartPrice()//TODO
+  {
+    // var i;
+    // for(i = 0; i < this.waresInCart.length; i++)
+    // {
+    //   this.cartPrice += this.waresInCart[i].warePrice;
+    // }
+  }
+
+  pushRecipeDetails(recipe: any)
+  {
+    this.navCtrl.push('RecipedetailsPage', { recipe });
+  }
+
+  goToOrder()
+  {
+    this.functions.makeToast("Bestilling!");
   }
 
   pushUser() 

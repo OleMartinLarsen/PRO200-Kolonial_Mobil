@@ -34,4 +34,8 @@
         <p text-wrap>{{step}}</p>
       </ion-item>
     </ion-list>
+
+    <div *ngIf="isPlanning">
+      <button block ion-button (click)="addRecipeToDay()">{{addDinnerButtonText}}</button>
+    </div>
 </ion-content>

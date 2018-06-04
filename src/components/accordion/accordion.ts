@@ -1,27 +1,69 @@
 import { Component, ViewChild, OnInit, Renderer } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 
-/**
- * Generated class for the AccordionComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'accordion',
   templateUrl: 'accordion.html'
 })
-export class AccordionComponent implements OnInit {
-
+export class AccordionComponent implements OnInit 
+{
   accordionExpanded = false;
   @ViewChild("cc") content: any;
   icon: string = "arrow-forward";
 
-  constructor(public renderer: Renderer) {
-    
+  private planned: boolean = false;
+  private displaydate: string;
+  private date: string;
+  private recipe: any = "";
+
+  constructor(public renderer: Renderer,
+    public navCtrl: NavController,
+    private functions: GlobalFunctionsProvider) 
+  {
+    this.displaydate = this.functions.getNextDayFromOneWeakAheadArray();
   }
 
-  ngOnInit(){
-    console.log(this.content.nativeElement);
+  addRecipes()
+  {
+    //TODO implement abort option for choosing recipe for day
+    this.functions.setIsPlanning(true);
+    //NB: the value(string) in setDayPlanningFor will be set on add-button in RecipeDetails!
+    this.functions.setDayPlanningFor(this.displaydate);
+    this.navCtrl.push("RecipesPage");
+    this.checkPlannedStatus();
+  }
+  
+  search(nameKey, myArray)
+  {
+    for (var i=0; i < myArray.length; i++) 
+    {
+        if (myArray[i].date === nameKey) 
+        {
+            return myArray[i];
+        }
+    }
+  }
+
+  checkPlannedStatus()
+  {
+    this.recipe = this.functions.getRecipeOfPlannedDayInDayPlans(this.displaydate).recipe;
+
+    if(this.recipe)
+    {
+      this.planned = true;
+    }
+  }
+
+  pushRecipeDetails()
+  {
+    var recipe = this.recipe;
+    this.navCtrl.push('RecipedetailsPage', { recipe });
+  }
+
+  ngOnInit()
+  {
+    // console.log(this.content.nativeElement);
     this.renderer.setElementStyle(this.content.nativeElement, "webkitTransition", "max-height 400ms, padding 400ms");
   }
 
@@ -36,6 +78,6 @@ export class AccordionComponent implements OnInit {
 
       this.accordionExpanded = !this.accordionExpanded;
       this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
+      this.checkPlannedStatus();
   }
-
 }

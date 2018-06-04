@@ -10,4 +10,13 @@
 </ion-header>
 
 <ion-content padding class="contentStyle">
+  <ion-list no-lines>
+    <ion-item *ngFor="let recipe of recipesInCart"  (click)="pushRecipeDetails(recipe)">
+      <p>{{recipe.recipeName}}</p>
+    </ion-item>
+  </ion-list>
+
+  Total pris: {{cartPrice}} kr
+
+  <button block ion-button (click)="goToOrder()">Gå til bestilling</button>
 </ion-content>
