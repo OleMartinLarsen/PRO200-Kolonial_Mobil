@@ -20,6 +20,7 @@ export class GlobalFunctionsProvider
   private daysArrayNo: Array<string> = [];
   private oneWeakAheadArray: Array<string> = [];
   private nextDayFromOneWeakAheadArrayIndex: number = 0;
+  private cart: Array<string> = [];
 
   constructor(private toastCtrl: ToastController) 
   {
@@ -33,6 +34,26 @@ export class GlobalFunctionsProvider
   //Days
 
   //TODO tests?
+
+  getCart()
+  {
+    return this.cart;
+  }
+
+  addIngredientsToCart()
+  {
+    var days = this.getDayPlans();
+    var i;
+    var j;
+    for(i = 0; i < days.length; i++)
+    {
+      for(j = 0; j < days[i].recipe.recipeIngredients.length; j++)
+      {
+        console.log("Add ingredients: " + days[i].recipe.recipeIngredients[j].wareName);
+        this.cart.push(days[i].recipe.recipeIngredients[j]);
+      }
+    }
+  }
 
   getRecipeOfPlannedDayInDayPlans(displaydate: any)
   {

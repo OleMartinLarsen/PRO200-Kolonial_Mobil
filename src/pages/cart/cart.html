@@ -10,4 +10,9 @@
 </ion-header>
 
 <ion-content padding class="contentStyle">
+  <ion-list no-lines>
+    <ion-item *ngFor="let ware of cart">
+      <p>{{ware.wareName}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
