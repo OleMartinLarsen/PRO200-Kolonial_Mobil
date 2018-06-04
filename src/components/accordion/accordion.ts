@@ -12,40 +12,57 @@ export class AccordionComponent implements OnInit
   @ViewChild("cc") content: any;
   icon: string = "arrow-forward";
 
-  private displaydate: string;
   private planned: boolean = false;
-  private currentDay :string = "";
-  private daysArrayNo :Array<string> = [];
-  private plannedDays :Array<string> = [];
+  private displaydate: string;
+  private date: string;
+  private recipe: any = "";
 
   constructor(public renderer: Renderer,
     public navCtrl: NavController,
     private functions: GlobalFunctionsProvider) 
   {
-    this.plannedDays = this.functions.getDayPlans();
-
-    this.populateDaysArrayNo();
-    this.currentDay = this.daysArrayNo[new Date().getDay() - 1]; //Get current day in norwegian
-
-    this.displaydate = this.currentDay + " " + new Date().getDate() + "." + (new Date().getMonth() + 1);
+    this.displaydate = this.functions.getNextDayFromOneWeakAheadArray();
   }
 
   addRecipes()
   {
-    var isPlanning = true;
-    var day = "DayPlannedFor";
-    // TODO check planning add-recipe-to-day button in recipedetails is showing up/hidden as expected
-    this.navCtrl.push("RecipesPage", { isPlanning, day }).then(() => { isPlanning = false; });
-    this.planned = true;
+    //TODO implement abort option for choosing recipe for day
+    this.functions.setIsPlanning(true);
+    //NB: the value(string) in setDayPlanningFor will be set on add-button in RecipeDetails!
+    this.functions.setDayPlanningFor(this.displaydate); //TODO this.date for each day
+    this.navCtrl.push("RecipesPage");
+    this.checkPlannedStatus();
+  }
+  
+  search(nameKey, myArray)
+  {
+    for (var i=0; i < myArray.length; i++) 
+    {
+        if (myArray[i].date === nameKey) 
+        {
+            return myArray[i];
+        }
+    }
   }
 
-  pushRecipeDetails(recipe: any)
+  checkPlannedStatus()
   {
-    //TODO get recipe for this day from getDinnerPlans()
+    this.recipe = this.functions.getRecipeOfPlannedDayInDayPlans(this.displaydate).recipe;
+
+    if(this.recipe)
+    {
+      this.planned = true;
+    }
+  }
+
+  pushRecipeDetails()
+  {
+    var recipe = this.recipe;
     this.navCtrl.push('RecipedetailsPage', { recipe });
   }
 
-  ngOnInit(){
+  ngOnInit()
+  {
     // console.log(this.content.nativeElement);
     this.renderer.setElementStyle(this.content.nativeElement, "webkitTransition", "max-height 400ms, padding 400ms");
   }
@@ -61,16 +78,6 @@ export class AccordionComponent implements OnInit
 
       this.accordionExpanded = !this.accordionExpanded;
       this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
-  }
-
-  populateDaysArrayNo()
-  {
-    this.daysArrayNo.push("Mandag");
-    this.daysArrayNo.push("Tirsdag");
-    this.daysArrayNo.push("Onsdag");
-    this.daysArrayNo.push("Torsdag");
-    this.daysArrayNo.push("Fredag");
-    this.daysArrayNo.push("Lørdag");
-    this.daysArrayNo.push("Søndag");
+      this.checkPlannedStatus();
   }
 }

@@ -49,7 +49,6 @@ export class RegisterPage
       })
       .catch((error) =>
       {
-        
         this.functions.makeToast("Kunne ikke registrere bruker!");
         console.log(error);
       });
