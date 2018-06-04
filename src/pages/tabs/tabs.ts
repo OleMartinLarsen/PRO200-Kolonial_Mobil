@@ -19,7 +19,7 @@ export class TabsPage
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams) 
-    {
+  {
     this.homePage = HomePage;
     this.recipesPage = RecipesPage;
     this.recipehistoryPage = RecipehistoryPage;

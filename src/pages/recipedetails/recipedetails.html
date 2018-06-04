@@ -36,7 +36,6 @@
     </ion-list>
 
     <div *ngIf="isPlanning">
-      <!-- TODO better button name -->
-      <button block ion-button (click)="addRecipeToDay()">Legg til middag</button>
+      <button block ion-button (click)="addRecipeToDay()">{{addDinnerButtonText}}</button>
     </div>
 </ion-content>

@@ -17,10 +17,10 @@ export class WareslistPage
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private af :AngularFirestore, 
+    private af: AngularFirestore, 
     private functions: GlobalFunctionsProvider) 
   {
-    this.wareCollection = af.collection<Ware>('wares', ref =>
+    this.wareCollection = af.collection<Ware>("wares", ref =>
       {
         //Order by name (alphabetically)
         //Alternativly one could order by type ("kjøtt", "frukt" etc.) by using wareType 
