@@ -12,43 +12,15 @@
 </ion-header>
 
 <ion-content padding class="contentStyle">
-<<<<<<< HEAD
-
-  
-    <button block ion-button (click)="addWeek()">Legg til uke</button>
-    <button block ion-button (click)="mockAddToCart()">Legg alle uker til i handlekurv</button>
-
-  <ion-list no-lines>
-      <ion-item *ngFor="let week of weeksPlanned" id="{{weekId}}">
-        <!-- <ion-title gravity="left"> -->
-          
-          <h1>{{week}}</h1>
-        <!-- </ion-title> -->
-        <accordion></accordion>
-        <accordion></accordion>
-        <accordion></accordion>
-        <accordion></accordion>
-        <accordion></accordion>
-        <accordion></accordion>
-        <accordion></accordion>
-        <button block ion-button (click)="mockAddWeekToCart()">Legg til uke</button>
-        <button block ion-button (click)="removeWeekFromList(week)">slett uke</button>
-      </ion-item>
-  </ion-list>
-
-  <!-- TODO add week location? -->
-  <button block ion-button (click)="addWeek()">Legg til uke</button>
-  <button block ion-button (click)="mockAddToCart()">Legg alle uker til i handlekurv</button>
-=======
   <!-- <ion-title gravity="left"> -->
     <h1>{{displayWeek}}</h1>
   <!-- </ion-title> -->
   <ion-list no-lines>
     <ion-item *ngFor="let days of week">
       <accordion></accordion>
+      <button block ion-button (click)="removeWeekFromList(week)">slett uke</button>
     </ion-item>
   </ion-list>
 
   <button block ion-button (click)="mockAddToCart()">Legg til i handlekurv</button>
->>>>>>> c8e458c96591af348c385f5f595fe6d8405df0e9
 </ion-content>

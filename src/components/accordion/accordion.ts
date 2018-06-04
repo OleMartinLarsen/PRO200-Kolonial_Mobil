@@ -17,6 +17,8 @@ export class AccordionComponent implements OnInit
   private currentDay :string = "";
   private daysArrayNo :Array<string> = [];
   private plannedDays :Array<string> = [];
+  private date: string = "";
+  private recipe: any = "";
 
   constructor(public renderer: Renderer,
     public navCtrl: NavController,
@@ -28,6 +30,16 @@ export class AccordionComponent implements OnInit
     this.currentDay = this.daysArrayNo[new Date().getDay() - 1]; //Get current day in norwegian
 
     this.displaydate = this.currentDay + " " + new Date().getDate() + "." + (new Date().getMonth() + 1);
+  }
+
+  addRecipes()
+  {
+    //TODO implement abort option for choosing recipe for day
+    this.functions.setIsPlanning(true);
+    //NB: the value(string) in setDayPlanningFor will be set on add-button in RecipeDetails!
+    this.functions.setDayPlanningFor(this.displaydate); //TODO this.date for each day
+    this.navCtrl.push("RecipesPage");
+    this.checkPlannedStatus();
   }
   
   search(nameKey, myArray)
@@ -41,24 +53,14 @@ export class AccordionComponent implements OnInit
     }
   }
 
-<<<<<<< HEAD
-  addRecipes()
-  {
-    var isPlanning = true;
-    var day = "DayPlannedFor";
-    // TODO check planning add-recipe-to-day button in recipedetails is showing up/hidden as expected
-    this.navCtrl.push("RecipesPage", { isPlanning, day }).then(() => { isPlanning = false; });
-    this.planned = true;
-=======
   checkPlannedStatus()
   {
-    this.recipe = this.functions.getRecipeOfPlannedDayInDayPlans(this.displaydate).recipe;
+    this.recipe = this.functions.getRecipeOfPlannedDayInDayPlans(this.displaydate);
 
     if(this.recipe)
     {
       this.planned = true;
     }
->>>>>>> d59378d7e44eba002d5eb1b5c46f1b9f252cadf8
   }
 
   pushRecipeDetails(recipe: any)
@@ -83,6 +85,7 @@ export class AccordionComponent implements OnInit
 
       this.accordionExpanded = !this.accordionExpanded;
       this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
+      this.checkPlannedStatus();
   }
 
   populateDaysArrayNo()

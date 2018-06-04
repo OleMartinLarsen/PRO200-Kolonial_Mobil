@@ -9,15 +9,14 @@ import { GlobalFunctionsProvider } from '../../providers/global-functions/global
 })
 export class HomePage 
 {
-
-  weeksPlanned: Array<any> = [];
-  private debugUkeNavn = 0;
+  private displayWeek: string = "";
+  private week: Array<any> = []; 
+  private weeksPlanned: Array<any> = [];
 
   constructor(public navCtrl: NavController,
     private af: AngularFirestore,
     private functions: GlobalFunctionsProvider) 
   {
-    //nye konstruktøren
     this.displayWeek = "Uke " + this.functions.getWeekNumber();
     var i;
     for (i = 0; i < 7; i++) 
@@ -26,28 +25,9 @@ export class HomePage
     } 
   }
 
-  addWeek() 
-  {
-    var pass = this.getWeekNumber() + this.debugUkeNavn;
-    this.debugUkeNavn ++;
-    //addweekto plannedweeks var i den forige konstruktøren
-    this.functions.addWeekToPlannedWeeks(pass);
-  }
-
   removeWeekFromList(week)
   {
-    this.weeksPlanned = this.functions.removeItemFromList(week, this.weeksPlanned)
-   // this.weeksPlanned.splice(this.weeksPlanned.indexOf(week), 1);
-        //this.navCtrl.push("createdummydataPage")
-  }
-
-  getWeekNumber()
-  {
-    var month = new Date().getMonth();
-    var day = new Date().getDate();
-
-    //Not accurate on a month to month basis, does not take leap year into account
-    return Math.round((month * 4.348214) + (day / 7));
+    this.weeksPlanned = this.functions.removeItemFromList(week, this.weeksPlanned);
   }
 
   mockAddToCart()
