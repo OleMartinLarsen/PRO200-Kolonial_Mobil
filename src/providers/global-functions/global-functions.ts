@@ -43,7 +43,7 @@ export class GlobalFunctionsProvider
     {
       var index = days.map((d) => { return d.date; }).indexOf(displaydate);
       console.log("index for displaydate: " + index + " and " + displaydate);
-      return days[index].recipe;
+      return days[index];
     }
     return false;
   }
