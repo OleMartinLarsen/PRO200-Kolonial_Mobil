@@ -29,19 +29,7 @@ export class AccordionComponent implements OnInit
 
     this.displaydate = this.currentDay + " " + new Date().getDate() + "." + (new Date().getMonth() + 1);
   }
-  
-  search(nameKey, myArray)
-  {
-    for (var i=0; i < myArray.length; i++) 
-    {
-        if (myArray[i].date === nameKey) 
-        {
-            return myArray[i];
-        }
-    }
-  }
 
-<<<<<<< HEAD
   addRecipes()
   {
     var isPlanning = true;
@@ -49,16 +37,6 @@ export class AccordionComponent implements OnInit
     // TODO check planning add-recipe-to-day button in recipedetails is showing up/hidden as expected
     this.navCtrl.push("RecipesPage", { isPlanning, day }).then(() => { isPlanning = false; });
     this.planned = true;
-=======
-  checkPlannedStatus()
-  {
-    this.recipe = this.functions.getRecipeOfPlannedDayInDayPlans(this.displaydate).recipe;
-
-    if(this.recipe)
-    {
-      this.planned = true;
-    }
->>>>>>> d59378d7e44eba002d5eb1b5c46f1b9f252cadf8
   }
 
   pushRecipeDetails(recipe: any)
