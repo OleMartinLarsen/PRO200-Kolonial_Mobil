@@ -28,7 +28,7 @@ export class HomePage
   {
     this.functions.makeToast("Lagt til i handlekurv!");
     // this.navCtrl.push("CartPage");
-    this.functions.addIngredientsToCart();
+    this.functions.addRecipeToCart();
   }
 
   pushUser() 

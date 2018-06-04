@@ -20,7 +20,8 @@ export class GlobalFunctionsProvider
   private daysArrayNo: Array<string> = [];
   private oneWeakAheadArray: Array<string> = [];
   private nextDayFromOneWeakAheadArrayIndex: number = 0;
-  private cart: Array<string> = [];
+  private recipesCart: Array<string> = [];
+  private ingredientsCart: Array<string> = [];
 
   constructor(private toastCtrl: ToastController) 
   {
@@ -35,9 +36,24 @@ export class GlobalFunctionsProvider
 
   //TODO tests?
 
-  getCart()
+  getRecipesCart()
   {
-    return this.cart;
+    return this.recipesCart;
+  }
+
+  getIngredientsCart()
+  {
+    return this.ingredientsCart;
+  }
+
+  addRecipeToCart()
+  {
+    var days = this.getDayPlans();
+    var i;
+    for(i = 0; i < days.length; i++)
+    {
+      this.recipesCart.push(days[i].recipe);
+    }
   }
 
   addIngredientsToCart()
@@ -50,7 +66,7 @@ export class GlobalFunctionsProvider
       for(j = 0; j < days[i].recipe.recipeIngredients.length; j++)
       {
         console.log("Add ingredients: " + days[i].recipe.recipeIngredients[j].wareName);
-        this.cart.push(days[i].recipe.recipeIngredients[j]);
+        this.ingredientsCart.push(days[i].recipe.recipeIngredients[j]);
       }
     }
   }

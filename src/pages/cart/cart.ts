@@ -9,13 +9,35 @@ import { GlobalFunctionsProvider } from '../../providers/global-functions/global
 })
 export class CartPage 
 {
-  private cart: Array<string> = [];
+  private recipesInCart: Array<string> = [];
+  private waresInCart: Array<string> = [];
+  private cartPrice = 0;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private functions: GlobalFunctionsProvider) 
   {
-    this.cart = this.functions.getCart();
+    this.recipesInCart = this.functions.getRecipesCart();
+    this.waresInCart = this.functions.getIngredientsCart();
+  }
+
+  calculateCartPrice()//TODO
+  {
+    // var i;
+    // for(i = 0; i < this.waresInCart.length; i++)
+    // {
+    //   this.cartPrice += this.waresInCart[i].warePrice;
+    // }
+  }
+
+  pushRecipeDetails(recipe: any)
+  {
+    this.navCtrl.push('RecipedetailsPage', { recipe });
+  }
+
+  goToOrder()
+  {
+    this.functions.makeToast("Bestilling!");
   }
 
   pushUser() 
