@@ -19,7 +19,7 @@
       </div>
     <div *ngIf="!loading">
       <ion-list no-lines>
-        <ion-item *ngFor="let recipe of allrecipes | async" (click)="pushRecipeDetails(recipe)">
+        <ion-item *ngFor="let recipe of allRecipes | async" (click)="pushRecipeDetails(recipe)">
           <h2 text-wrap>{{recipe.recipeName}}</h2>
           <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p>
         </ion-item>
@@ -38,6 +38,24 @@
       <div *ngIf="!loading">
         <ion-list no-lines>
           <ion-item *ngFor="let recipe of favorites" (click)="pushRecipeDetails(recipe)">
+            <h2 text-wrap>{{recipe.recipeName}}</h2>
+            <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p>
+          </ion-item>
+        </ion-list>
+      </div>
+  </section>
+
+  <br>
+
+  <section>
+    <h1>Mine Oppskrifter</h1> 
+      <div *ngIf="loading">
+        <p>Laster</p>
+        <ion-spinner></ion-spinner>
+      </div>
+      <div *ngIf="!loading">
+        <ion-list no-lines>
+          <ion-item *ngFor="let recipe of myRecipes" (click)="pushRecipeDetails(recipe)">
             <h2 text-wrap>{{recipe.recipeName}}</h2>
             <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p>
           </ion-item>

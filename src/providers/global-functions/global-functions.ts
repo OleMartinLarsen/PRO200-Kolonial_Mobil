@@ -10,6 +10,7 @@ export class GlobalFunctionsProvider
   private recipeFavorites: Array<any> = []; //List og recipes favorited
   private recipeIngredients: Array<any> = []; //List of ingredients when adding a recipe
   private recipeInstructions: Array<any> = []; //List of instructions when adding recipe
+  private myRecipes: Array<any> = []; //List of recipes added by the user
   private dayPlans: Array<any> = []; //List that holds date and recipe
   private isPlanning: boolean = false; //Toggles "Legg til for x.y" button in RecipeDetails
   private planningFor: string = ""; //Date planning when adding recipe to day
@@ -200,6 +201,17 @@ export class GlobalFunctionsProvider
     return this.daysArrayNo[day - 1];
   }
 
+  getWeekNumber()
+  {
+    var month = new Date().getMonth();
+    var day = new Date().getDate() + 2;
+
+    // console.log("getweek date: " + day + "." + month);
+
+    //Not accurate on a month to month basis, does not take leap year into account
+    return Math.round((month * 4.348214) + (day / 7));
+  }
+
   //Toast
 
   makeToast(toastMessage :string)
@@ -313,14 +325,14 @@ export class GlobalFunctionsProvider
     return this.getCurrentDay() + " " + this.getCurrentDate();
   }
 
-  getWeekNumber()
+  addMyRecipes(recipe: any)
   {
-    var month = new Date().getMonth();
-    var day = new Date().getDate() + 2;
+    this.myRecipes.push(recipe);
+    console.log(recipe.name + " added to myRecipes");
+  }
 
-    // console.log("getweek date: " + day + "." + month);
-
-    //Not accurate on a month to month basis, does not take leap year into account
-    return Math.round((month * 4.348214) + (day / 7));
+  getMyRecipes()
+  {
+    return this.myRecipes;
   }
 }

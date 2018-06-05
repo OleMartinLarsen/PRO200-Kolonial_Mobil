@@ -64,17 +64,16 @@ export class CreaterecipePage
     if(this.recipe.name != "" && this.recipe.grade != "")
     {
       //TODO save locally
-
-      // this.recipeCollection.add(
-      //   {
-      //     recipeName: this.recipe.name,
-      //     recipeGrade: this.recipe.grade,
-      //     recipeTimeInMinutes: this.recipe.timeInMins,
-      //     recipePortions: this.recipe.portions,
-      //     recipeIngredients: this.functions.getRecipeIngredients(),
-      //     recipeInstructions: this.functions.getRecipeInstructions(),
-      //     // recipeImg: this.recipe.img
-      //   } as Recipe);
+      this.functions.addMyRecipes(
+        {
+          recipeName: this.recipe.name,
+          recipeGrade: this.recipe.grade,
+          recipeTimeInMinutes: this.recipe.timeInMins,
+          recipePortions: this.recipe.portions,
+          recipeIngredients: this.functions.getRecipeIngredients(),
+          recipeInstructions: this.functions.getRecipeInstructions(),
+          // recipeImg: this.recipe.img
+        });
 
       this.functions.makeToast("Oppskrift lagret!");
       this.recipe.name = "";
