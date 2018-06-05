@@ -1,8 +1,7 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar class="navbarStyle">
     <ion-title>
       Brukerinformasjon
-      <!-- {{currentUserEmail}} -->
     </ion-title>
     <ion-buttons end>
       <!-- Logout -->
@@ -13,7 +12,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="contentStyle">
   <div *ngIf="loading">
       <p>Laster</p>
       <ion-spinner></ion-spinner>
@@ -29,6 +28,6 @@
   </div>
 
   <br>
-  <button block ion-button (click)="pushSettings()">Historikk</button>
   <button block ion-button (click)="pushSettings()">Innstillinger</button>
+  <button block ion-button (click)="pushAddWares()">Legg til data</button>
 </ion-content>
