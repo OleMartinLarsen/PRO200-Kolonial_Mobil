@@ -19,7 +19,6 @@ export class CartPage
   {
     this.recipesInCart = this.functions.getRecipesCart();
     this.waresInCart = this.functions.getIngredientsCart();
-    this.cartPrice = this.functions.getCartPrice();
   }
 
   pushRecipeDetails(recipe: any)
@@ -40,5 +39,15 @@ export class CartPage
   ionViewDidLoad() 
   {
     console.log('ionViewDidLoad CartPage');
+  }
+
+  ionViewDidEnter()
+  {
+    //TODO should be calculated here, but since I cannot get warePrice from waresInCart, it has to be done in GFP. 
+    // However, the price should only be calculated when the recipes has been added to cart.
+    if(this.recipesInCart.length > 0)
+    {
+      this.cartPrice = this.functions.getCartPrice();
+    }
   }
 }

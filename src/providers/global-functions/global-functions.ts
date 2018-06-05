@@ -5,32 +5,25 @@ import { ToastController } from 'ionic-angular';
 @Injectable()
 export class GlobalFunctionsProvider 
 {
-  private recipeHistory: Array<any> = [];
-  private recipeFavorites: Array<any> = [];
-  private recipeIngredients: Array<any> = [];
-  private recipeInstructions: Array<any> = [];
-  private dayPlans: Array<any> = [];
-  private isPlanning: boolean = false;
-  private planningFor: string = "";
+  //TODO clean up array/returns, remove unused functions
+  private recipeHistory: Array<any> = []; //List of recipes ordered
+  private recipeFavorites: Array<any> = []; //List og recipes favorited
+  private recipeIngredients: Array<any> = []; //List of ingredients when adding a recipe
+  private recipeInstructions: Array<any> = []; //List of instructions when adding recipe
+  private dayPlans: Array<any> = []; //List that holds date and recipe
+  private isPlanning: boolean = false; //Toggles "Legg til for x.y" button in RecipeDetails
+  private planningFor: string = ""; //Date planning when adding recipe to day
 
-  private currentDay: string = "";
-  private currentDate: string = "";
-  private currentDayDate: string = "";
-  private currentWeek :string = "";
-  private daysArrayNo: Array<string> = [];
-  private oneWeakAheadArray: Array<string> = [];
-  private nextDayFromOneWeakAheadArrayIndex: number = 0;
-  private recipesCart: Array<string> = [];
-  private ingredientsCart: Array<string> = [];
-  private cartPrice: number = 0;
+  private daysArrayNo: Array<string> = []; //Weekdays in norwegian
+  private oneWeakAheadArray: Array<string> = []; //List of dates one week ahead
+  private nextDayFromOneWeakAheadArrayIndex: number = 0; //Index indicating which day to get in accordion
+  private recipesCart: Array<string> = []; //List of recipes in cart
+  private ingredientsCart: Array<string> = []; //List of ingredients in cart
 
   constructor(private toastCtrl: ToastController) 
   {
     this.populateDaysArrayNo();
     this.populateOneWeakAheadArray();
-    this.currentDay = this.getDayInNorwegian(new Date().getDay());
-    this.currentDate = new Date().getDate() + "." + (new Date().getMonth() + 1);
-    this.currentDayDate = this.currentDay + " " + this.currentDate;
   }
 
   //Days
@@ -69,15 +62,27 @@ export class GlobalFunctionsProvider
       {
         console.log("Add ingredients: " + days[i].recipe.recipeIngredients[j].wareName);
         this.ingredientsCart.push(days[i].recipe.recipeIngredients[j]);
-        this.cartPrice += days[i].recipe.recipeIngredients[j].warePrice;
-        console.log("cartprice " + this.cartPrice); //TODO concats numbers, not string
       }
     }
   }
 
   getCartPrice()
   {
-    return this.cartPrice;
+    var price: number = 0;
+    var cart: Array<any> = [];
+    var days = this.getDayPlans();
+    var i;
+    var j;
+    for(i = 0; i < days.length; i++)
+    {
+      for(j = 0; j < days[i].recipe.recipeIngredients.length; j++)
+      {
+        cart.push(days[i].recipe.recipeIngredients[j]);
+        price = price + parseInt(days[i].recipe.recipeIngredients[j].warePrice);
+      }
+    }
+    cart = [];
+    return price;
   }
 
   getRecipeOfPlannedDayInDayPlans(displaydate: any)
@@ -160,12 +165,12 @@ export class GlobalFunctionsProvider
   }
 
   //Unused, can be used for testing 
-  getOneWeakAheadArrayDay(i: number)
-  {
-    console.log("oneWeakAheadArray: " + this.oneWeakAheadArray.toString());
-    console.log("nextday test: " + this.getNextDay(30, 6));
-    return this.oneWeakAheadArray[i];
-  }
+  // getOneWeakAheadArrayDay(i: number)
+  // {
+  //   console.log("oneWeakAheadArray: " + this.oneWeakAheadArray.toString());
+  //   console.log("nextday test: " + this.getNextDay(30, 6));
+  //   return this.oneWeakAheadArray[i];
+  // }
 
   getNextDayFromOneWeakAheadArray()
   {
@@ -198,6 +203,15 @@ export class GlobalFunctionsProvider
   //Toast
 
   makeToast(toastMessage :string)
+  {
+    this.toastCtrl.create({
+      message: toastMessage,
+      duration: 3000,
+      position: 'bottom'
+    }).present();
+  }
+
+  makeToastTabs(toastMessage :string)
   {
     this.toastCtrl.create({
       message: toastMessage,
@@ -295,17 +309,17 @@ export class GlobalFunctionsProvider
   
   getCurrentDay()
   {
-    return this.currentDay;
+    return this.getDayInNorwegian(new Date().getDay());
   }
 
   getCurrentDate()
   {
-    return this.currentDate;
+    return new Date().getDate() + "." + (new Date().getMonth() + 1);
   }
 
   getCurrentDayDate()
   {
-    return this.currentDayDate;
+    return this.getCurrentDay() + " " + this.getCurrentDate();
   }
 
   getWeekNumber()

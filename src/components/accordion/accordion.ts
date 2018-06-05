@@ -76,8 +76,13 @@ export class AccordionComponent implements OnInit
         this.renderer.setElementStyle(this.content.nativeElement, "padding", "13px 16px");
       }
 
-      this.accordionExpanded = !this.accordionExpanded;
-      this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
+    this.accordionExpanded = !this.accordionExpanded;
+    this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
+    this.checkPlannedStatus();
+  }
+  
+  ionViewDidEnter() //TODO doesn't work?
+  {
       this.checkPlannedStatus();
   }
 }
