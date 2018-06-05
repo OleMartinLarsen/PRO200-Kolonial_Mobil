@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar class="navbarStyle">
-    <ion-searchbar placeholder="Søk etter en oppskrift..."></ion-searchbar>
+    <ion-searchbar placeholder="Søk etter en oppskrift..." [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
     <ion-buttons end>
         <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
           <ion-icon name="contact"></ion-icon>
@@ -19,7 +19,7 @@
       </div>
     <div *ngIf="!loading">
       <ion-list no-lines>
-        <ion-item *ngFor="let recipe of allrecipes | async" (click)="pushRecipeDetails(recipe)">
+        <ion-item *ngFor="let recipe of filterData | async" (click)="pushRecipeDetails(recipe)">
           <h2 text-wrap>{{recipe.recipeName}}</h2>
           <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p>
         </ion-item>
