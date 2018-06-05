@@ -14,8 +14,9 @@ export class RecipesPage
 {
   private loading: boolean = true;
   public recipeCollection: AngularFirestoreCollection<Recipe>;
-  private allrecipes: Observable<Recipe[]>;
+  private allRecipes: Observable<Recipe[]>;
   private favorites: Array<any> = [];
+  private myRecipes: Array<any> = [];
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -30,7 +31,7 @@ export class RecipesPage
       return ref.orderBy("recipeName", "asc");     
     });
 
-    this.allrecipes = this.recipeCollection.snapshotChanges()
+    this.allRecipes = this.recipeCollection.snapshotChanges()
       .map(actions =>
       {
         return actions.map(action =>
@@ -45,8 +46,9 @@ export class RecipesPage
         });
       });
 
-      // this.favorites = this.storage.get("recipeFavlorites..."); //For phones internal storage
-      this.favorites = this.functions.getRecipeFavorites();
+    // this.favorites = this.storage.get("recipeFavlorites..."); //For phones internal storage
+    this.favorites = this.functions.getRecipeFavorites();
+    this.myRecipes = this.functions.getMyRecipes();
   }
 
   pushRecipeDetails(recipe :any)

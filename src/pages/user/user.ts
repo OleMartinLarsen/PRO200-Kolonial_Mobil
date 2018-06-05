@@ -58,14 +58,14 @@ export class UserPage
         this.navCtrl.push('AuthPage');
   }
 
-  pushRecipeHistory()
-  {
-    this.navCtrl.push("RecipehistoryPage");
-  }
-
-  pushAddWares()
+  pushAddData()
   {
     this.navCtrl.push("CreatedummydataPage");
+  }
+
+  pushAddMyRecipe()
+  {
+    this.navCtrl.push("CreaterecipePage");
   }
 
   logoutUser()
