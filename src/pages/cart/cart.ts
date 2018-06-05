@@ -45,6 +45,9 @@ export class CartPage
   {
     //TODO should be calculated here, but since I cannot get warePrice from waresInCart, it has to be done in GFP. 
     // However, the price should only be calculated when the recipes has been added to cart.
-    this.cartPrice = this.functions.getCartPrice();
+    if(this.recipesInCart.length > 0)
+    {
+      this.cartPrice = this.functions.getCartPrice();
+    }
   }
 }
