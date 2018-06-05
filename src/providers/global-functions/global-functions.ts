@@ -207,16 +207,7 @@ export class GlobalFunctionsProvider
     this.toastCtrl.create({
       message: toastMessage,
       duration: 3000,
-      position: 'bottom'
-    }).present();
-  }
-
-  makeToastTabs(toastMessage :string)
-  {
-    this.toastCtrl.create({
-      message: toastMessage,
-      duration: 3000,
-      position: 'bottom'
+      position: 'middle'
     }).present();
   }
 
