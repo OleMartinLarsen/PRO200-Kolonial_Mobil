@@ -50,9 +50,12 @@ export class UserPage
       });
   }
 
-  pushSettings()
+  pushAuthUser()
   {
-    // this.navCtrl.push('SettingsPage');
+      if (this.af.app.auth().currentUser)
+        this.navCtrl.push('UserPage');
+      else
+        this.navCtrl.push('AuthPage');
   }
 
   pushRecipeHistory()
