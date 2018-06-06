@@ -85,12 +85,19 @@ export class RegisterPage
         if(String(error).indexOf("The email address is badly formatted.") != -1)
         {
           this.errorBorderColor(all[3]);
-          this.functions.makeToast("e-post er ikke skrevet riktig")
-        } else if(String(error).indexOf("The email address is already in use by another account") != -1)
+          this.functions.makeToast("E-post er ikke riktig formatert!")
+        } 
+        else if(String(error).indexOf("The email address is already in use by another account") != -1)
         {
           this.errorBorderColor(all[3]);
-          this.functions.makeToast("bruker med denne e-posten eksisterer")
+          this.functions.makeToast("En bruker med denne e-posten eksisterer allerede!")
         }
+        else if(String(error).indexOf("Password should be at least 6 characters") != -1)
+        {
+          this.errorBorderColor(all[3]);
+          this.functions.makeToast("Passordet er for kort!")
+        }
+        
         
         console.log(error);
       });
