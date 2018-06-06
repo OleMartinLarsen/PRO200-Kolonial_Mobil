@@ -36,7 +36,8 @@ export class AuthPage
       })
       .catch((error) =>
       {
-        this.functions.makeToast("Kunne ikke logge inn bruker!");
+        this.functions.makeToast("Feil E-post eller passord");
+        this.user.pass = "";
         console.log(error);
       });
   }
