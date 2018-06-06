@@ -138,9 +138,18 @@ export class GlobalFunctionsProvider
       }
     }
 
-    //TODO daynames?
-    //currentday + days to targetday?
-    return day + "." + month;
+    var findDayInFuture = day - (new Date().getDate());
+    var findDayFor = findDayInFuture + (new Date().getDay());
+
+    //Reset week once findDayFor passes 7 (sunday)
+    if(findDayFor > 7)
+    {
+      findDayFor -= 7;
+    }
+
+    var dayNo = this.getDayInNorwegian(findDayFor);
+
+    return dayNo + " " + day + "." + month;
   }
 
   populateOneWeakAheadArray()
@@ -148,7 +157,7 @@ export class GlobalFunctionsProvider
     var day = new Date().getDate();
     var month = new Date().getMonth() + 1;
     //Get the next week
-    var next0 = day + "." + month; //today
+    var next0 = this.getNextDay(day - 1, month); //Today
     var next1 = this.getNextDay(day++, month);
     var next2 = this.getNextDay(day++, month);
     var next3 = this.getNextDay(day++, month);
