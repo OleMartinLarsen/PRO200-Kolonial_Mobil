@@ -4,7 +4,7 @@
       Min ukesliste
     </ion-title>
     <ion-buttons end>
-      <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
+      <button class="userbutton" ion-button icon-only (click)="pushUser()">  
         <ion-icon name="contact"></ion-icon>
       </button>
     </ion-buttons>
@@ -16,10 +16,10 @@
     <h1>{{displayWeek}}</h1>
   <!-- </ion-title> -->
   <ion-list no-lines>
-    <ion-item *ngFor="let days of week">
+    <ion-item *ngFor="let days of week" class="ion-list">
       <accordion></accordion>
     </ion-item>
   </ion-list>
 
-  <button block ion-button (click)="addToCart()">Legg til i handlekurv</button>
+  <button block ion-button (click)="addToCart()"> <p id="addToCartText">Legg til i handlekurv </p></button>
 </ion-content>

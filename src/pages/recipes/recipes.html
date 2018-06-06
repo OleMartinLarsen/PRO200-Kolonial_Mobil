@@ -10,7 +10,24 @@
 </ion-header>
 
 
-<ion-content padding>
+
+<ion-content padding id="background">
+    <div class = "tabs">
+        <a class = "tab-item" id="tab-item-left">
+           <ion-icon name="restaurant" class="tab-icon"></ion-icon>
+           <p class="tab-text">Alle<br>oppskrifter</p>
+        </a>
+       
+        <a class = "tab-item" id="tab-item-center">
+            <ion-icon name="heart" color="color3" class="tab-icon"></ion-icon>
+            <p class="tab-text">Mine<br>favoritter</p>
+        </a>
+     
+        <a class = "tab-item" id="tab-item-right">
+            <ion-icon name="book" color="color4" class="tab-icon"></ion-icon>
+            <p class="tab-text">Egne<br>oppskrifter</p>
+        </a>
+     </div>
   <section>
     <h1>Alle oppskrifter</h1>
     <div *ngIf="loading">
@@ -19,9 +36,11 @@
       </div>
     <div *ngIf="!loading">
       <ion-list no-lines>
-        <ion-item *ngFor="let recipe of allRecipes | async" (click)="pushRecipeDetails(recipe)">
+        <ion-item *ngFor="let recipe of allRecipes | async" (click)="pushRecipeDetails(recipe)" class ="recipeCard">
+          <div  style="position: absolute; bottom: 10px;">
           <h2 text-wrap>{{recipe.recipeName}}</h2>
           <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p>
+            </div>
         </ion-item>
       </ion-list>
     </div>
