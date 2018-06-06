@@ -94,7 +94,7 @@ export class GlobalFunctionsProvider
     if(day)
     {
       var index = days.map((d) => { return d.date; }).indexOf(displaydate);
-      console.log("index for displaydate: " + index + " and " + displaydate);
+      // console.log("index for displaydate: " + index + " and " + displaydate);
       return days[index];
     }
     return false;
