@@ -25,6 +25,7 @@ $app-direction: ltr;
 $button-ios-large-height: 5em;
 $button-md-large-height: 5em;
 $button-wp-large-height: 5em;
+$toolbar-background: #433445;
 
 
 
@@ -41,7 +42,10 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+
+  color1: #433445,
+  color2: #FFA700
 );
 
 
@@ -49,13 +53,12 @@ $colors: (
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
-
+$searchbar-ios-toolbar-input-background:	#fff;
 
 
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
-
 
 
 
@@ -89,3 +92,12 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+
+//globale classes
+//--------------------------------------------------
+
+.page-background
+{
+  background-color: #433445;
+}

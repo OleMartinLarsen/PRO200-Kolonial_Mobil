@@ -14,24 +14,24 @@ import { AuthPage } from '../auth/auth';
 export class UserPage 
 {
   private loading: boolean = true;
-  private collection :AngularFirestoreCollection<User>;
+  private collection: AngularFirestoreCollection<User>;
   private currentUserEmail: string;
-  private users :Observable<any[]>;
+  private users: Observable<any[]>;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private af :AngularFirestore,
-    private functions :GlobalFunctionsProvider) 
+    private af: AngularFirestore,
+    private functions: GlobalFunctionsProvider) 
   {
     this.currentUserEmail = af.app.auth().currentUser.email;
     
     //NB: this method fetches the userdata async from the DB with a query, so it might take some time.
     //TODO find a btter way to load userdata
-    this.collection = af.collection<User>('users', (ref) => 
+    this.collection = af.collection<User>("users", (ref) => 
     {
       //Get correct user (limit 1 in case of duplicate emails in database 
       //(which shouldn't really happens as we use FirebaseAuth which will handle this automatically))
-      return ref.where('userEmail', '==', this.currentUserEmail).limit(1); 
+      return ref.where("userEmail", "==", this.currentUserEmail).limit(1); 
     });
 
     this.users = this.collection.snapshotChanges()
@@ -50,14 +50,22 @@ export class UserPage
       });
   }
 
-  pushSettings()
+  pushAuthUser()
   {
-    // this.navCtrl.push('SettingsPage');
+      if (this.af.app.auth().currentUser)
+        this.navCtrl.push('UserPage');
+      else
+        this.navCtrl.push('AuthPage');
   }
 
-  pushRecipeHistory()
+  pushAddData()
   {
-    this.navCtrl.push('RecipehistoryPage');
+    this.navCtrl.push("CreatedummydataPage");
+  }
+
+  pushAddMyRecipe()
+  {
+    this.navCtrl.push("CreaterecipePage");
   }
 
   logoutUser()

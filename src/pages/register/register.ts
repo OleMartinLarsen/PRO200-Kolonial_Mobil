@@ -4,6 +4,7 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from '../../models/user';
 import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
+import { contains } from '@firebase/util';
 
 @IonicPage()
 @Component({
@@ -33,9 +34,41 @@ export class RegisterPage
     this.userCollection = af.collection<User>('users');
   }
 
+  errorBorderColor(element)
+  {
+    element.style.border = "solid 5px #ff0000";
+  }
+
   registerUser()
   {
-    if(this.user.password.match(this.user.repeatPassword)) //Make sure the user has typed the correct password twice
+
+    let all = document.getElementsByClassName('textInputField') as HTMLCollectionOf<HTMLElement>;
+    for (var i = 0; i < all.length; i++)
+    {
+      all[i].style.border = '0px';
+    }
+
+    if(this.user.name.length == 0)
+    {
+      this.errorBorderColor(all[0]);
+    }
+
+    if(this.user.surname.length == 0)
+    {
+      this.errorBorderColor(all[1]);
+    }
+
+    if(this.user.phone.toString().length != 8)
+    {
+      this.errorBorderColor(all[2]);
+    }
+
+    if(this.user.adress.length == 0)
+    {
+      this.errorBorderColor(all[4]);
+    }
+
+    if(this.user.password.match(this.user.repeatPassword) && this.user.password.length != 0) //Make sure the user has typed the correct password twice
     { 
       //Register with email and password
       this.afAuth.auth
@@ -49,12 +82,37 @@ export class RegisterPage
       })
       .catch((error) =>
       {
-        this.functions.makeToast("Kunne ikke registrere bruker!");
+        if(String(error).indexOf("The email address is badly formatted.") != -1)
+        {
+          this.errorBorderColor(all[3]);
+          this.functions.makeToast("E-post er ikke riktig formatert!")
+        } 
+        else if(String(error).indexOf("The email address is already in use by another account") != -1)
+        {
+          this.errorBorderColor(all[3]);
+          this.functions.makeToast("En bruker med denne e-posten eksisterer allerede!")
+        }
+        else if(String(error).indexOf("Password should be at least 6 characters") != -1)
+        {
+          this.errorBorderColor(all[3]);
+          this.functions.makeToast("Passordet er for kort!")
+        }
+        
+        
         console.log(error);
       });
     }
     else
     {
+      let password = document.getElementsByClassName('passwordFields') as HTMLCollectionOf<HTMLElement>;
+      
+      for(var i = 0; i < password.length; i++){
+        this.errorBorderColor(password[i]);
+      }
+      this.user.repeatPassword = "";
+      this.user.password = "";
+     
+
       this.functions.makeToast("Passordene er ikke like!");
     }
   }

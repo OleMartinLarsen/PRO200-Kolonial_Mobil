@@ -9,23 +9,23 @@ import { GlobalFunctionsProvider } from '../../providers/global-functions/global
 })
 export class RecipehistoryPage 
 {
-  history :Array<any> = [];
+  history: Array<any> = [];
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private functions :GlobalFunctionsProvider) 
+    private functions: GlobalFunctionsProvider) 
   {
     this.history = this.functions.getRecipeHistory();
   }
 
-  pushRecipeDetails() //Example
+  pushRecipeDetails(recipe: any)
   {
-    this.navCtrl.push("RecipedetailsPage");
+    this.navCtrl.push("RecipedetailsPage", { recipe });
   }
 
   pushUser()
   {
-    this.navCtrl.push('UserPage');
+    this.navCtrl.push("UserPage");
   }
 
   ionViewDidLoad() 

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
+import { AccordionComponent } from '../../components/accordion/accordion';
 
 @Component({
   selector: 'page-home',
@@ -8,18 +10,38 @@ import { AngularFirestore } from 'angularfire2/firestore';
 })
 export class HomePage 
 {
+  private displayWeek: string = "";
+  private week: Array<any> = [];
+
   constructor(public navCtrl: NavController,
-    private af :AngularFirestore) 
+    private af: AngularFirestore,
+    private functions: GlobalFunctionsProvider) 
   {
+    this.displayWeek = "Uke " + this.functions.getWeekNumber();
+    var i;
+    for (i = 0; i < 7; i++) 
+    { 
+      this.week.push("");
+    }
   }
 
-  pushUser()
+  addToCart()
   {
-      this.navCtrl.push('UserPage');
+    this.functions.addRecipeToCart();
+    this.functions.makeToast("Lagt til i handlevogn.");
+    // this.navCtrl.push("CartPage"); //TODO bug
   }
 
-  test()
+  pushUser() 
   {
-
+    this.navCtrl.push("UserPage");
   }
+
+  
+  // @ViewChild(AccordionComponent)
+  // acc: AccordionComponent;
+  // ionViewDidEnter()
+  // {
+  //   this.acc.checkPlannedStatus();
+  // }
 }

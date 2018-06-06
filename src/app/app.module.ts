@@ -16,12 +16,18 @@ import { TabsPageModule } from '../pages/tabs/tabs.module';
 import { HomePage } from '../pages/home/home';
 import { RecipesPage } from '../pages/recipes/recipes';
 import { GlobalFunctionsProvider } from '../providers/global-functions/global-functions';
+import { CartPage } from '../pages/cart/cart';
+import { RecipehistoryPage } from '../pages/recipehistory/recipehistory';
+import { AccordionComponent } from '../components/accordion/accordion';
+import { RecipesPageModule } from '../pages/recipes/recipes.module';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    RecipesPage
+    CartPage,
+    RecipehistoryPage,
+    AccordionComponent
   ],
   imports: [
     BrowserModule,
@@ -30,12 +36,15 @@ import { GlobalFunctionsProvider } from '../providers/global-functions/global-fu
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+    RecipesPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    RecipesPage
+    RecipesPage,
+    CartPage,
+    RecipehistoryPage
   ],
   providers: [
     StatusBar,
