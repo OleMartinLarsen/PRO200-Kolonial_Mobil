@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
+import { AccordionComponent } from '../../components/accordion/accordion';
 
 @Component({
   selector: 'page-home',
@@ -35,4 +36,12 @@ export class HomePage
   {
     this.navCtrl.push("UserPage");
   }
+
+  
+  // @ViewChild(AccordionComponent)
+  // acc: AccordionComponent;
+  // ionViewDidEnter()
+  // {
+  //   this.acc.checkPlannedStatus();
+  // }
 }

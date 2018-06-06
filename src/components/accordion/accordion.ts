@@ -6,7 +6,7 @@ import { GlobalFunctionsProvider } from '../../providers/global-functions/global
   selector: 'accordion',
   templateUrl: 'accordion.html'
 })
-export class AccordionComponent implements OnInit 
+export class AccordionComponent implements OnInit
 {
   accordionExpanded = false;
   @ViewChild("cc") content: any;
@@ -14,7 +14,6 @@ export class AccordionComponent implements OnInit
 
   private planned: boolean = false;
   private displaydate: string;
-  private date: string;
   private recipe: any = "";
 
   constructor(public renderer: Renderer,
@@ -33,26 +32,14 @@ export class AccordionComponent implements OnInit
       //NB: the value(string) in setDayPlanningFor will be set on add-button in RecipeDetails!
       this.functions.setDayPlanningFor(this.displaydate);
       this.navCtrl.push("RecipesPage");
-      this.checkPlannedStatus();
     }
     else
     {
-      this.functions.makeToast("Middag planlagt, vil du endre?"); //TODO change recipe
-    }
-  }
-  
-  search(key, array)
-  {
-    for (var i=0; i < array.length; i++) 
-    {
-        if (array[i].date === key) 
-        {
-            return array[i];
-        }
+      this.functions.makeToast("Vil du endre?"); //TODO change recipe
     }
   }
 
-  checkPlannedStatus()
+  public checkPlannedStatus()
   {
     this.recipe = this.functions.getRecipeOfPlannedDayInDayPlans(this.displaydate).recipe;
 
@@ -75,7 +62,6 @@ export class AccordionComponent implements OnInit
   {
     // console.log(this.content.nativeElement);
     this.renderer.setElementStyle(this.content.nativeElement, "webkitTransition", "max-height 400ms, padding 400ms");
-    this.checkPlannedStatus();
   }
 
   toggleAccordion()
@@ -93,14 +79,10 @@ export class AccordionComponent implements OnInit
 
     this.accordionExpanded = !this.accordionExpanded;
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
-    this.checkPlannedStatus();
   }
-
-  ionViewDidLoad()
+  
+  ngDoCheck() //TODO Memleaks, any better ways?
   {
-    //TODO! update when view loads. Component doesn't have lifecycles?
-    //init this.checkPlannedStatus(); from home.ts?
-    console.log("Accordian did loead");
     this.checkPlannedStatus();
   }
 }
