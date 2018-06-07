@@ -9,8 +9,7 @@ import { GlobalFunctionsProvider } from '../../providers/global-functions/global
 })
 export class CartPage 
 {
-  private recipesInCart: Array<string> = [];
-  private waresInCart: Array<string> = [];
+  private recipesInCart: Array<any> = [];
   private cartPrice = 0;
 
   constructor(public navCtrl: NavController, 
@@ -18,7 +17,6 @@ export class CartPage
     private functions: GlobalFunctionsProvider) 
   {
     this.recipesInCart = this.functions.getRecipesCart();
-    this.waresInCart = this.functions.getIngredientsCart();
   }
 
   pushRecipeDetails(recipe: any)
@@ -36,6 +34,22 @@ export class CartPage
     this.navCtrl.push('UserPage');
   }
 
+  getPrice()
+  {
+    var price = 0;
+    if(this.recipesInCart.length > 0)
+    {
+      for(var i = 0; i < this.recipesInCart.length; i++)
+      {
+        for(var j = 0; j < this.recipesInCart[i].recipeIngredients.length; j++)
+        {
+          price += parseInt(this.recipesInCart[i].recipeIngredients[j].warePrice);
+        }
+      }
+    }
+    return price;
+  }
+
   ionViewDidLoad() 
   {
     console.log('ionViewDidLoad CartPage');
@@ -43,11 +57,6 @@ export class CartPage
 
   ionViewDidEnter()
   {
-    //TODO should be calculated here, but since I cannot get warePrice from waresInCart, it has to be done in GFP. 
-    // However, the price should only be calculated when the recipes has been added to cart.
-    if(this.recipesInCart.length > 0)
-    {
-      this.cartPrice = this.functions.getCartPrice();
-    }
+    this.cartPrice = this.getPrice();
   }
 }

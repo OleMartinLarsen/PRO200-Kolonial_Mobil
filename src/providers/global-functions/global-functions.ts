@@ -17,8 +17,7 @@ export class GlobalFunctionsProvider
   private daysArrayNo: Array<string> = []; //Weekdays in norwegian
   private oneWeakAheadArray: Array<string> = []; //List of dates one week ahead
   private nextDayFromOneWeakAheadArrayIndex: number = 0; //Index indicating which day to get in accordion
-  private recipesCart: Array<string> = []; //List of recipes in cart
-  private ingredientsCart: Array<string> = []; //List of ingredients in cart
+  private recipesCart: Array<any> = []; //List of recipes in cart
 
   constructor(private toastCtrl: ToastController) 
   {
@@ -282,53 +281,13 @@ export class GlobalFunctionsProvider
     return this.recipesCart;
   }
 
-  getIngredientsCart()
-  {
-    this.addIngredientsToCart();
-    return this.ingredientsCart;
-  }
-
   addRecipeToCart()
   {
+    //TODO remove duplicates
     var days = this.getDayPlans();
-    var i;
-    for(i = 0; i < days.length; i++)
+    for(var i = 0; i < days.length; i++)
     {
       this.recipesCart.push(days[i].recipe);
     }
-  }
-
-  addIngredientsToCart()
-  {
-    var days = this.getDayPlans();
-    var i;
-    var j;
-    for(i = 0; i < days.length; i++)
-    {
-      for(j = 0; j < days[i].recipe.recipeIngredients.length; j++)
-      {
-        console.log("Add ingredients: " + days[i].recipe.recipeIngredients[j].wareName);
-        this.ingredientsCart.push(days[i].recipe.recipeIngredients[j]);
-      }
-    }
-  }
-
-  getCartPrice()
-  {
-    var price: number = 0;
-    var cart: Array<any> = [];
-    var days = this.getDayPlans();
-    var i;
-    var j;
-    for(i = 0; i < days.length; i++)
-    {
-      for(j = 0; j < days[i].recipe.recipeIngredients.length; j++)
-      {
-        cart.push(days[i].recipe.recipeIngredients[j]);
-        price = price + parseInt(days[i].recipe.recipeIngredients[j].warePrice);
-      }
-    }
-    cart = [];
-    return price;
   }
 }
