@@ -11,8 +11,7 @@
   <ion-card-content #cc>
     <div *ngIf="planned">
       <ion-item (click)="pushRecipeDetails()">
-          <!-- TODO dinner model/design onclick til RecipedetailsPage
-          <img [src]="recipe.recipeImg"> -->
+          <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg"> <!-- Image -->
           <p>{{recipe.recipeName}}</p>
           <!-- {{recipe.recipeTimeInMinutes}}
           {{recipe.recipePortions}}
@@ -20,8 +19,5 @@
           -->
       </ion-item>
     </div>
-  <!-- <div *ngIf="!planned">
-    <button block ion-button (click)="addRecipes()">Legg til middag</button>
-  </div> -->
   </ion-card-content>
 </ion-card>

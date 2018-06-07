@@ -98,7 +98,6 @@ export class RegisterPage
           this.functions.makeToast("Passordet er for kort!")
         }
         
-        
         console.log(error);
       });
     }
@@ -112,14 +111,13 @@ export class RegisterPage
       this.user.repeatPassword = "";
       this.user.password = "";
      
-
       this.functions.makeToast("Passordene er ikke like!");
     }
   }
 
   registerUserInDB()
   {
-    //DO NOT store password, user.email and user.password is stored (hashed) with afAuth
+    //DO NOT store password! user.email and user.password is stored (hashed) with afAuth
     this.userCollection.add(
       {
         userName: this.user.name,

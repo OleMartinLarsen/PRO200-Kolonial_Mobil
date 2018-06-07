@@ -55,13 +55,16 @@ export class CreatedummydataPage
           warePrice: this.ware.price,
           wareType: this.ware.type,
           //wareInt how much of this ware in the recipe
-          // wareImg: this.ware.img
+          wareImg: this.ware.img
         } as Ware);
 
       this.functions.makeToast("Vare lagret!");
       this.ware.name = "";
       this.ware.price = 0;
-      this.ware.type = "";
+      this.ware.type = ""; 
+      //wareImg serves no function in the prototype, 
+      // can be added once wareDetails page is added and wares rehauled
+      // this.ware.img = "";
     }
     else
     {
@@ -82,7 +85,6 @@ export class CreatedummydataPage
       if (ingredient == this.recipeIngredients[i].wareName)
       {
         this.recipeIngredients.splice(i, 1);
-        //this.navCtrl.push("createdummydataPage")
       }
     }
   }
@@ -108,12 +110,13 @@ export class CreatedummydataPage
           recipePortions: this.recipe.portions,
           recipeIngredients: this.functions.getRecipeIngredients(),
           recipeInstructions: this.functions.getRecipeInstructions(),
-          // recipeImg: this.recipe.img
+          recipeImg: this.recipe.img
         } as Recipe);
 
       this.functions.makeToast("Oppskrift lagret!");
       this.recipe.name = "";
       this.recipe.grade = "";
+      this.recipe.img = "";
       this.recipe.timeInMins = 0;
       this.recipe.portions = 0;
       this.functions.clearRecipeIngredients();
