@@ -27,7 +27,7 @@ export class HomePage
 
   addToCart()
   {
-    this.functions.addRecipeToCart();
+    this.functions.addRecipesToCart();
     this.functions.makeToast("Lagt til i handlevogn.");
     // this.navCtrl.push("CartPage"); //TODO bug
   }

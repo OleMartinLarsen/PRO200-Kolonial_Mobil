@@ -246,7 +246,7 @@ export class GlobalFunctionsProvider
     if(day)
     {
       var index = days.map((d) => { return d.date; }).indexOf(displaydate);
-      // console.log("index for displaydate: " + index + " and " + displaydate);
+      // console.log("index for displaydate: " + index + " and " + displaydate); //Beware of spam
       return days[index];
     }
     return false;
@@ -281,13 +281,17 @@ export class GlobalFunctionsProvider
     return this.recipesCart;
   }
 
-  addRecipeToCart()
+  addRecipesToCart()
   {
-    //TODO remove duplicates
     var days = this.getDayPlans();
     for(var i = 0; i < days.length; i++)
     {
-      this.recipesCart.push(days[i].recipe);
+      //NB: adding the same recipe 2 times will result in 2 orders.
+      var res = this.recipesCart.find((d) => d === days[i].recipe || days[i] != days[i]);
+      if(!res)
+      {
+        this.recipesCart.push(days[i].recipe);
+      }
     }
   }
 }
