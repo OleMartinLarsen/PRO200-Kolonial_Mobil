@@ -25,4 +25,5 @@ export class TabsPage
     this.recipehistoryPage = RecipehistoryPage;
     this.cartPage = CartPage;
   }
+  
 }

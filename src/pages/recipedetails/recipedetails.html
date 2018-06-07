@@ -17,20 +17,20 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="ion-content">
     <h1>{{recipe.recipeName}}</h1>
     <p>{{recipe.recipeTimeInMinutes}} minutter, {{recipe.recipePortions}} porsjoner</p>
     
     <p>Ingredienser</p>
     <ion-list no-lines>
-      <ion-item *ngFor="let ingredient of ingredients">
-        <p text-wrap>{{ingredient.wareName}}</p>
+      <ion-item class="ion-content" *ngFor="let ingredient of ingredients">
+        <p style="color: #FFFFFF" text-wrap>{{ingredient.wareName}}</p>
       </ion-item>
     </ion-list>
     
     <p>Instrukser</p>
     <ion-list no-lines>
-      <ion-item *ngFor="let step of instructions">
+      <ion-item class="ion-content" *ngFor="let step of instructions">
         <p text-wrap>{{step}}</p>
       </ion-item>
     </ion-list>

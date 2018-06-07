@@ -12,6 +12,10 @@ page-recipes {
         margin-bottom: 10px;
     }
 
+    .cardText{
+    position: absolute; 
+    bottom: 10px;
+    }
     .tab-icon
     {
         margin-top: 15%;
@@ -40,6 +44,7 @@ page-recipes {
         width: 32.6%;
         height: 100px;
         background-color: #2B242F;
+        color: #FFFFFF;
     }
 
     #tab-item-left
