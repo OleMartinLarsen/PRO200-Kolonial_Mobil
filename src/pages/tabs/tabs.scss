@@ -1,10 +1,19 @@
 page-tabs {
     .tabs-md .tab-button[aria-selected=true] {
         background: color($colors, color2);
+        color: #2B232F;
+        .tab-button-icon{
+            color: #2B232F;
+        }
+        
     }
 
     .tabs-ios .tab-button[aria-selected=true] {
         background: color($colors, color2);
+        color: #2B232F;
+        .tab-button-icon{
+            color: #2B232F;
+        }
     }
 
     .tabsStyle {

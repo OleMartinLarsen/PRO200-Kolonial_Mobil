@@ -5,7 +5,7 @@
     </ion-title>
     <ion-buttons end *ngIf="!isFavorited">
       <button class="userbutton" ion-button icon-only (click)="addToFavorites()"> 
-        <ion-icon name="star"></ion-icon>
+        <ion-icon name="heart"></ion-icon>
       </button>
     </ion-buttons>
     <ion-buttons end>
@@ -17,21 +17,21 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="ion-content">
     <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg">
     <h1>{{recipe.recipeName}}</h1>
     <p>{{recipe.recipeTimeInMinutes}} minutter, {{recipe.recipePortions}} porsjoner</p>
     
     <p>Ingredienser</p>
     <ion-list no-lines>
-      <ion-item *ngFor="let ingredient of ingredients">
-        <p text-wrap>{{ingredient.wareName}}</p>
+      <ion-item class="ion-content" *ngFor="let ingredient of ingredients">
+        <p style="color: #FFFFFF" text-wrap>{{ingredient.wareName}}</p>
       </ion-item>
     </ion-list>
     
     <p>Instrukser</p>
     <ion-list no-lines>
-      <ion-item *ngFor="let step of instructions">
+      <ion-item class="ion-content" *ngFor="let step of instructions">
         <p text-wrap>{{step}}</p>
       </ion-item>
     </ion-list>

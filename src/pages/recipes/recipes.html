@@ -10,8 +10,26 @@
 </ion-header>
 
 
-<ion-content padding>
-  <section>
+
+<ion-content padding id="background">
+    <div class = "tabs">
+        <a class = "tab-item" id="tab-item-left" (click) = "showAllRecipes()">
+           <ion-icon name="restaurant" class="tab-icon"></ion-icon>
+           <p class="tab-text">Alle<br>oppskrifter</p>
+        </a>
+       
+        <a class = "tab-item" id="tab-item-center" (click) = "showMyFavorites()">
+            <ion-icon name="heart" class="tab-icon"></ion-icon>
+            <p class="tab-text">Mine<br>favoritter</p>
+        </a>
+     
+        <a class = "tab-item" id="tab-item-right" (click) = "showOwnRecipes()">
+            <ion-icon name="book" class="tab-icon"></ion-icon>
+            <p class="tab-text">Egne<br>oppskrifter</p>
+        </a>
+     </div>
+
+  <section class="recipeList">
     <h1>Alle oppskrifter</h1>
     <div *ngIf="loading">
         <p>Laster</p>
@@ -19,17 +37,20 @@
       </div>
     <div *ngIf="!loading">
       <ion-list no-lines>
-        <ion-item *ngFor="let recipe of allRecipes | async" (click)="pushRecipeDetails(recipe)">
+        <ion-item *ngFor="let recipe of allRecipes | async" (click)="pushRecipeDetails(recipe)" class ="recipeCard">
+          <div class="cardText">
           <h2 text-wrap>{{recipe.recipeName}}</h2>
           <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p>
+            </div>
         </ion-item>
       </ion-list>
     </div>
   </section>
 
+
   <br>
 
-  <section>
+  <section class="recipeList">
     <h1>Favoritter</h1> 
       <div *ngIf="loading">
         <p>Laster</p>
@@ -37,9 +58,11 @@
       </div>
       <div *ngIf="!loading">
         <ion-list no-lines>
-          <ion-item *ngFor="let recipe of favorites" (click)="pushRecipeDetails(recipe)">
+          <ion-item *ngFor="let recipe of favorites" (click)="pushRecipeDetails(recipe)" class ="recipeCard">
+            <div class="cardText">
             <h2 text-wrap>{{recipe.recipeName}}</h2>
             <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p>
+              </div>
           </ion-item>
         </ion-list>
       </div>
@@ -47,7 +70,7 @@
 
   <br>
 
-  <section>
+  <section class="recipeList">
     <h1>Mine Oppskrifter</h1> 
       <div *ngIf="loading">
         <p>Laster</p>
@@ -55,9 +78,11 @@
       </div>
       <div *ngIf="!loading">
         <ion-list no-lines>
-          <ion-item *ngFor="let recipe of myRecipes" (click)="pushRecipeDetails(recipe)">
+          <ion-item *ngFor="let recipe of myRecipes" (click)="pushRecipeDetails(recipe)" class ="recipeCard">
+            <div class="cardText">  
             <h2 text-wrap>{{recipe.recipeName}}</h2>
             <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p>
+          </div>
           </ion-item>
         </ion-list>
       </div>
