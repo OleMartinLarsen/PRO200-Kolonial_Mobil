@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastController } from 'ionic-angular';
 
@@ -292,7 +291,7 @@ export class GlobalFunctionsProvider
     for(var i = 0; i < days.length; i++)
     {
       //NB: adding the same recipe 2 times will result in 2 orders.
-      var res = this.recipesCart.find((d) => d === days[i].recipe || days[i] != days[i]);
+      var res = this.recipesCart.find((d) => d === days[i].recipe);
       if(!res)
       {
         this.recipesCart.push(days[i].recipe);
