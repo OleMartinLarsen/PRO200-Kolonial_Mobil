@@ -52,7 +52,6 @@ export class GlobalFunctionsProvider
   addIngredientToRecipeIngredients(ingredient: any)
   {
     this.recipeIngredients.push(ingredient);
-    console.log(ingredient.wareName + " added to recipe");
   }
 
   getRecipeIngredients()
