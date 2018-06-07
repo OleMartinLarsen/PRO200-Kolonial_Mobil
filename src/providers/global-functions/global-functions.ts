@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastController } from 'ionic-angular';
+import { ElementSchemaRegistry } from '@angular/compiler';
 
 @Injectable()
 export class GlobalFunctionsProvider 
@@ -24,6 +25,7 @@ export class GlobalFunctionsProvider
     this.populateOneWeakAheadArray();
   }
 
+  //TODO rewrite handleing functions to return true/false
   //TODO? tests?
 
   //Unused, can be used for testing 
@@ -233,18 +235,18 @@ export class GlobalFunctionsProvider
 
     // console.log("getweek date: " + day + "." + month);
 
-    //Not accurate on a month to month basis, does not take leap year into account
+    //Not accurate on a month to month basis, does not take leap year into account, may need tweeking from day to day
     return Math.round((month * 4.348214) + (day / 7));
   }
 
   getRecipeOfPlannedDayInDayPlans(displaydate: any)
   {
     var days = this.getDayPlans();
-    var day = days.find((d) => d.date === displaydate);
+    var day = days.find((e) => e.date === displaydate);
 
     if(day)
     {
-      var index = days.map((d) => { return d.date; }).indexOf(displaydate);
+      var index = days.map((e) => { return e.date; }).indexOf(displaydate);
       // console.log("index for displaydate: " + index + " and " + displaydate); //Beware of spam
       return days[index];
     }
@@ -260,7 +262,13 @@ export class GlobalFunctionsProvider
 
   addOrderToHistory(order: Array<any>)
   {
+    var i = this.recipeHistory.length;
     this.recipeHistory.push.apply(this.recipeHistory, order);
+    if(this.recipeHistory.length > i)
+    {
+      return true;
+    }
+    return false;
   }
 
   getRecipeHistory()
@@ -273,7 +281,7 @@ export class GlobalFunctionsProvider
     //TODO save recipe to local storage
     var i = this.recipeFavorites.length;
     this.recipeFavorites.push(recipe);
-    if(this.recipeFavorites.length == i + 1)
+    if(this.recipeFavorites.length > i)
     {
       return true;
     }
@@ -282,7 +290,7 @@ export class GlobalFunctionsProvider
 
   removeRecipeFavorite(recipe: any)
   {
-    var res = this.recipeFavorites.find((r) => r === recipe);
+    var res = this.recipeFavorites.find((e) => e === recipe);
     if(res)
     {
       var i = this.recipeFavorites.indexOf(res);
@@ -307,14 +315,19 @@ export class GlobalFunctionsProvider
   addRecipesToCart()
   {
     var days = this.getDayPlans();
-    for(var i = 0; i < days.length; i++)
+    if(days.length > 0)
     {
-      //NB: adding the same recipe 2 times will result in 2 orders.
-      var res = this.recipesCart.find((d) => d === days[i].recipe);
-      if(!res)
+      for(var i = 0; i < days.length; i++)
       {
-        this.recipesCart.push(days[i].recipe);
+        //NB: adding the same recipe 2 times will result in 2 orders.
+        var res = this.recipesCart.find((e) => e === days[i].recipe);
+        if(!res)
+        {
+          this.recipesCart.push(days[i].recipe);
+        }
       }
+      return true;
     }
+    return false;
   }
 }

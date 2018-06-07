@@ -28,8 +28,10 @@ export class CartPage
   {
     if(this.recipesInCart.length > 0)
     {
-      this.functions.makeToast("Bestilt!");
-      this.functions.addOrderToHistory(this.recipesInCart); //Pushes all recipes ordered to history (regardless of duplicates)
+      if(this.functions.addOrderToHistory(this.recipesInCart)) //Pushes all recipes ordered to history (regardless of duplicates)
+      {
+        this.functions.makeToast("Bestilt!");
+      }
     }
     else
     {
