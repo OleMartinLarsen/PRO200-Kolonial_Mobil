@@ -19,7 +19,7 @@
     </div>
   <div *ngIf="!loading">
       <ion-item text-wrap *ngFor="let user of users | async">
-        <!-- TODO? picture -->
+        <img *ngIf="user.userImg" [src]="user.userImg">
         <p>Navn: {{user.userSurname}}, {{user.userName}}</p>
         <p>Email: {{user.userEmail}}</p>
         <p>Telefon: {{user.userPhone}}</p>

@@ -4,8 +4,8 @@ export class User
         public userName: string,
         public userSurname: string,
         public userPhone: number,
-        public userAdress: string,
         public userEmail: string,
+        public userAdress: string,
         public userImg?: string,
         public id?: string) 
     {

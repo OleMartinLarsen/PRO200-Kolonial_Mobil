@@ -18,6 +18,16 @@ export class UserPage
   private currentUserEmail: string;
   private users: Observable<any[]>;
 
+  private user: //Variable for user data (WIP)
+  {
+    name: "",
+    surname,
+    img,
+    phone,
+    email,
+    adress
+  }
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private af: AngularFirestore,
@@ -25,8 +35,8 @@ export class UserPage
   {
     this.currentUserEmail = af.app.auth().currentUser.email;
     
-    //NB: this method fetches the userdata async from the DB with a query, so it might take some time.
     //TODO find a btter way to load userdata
+    //NB: this method fetches the userdata async from the DB with a query, so it might take some time.
     this.collection = af.collection<User>("users", (ref) => 
     {
       //Get correct user (limit 1 in case of duplicate emails in database 
@@ -48,14 +58,6 @@ export class UserPage
           }
         });
       });
-  }
-
-  pushAuthUser()
-  {
-      if (this.af.app.auth().currentUser)
-        this.navCtrl.push('UserPage');
-      else
-        this.navCtrl.push('AuthPage');
   }
 
   pushAddData()
