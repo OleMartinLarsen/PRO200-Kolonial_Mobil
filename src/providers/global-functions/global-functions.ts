@@ -24,7 +24,7 @@ export class GlobalFunctionsProvider
     this.populateOneWeakAheadArray();
   }
 
-  //TODO tests?
+  //TODO? tests?
 
   //Unused, can be used for testing 
   // getOneWeakAheadArrayDay(i: number)
@@ -215,7 +215,7 @@ export class GlobalFunctionsProvider
     var findDayInFuture = day - (new Date().getDate());
     var findDayFor = findDayInFuture + (new Date().getDay());
 
-    //Reset week once findDayFor passes 7 (sunday)
+    //Reset week once findDayFor passes 7 (sunday), only works for 1 week and a few days depending on current day
     if(findDayFor > 7)
     {
       findDayFor -= 7;
@@ -240,7 +240,7 @@ export class GlobalFunctionsProvider
   getRecipeOfPlannedDayInDayPlans(displaydate: any)
   {
     var days = this.getDayPlans();
-    let day = days.find(d => d.date === displaydate);
+    var day = days.find((d) => d.date === displaydate);
 
     if(day)
     {
@@ -268,9 +268,28 @@ export class GlobalFunctionsProvider
     return this.recipeHistory;
   }
 
-  addRecipeFavorites(recipe: any)
+  addRecipeFavorite(recipe: any)
   {
+    //TODO save recipe to local storage
+    var i = this.recipeFavorites.length;
     this.recipeFavorites.push(recipe);
+    if(this.recipeFavorites.length == i + 1)
+    {
+      return true;
+    }
+    return false;
+  }
+
+  removeRecipeFavorite(recipe: any)
+  {
+    var res = this.recipeFavorites.find((r) => r === recipe);
+    if(res)
+    {
+      var i = this.recipeFavorites.indexOf(res);
+      this.recipeFavorites.splice(i, 1);
+      return true;
+    }
+    return false;
   }
 
   getRecipeFavorites()

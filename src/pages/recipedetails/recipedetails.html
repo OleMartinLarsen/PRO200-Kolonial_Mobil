@@ -8,6 +8,11 @@
         <ion-icon name="star"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-buttons end *ngIf="isFavorited">
+      <button class="userbutton" ion-button icon-only (click)="removeFromFavorites()"> 
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-buttons end>
         <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
           <ion-icon name="contact" class="ion-icon-with-text">
