@@ -176,11 +176,6 @@ export class GlobalFunctionsProvider
     return res;
   }
 
-  getNextDayFromOneWeakAheadArrayIndex()
-  {
-    return this.nextDayFromOneWeakAheadArrayIndex;
-  }
-
   getNextDay(day: number, month: number)
   {
     //NB: does not take into account leap years
@@ -242,21 +237,6 @@ export class GlobalFunctionsProvider
 
     //Not accurate on a month to month basis, does not take leap year into account
     return Math.round((month * 4.348214) + (day / 7));
-  }
-  
-  getCurrentDay()
-  {
-    return this.getDayInNorwegian(new Date().getDay());
-  }
-
-  getCurrentDate()
-  {
-    return new Date().getDate() + "." + (new Date().getMonth() + 1);
-  }
-
-  getCurrentDayDate()
-  {
-    return this.getCurrentDay() + " " + this.getCurrentDate();
   }
 
   getRecipeOfPlannedDayInDayPlans(displaydate: any)
