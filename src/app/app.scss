@@ -29,16 +29,21 @@ ion-navbar {
 }
 
 .recipeCard
-    {
+{
 
         height: 150px;
         background-color: white;
         margin-bottom: 10px;
-    }
+}
 
-    .cardText
-    {
+.cardText
+{
     position: absolute; 
     bottom: 10px;
-    }
+}
 
+.default
+    {
+        color: #FFFFFF;
+        background-color: #433445;
+    }
