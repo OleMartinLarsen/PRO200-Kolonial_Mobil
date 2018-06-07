@@ -26,7 +26,15 @@ export class CartPage
 
   goToOrder()
   {
-    this.functions.makeToast("Bestilling!");
+    if(this.recipesInCart.length > 0)
+    {
+      this.functions.makeToast("Bestilt!");
+      this.functions.addOrderToHistory(this.recipesInCart); //Pushes all recipes ordered to history (regardless of duplicates)
+    }
+    else
+    {
+      this.functions.makeToast("Kan ikke bestille tom handlekurv!");
+    }
   }
 
   pushUser() 

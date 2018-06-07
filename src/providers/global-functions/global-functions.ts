@@ -259,6 +259,11 @@ export class GlobalFunctionsProvider
     this.recipeHistory.push(recipe);
   }
 
+  addOrderToHistory(order: Array<any>)
+  {
+    this.recipeHistory.push.apply(this.recipeHistory, order);
+  }
+
   getRecipeHistory()
   {
     return this.recipeHistory;
