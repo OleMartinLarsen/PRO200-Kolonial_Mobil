@@ -23,6 +23,14 @@ export class CreaterecipePage
     img: ""
   };
 
+  
+  private arr: Array<any> = [];
+  private arr2:
+  {
+    q: 1,
+    i: any
+  }
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private af: AngularFirestore,
@@ -35,6 +43,16 @@ export class CreaterecipePage
   pushWareslist()
   {
     this.navCtrl.push("WareslistPage");
+  }
+
+  incrementIngredient(ingredient: any)
+  {
+    this.functions.makeToast("increment " +  ingredient.wareName);
+  }
+
+  decrementIngredient(ingredient: any)
+  {
+    this.functions.makeToast("decrement " +  ingredient.wareName);
   }
   
   popWare(ingredient)

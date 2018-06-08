@@ -52,9 +52,21 @@ export class RecipedetailsPage
   {
     if(!this.isFavorited)
     {
-      //TODO save recipe to local storage
-      this.functions.addRecipeFavorites(this.recipe);
-      this.functions.makeToast("Oppskrift lagt til i favoritter");
+      if(this.functions.addRecipeFavorite(this.recipe))
+      {
+        this.functions.makeToast("Oppskrift lagt til i favoritter");
+      }
+    }
+  }
+
+  removeFromFavorites()
+  {
+    if(this.isFavorited)
+    {
+      if(this.functions.removeRecipeFavorite(this.recipe))
+      {
+        this.functions.makeToast("Oppskrift fjernet fra favoritter");
+      }
     }
   }
 
