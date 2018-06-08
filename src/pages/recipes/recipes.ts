@@ -86,7 +86,7 @@ export class RecipesPage {
     });
   }
 
-  //Hvis søkeordet ikke er tomt filtrer den ut bøkene som passer søkeordet, hvis søkeordet er tomt blir filterData array resetta slik at all bøkene vises igjen
+  //Hvis søkeordet ikke er tomt filtrer den ut oppskriftene som passer søkeordet, hvis søkeordet er tomt blir filterData array resetta slik at all bøkene vises igjen
   setFilteredItems() {
     if (this.searchTerm) {
       this.getRecipesList();

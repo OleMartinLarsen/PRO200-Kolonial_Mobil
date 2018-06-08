@@ -13,6 +13,9 @@
 <ion-content padding>
   <section>
     <h1>Alle oppskrifter</h1>
+    <div *ngIf="searching" class="spinner-container">
+        <ion-spinner></ion-spinner>
+    </div>
     <div *ngIf="loading">
         <p>Laster</p>
         <ion-spinner></ion-spinner>
