@@ -314,8 +314,9 @@ export class GlobalFunctionsProvider
 
   ionViewDidLoad()
   {
-    
-    this.recipeFavorites.push(JSON.parse(localStorage.getItem('recipeFavorites'))); //todo talk to Ole
+    this.recipeFavorites.push(JSON.parse(localStorage.getItem('recipeFavorites'))); 
+    //todo ?? talk to Ole
+    //Todo genralize store locally function
   }
 
   getRecipeFavorites() 

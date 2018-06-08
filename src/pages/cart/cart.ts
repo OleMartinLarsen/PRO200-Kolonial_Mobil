@@ -46,6 +46,7 @@ export class CartPage
 
   getPrice()
   {
+    //TODO take into accoutn price per ingredients and number of ingredients
     var price = 0;
     if(this.recipesInCart.length > 0)
     {
