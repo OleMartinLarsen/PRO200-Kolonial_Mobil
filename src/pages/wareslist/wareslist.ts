@@ -46,8 +46,8 @@ export class WareslistPage
 
   addToIngredients(addWare: any)
   {
-    this.navCtrl.pop();
     this.functions.addIngredientToRecipeIngredients(addWare);
+    this.navCtrl.pop();
   }
 
   ionViewDidLoad() 

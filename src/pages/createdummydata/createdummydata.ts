@@ -15,6 +15,7 @@ export class CreatedummydataPage
   public wareCollection: AngularFirestoreCollection<Ware>;
   public recipeCollection: AngularFirestoreCollection<Recipe>;
   private recipeIngredients: Array<any> = [];
+  private recipeIngredientsQ: Array<number> = [];
   private recipeInstructions: Array<any> = [];
   private addWare: any;
   private step: string;
@@ -39,10 +40,11 @@ export class CreatedummydataPage
     private af: AngularFirestore,
     private functions: GlobalFunctionsProvider) 
   {
-    this.wareCollection = af.collection<Ware>("wares");
-    this.recipeCollection = af.collection<Recipe>("recipes");
-    this.recipeIngredients = functions.getRecipeIngredients();
-    this.recipeInstructions = functions.getRecipeInstructions();
+    this.wareCollection = this.af.collection<Ware>("wares");
+    this.recipeCollection = this.af.collection<Recipe>("recipes");
+    this.recipeIngredients = this.functions.getRecipeIngredients();
+    this.recipeIngredientsQ = this.functions.getRecipeIngredientsQ();
+    this.recipeInstructions = this.functions.getRecipeInstructions();
   }
 
   saveWare()
@@ -75,6 +77,39 @@ export class CreatedummydataPage
   pushWareslist()
   {
     this.navCtrl.push("WareslistPage");
+  }
+
+  incrementIngredient(ingredient: any)
+  {
+    for(var i = 0; i < this.recipeIngredients.length; i++)
+    {
+      if (ingredient == this.recipeIngredients[i])
+      {
+        if(this.recipeIngredientsQ[i] > 9)
+        {
+          return;
+        }
+        this.recipeIngredientsQ[i]++;
+        console.log(this.recipeIngredientsQ[i] + " " + ingredient.wareName);
+      }
+    }
+  }
+
+  decrementIngredient(ingredient: any)
+  {
+    for(var i = 0; i < this.recipeIngredients.length; i++)
+    {
+      if (ingredient == this.recipeIngredients[i])
+      {
+        if(this.recipeIngredientsQ[i] <= 1)
+        {
+          this.recipeIngredients.splice(i, 1);
+          return;
+        }
+        this.recipeIngredientsQ[i]--;
+        console.log(this.recipeIngredientsQ[i] + " " + ingredient.wareName);
+      }
+    }
   }
   
   popWare(ingredient)
@@ -109,6 +144,7 @@ export class CreatedummydataPage
           recipeTimeInMinutes: this.recipe.timeInMins,
           recipePortions: this.recipe.portions,
           recipeIngredients: this.functions.getRecipeIngredients(),
+          recipeIngredientsQ: this.recipeIngredientsQ,
           recipeInstructions: this.functions.getRecipeInstructions(),
           recipeImg: this.recipe.img
         } as Recipe);
@@ -120,6 +156,7 @@ export class CreatedummydataPage
       this.recipe.timeInMins = 0;
       this.recipe.portions = 0;
       this.functions.clearRecipeIngredients();
+      this.functions.clearRecipeIngredientsQ();
       this.functions.clearRecipeInstructions();
     }
     else

@@ -31,8 +31,8 @@
     
     <p>Ingredienser</p>
     <ion-list no-lines>
-      <ion-item *ngFor="let ingredient of ingredients">
-        <p text-wrap>{{ingredient.wareName}}</p>
+      <ion-item *ngFor="let ingredient of ingredients; let i = index">
+        <p text-wrap>{{ingredientsQ[i]}} {{ingredient.wareName}}</p>
       </ion-item>
     </ion-list>
     
@@ -44,6 +44,7 @@
     </ion-list>
 
     <div *ngIf="isPlanning">
+      <!-- //todo make buttons static on bottom of screen, remember to add space so the button doesn't block text -->
       <button block ion-button (click)="addRecipeToDay()">{{addDinnerButtonText}}</button>
     </div>
 </ion-content>

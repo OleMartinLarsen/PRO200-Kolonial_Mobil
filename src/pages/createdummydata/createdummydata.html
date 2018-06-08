@@ -92,11 +92,15 @@
         <ion-label fixed>Ingredienser</ion-label>
         <!-- List over ingredients added -->
         <ion-list no-lines>
-          <ion-item *ngFor="let ingredient of recipeIngredients">
-            <!-- TODO quantitiy -->
-            <p>{{ingredient.wareName}}
+          <ion-item *ngFor="let ingredient of recipeIngredients; let i = index">
+
+            <div item-left>
+              <div item-top (click)="incrementIngredient(ingredient)"> + </div>
+              <div item-bottom (click)="decrementIngredient(ingredient)"> - </div>
+            </div>
+            
+            <p>{{recipeIngredientsQ[i]}} {{ingredient.wareName}}</p>
             <ion-icon name="trash" (click)="popWare(ingredient.wareName)" style="float: right; right: 0;"></ion-icon>
-            </p>
           </ion-item>
         </ion-list>
         <button block ion-button color="light" (click)="pushWareslist()">Legg til vare</button>
