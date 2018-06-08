@@ -22,6 +22,7 @@ export class GlobalFunctionsProvider {
   constructor(private toastCtrl: ToastController) {
     this.populateDaysArrayNo();
     this.populateOneWeakAheadArray();
+    this.recipeFavorites = JSON.parse(localStorage.getItem('recipeFavorites'));
   }
 
   //TODO rewrite handleing functions to return true/false
@@ -242,8 +243,7 @@ export class GlobalFunctionsProvider {
     var i = this.recipeFavorites.length;
     this.recipeFavorites.push(recipe);
     localStorage.setItem('recipeFavorites', JSON.stringify(this.recipeFavorites));
-    this.localFavorites = JSON.parse(localStorage.getItem('recipeFavorites'));
-    console.log(this.localFavorites);
+    console.log(JSON.parse(localStorage.getItem('recipeFavorites')));
     if(this.recipeFavorites.length > i)
     {
       return true;
@@ -262,7 +262,7 @@ export class GlobalFunctionsProvider {
   }
 
   getRecipeFavorites() {
-    return this.recipeFavorites;
+    return JSON.parse(localStorage.getItem('recipeFavorites'));
   }
 
   // --- Cart handeling --- 
