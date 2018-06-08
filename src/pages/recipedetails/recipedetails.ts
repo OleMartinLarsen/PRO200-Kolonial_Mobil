@@ -33,7 +33,8 @@ export class RecipedetailsPage
     this.instructions = this.recipe.recipeInstructions;
 
     //If recipe is favorited, remove "add-to-favorite" button
-    var res = this.functions.getRecipeFavorites().find((found) => { return found == this.recipe; });
+    //TODO! cannot find on json
+    var res = this.functions.getRecipeFavorites().find((e) => { return e === this.recipe; }); 
     if(res) 
     { 
       this.isFavorited = true; 
