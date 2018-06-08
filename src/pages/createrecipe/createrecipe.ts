@@ -24,6 +24,14 @@ export class CreaterecipePage
     img: ""
   };
 
+  
+  private arr: Array<any> = [];
+  private arr2:
+  {
+    q: 1,
+    i: any
+  }
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private af: AngularFirestore,

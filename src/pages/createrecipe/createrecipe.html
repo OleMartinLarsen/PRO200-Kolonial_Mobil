@@ -42,7 +42,7 @@
       <!-- List over ingredients added -->
       <ion-list no-lines>
         <ion-item *ngFor="let ingredient of recipeIngredients; let i = index">
-
+          
           <div item-left>
             <div item-top (click)="incrementIngredient(ingredient)"> + </div>
             <div item-bottom (click)="decrementIngredient(ingredient)"> - </div>
