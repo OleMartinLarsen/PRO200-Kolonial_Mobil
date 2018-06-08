@@ -9,9 +9,10 @@ import { GlobalFunctionsProvider } from '../../providers/global-functions/global
 })
 export class RecipedetailsPage 
 {
-  recipe: any;
-  ingredients: any;
-  instructions: any;
+  private recipe: any;
+  private ingredientsQ: Array<number>;
+  private ingredients: Array<any>;
+  private instructions: Array<any>;
 
   private addDinnerButtonText = "";
   private isFavorited: boolean = false;
@@ -27,6 +28,7 @@ export class RecipedetailsPage
     private functions: GlobalFunctionsProvider) 
   {
     this.recipe = navParams.get("recipe");
+    this.ingredientsQ = this.recipe.recipeIngredientsQ;
     this.ingredients = this.recipe.recipeIngredients;
     this.instructions = this.recipe.recipeInstructions;
 

@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { User } from '../../models/user';
 import { Observable } from 'rxjs/Observable';
-import { AuthPage } from '../auth/auth';
+import { User } from '../../models/user';
 
 @IonicPage()
 @Component({

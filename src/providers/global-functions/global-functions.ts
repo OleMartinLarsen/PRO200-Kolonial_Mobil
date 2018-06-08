@@ -8,6 +8,7 @@ export class GlobalFunctionsProvider
   private recipeHistory: Array<any> = []; //List of recipes ordered
   private recipeFavorites: Array<any> = []; //List og recipes favorited
   private recipeIngredients: Array<any> = []; //List of ingredients when adding a recipe
+  private recipeIngredientsQ: Array<any> = []; //Used for initializing the quantity of the added ingredient
   private recipeInstructions: Array<any> = []; //List of instructions when adding recipe
   private myRecipes: Array<any> = []; //List of recipes added by the user
   private dayPlans: Array<any> = []; //List that holds date and recipe
@@ -25,7 +26,6 @@ export class GlobalFunctionsProvider
     this.populateOneWeakAheadArray();
   }
 
-  //TODO rewrite handleing functions to return true/false
   //TODO? tests?
 
   //Unused, can be used for testing 
@@ -43,7 +43,7 @@ export class GlobalFunctionsProvider
     this.toastCtrl.create({
       message: toastMessage,
       duration: 3000,
-      position: 'middle'
+      position: 'bottom'
     }).present();
   }
 
@@ -51,6 +51,7 @@ export class GlobalFunctionsProvider
 
   addIngredientToRecipeIngredients(ingredient: any)
   {
+    this.recipeIngredientsQ.push(1);
     this.recipeIngredients.push(ingredient);
   }
 
@@ -71,6 +72,17 @@ export class GlobalFunctionsProvider
     console.log(instructions + " added to recipe");
   }
 
+  getRecipeIngredientsQ()
+  {
+    return this.recipeIngredientsQ;
+  }
+
+  clearRecipeIngredientsQ()
+  {
+    this.recipeIngredientsQ = [];
+    return true;
+  }
+
   getRecipeInstructions()
   {
     return this.recipeInstructions;
@@ -87,7 +99,7 @@ export class GlobalFunctionsProvider
   addMyRecipes(recipe: any)
   {
     this.myRecipes.push(recipe);
-    console.log(recipe.name + " added to myRecipes");
+    console.log(recipe.recipeName + " added to myRecipes");
   }
 
   getMyRecipes()
