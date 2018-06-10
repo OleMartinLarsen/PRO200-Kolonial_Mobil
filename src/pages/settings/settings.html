@@ -1,0 +1,54 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="contentStyle">
+  <section>
+    <h1>Informasjon</h1>
+
+    <section>
+      <ion-label fixed>Fornavn</ion-label>
+      <ion-input class="textInputField" id="firstnameField" type="text" placeholder="Fornavn" [(ngModel)]="user.name"></ion-input>
+    </section>
+
+    <section>
+      <ion-label fixed>Etternavn</ion-label>
+      <ion-input class="textInputField" id="surnameField" type="text" placeholder="Etternavn" [(ngModel)]="user.surname"></ion-input>
+    </section>
+
+    <section>
+      <ion-label fixed>Mobilnummer</ion-label>
+      <ion-input class="textInputField" id="phoneField" type="number" placeholder="Mobilnummer" [(ngModel)]="user.phone"></ion-input>
+    </section>
+
+    <section>
+      <ion-label fixed>E-post</ion-label>
+      <ion-input type="text" placeholder="E-post" [(ngModel)]="user.email"></ion-input>
+    </section>
+
+    <section>
+      <ion-label fixed>Adresse</ion-label>
+      <ion-input type="text" placeholder="Adresse" [(ngModel)]="user.adress"></ion-input>
+    </section>
+
+    <section>
+      <ion-label>Nytt Passord (minimum 6 tegn)</ion-label>
+      <ion-input type="password" placeholder="Passord" [(ngModel)]="user.password"></ion-input>
+    </section>
+
+    <section>
+      <ion-label>Gjenta Passord</ion-label>
+      <ion-input type="password" placeholder="Gjenta Passord" [(ngModel)]="user.repeatPassword"></ion-input>
+    </section>
+
+
+    <section>
+      <button block ion-button color id="buttonSaveSettings" (click)="saveSettings()">Lagre innstillinger</button>
+    </section>
+  </section>
+</ion-content>

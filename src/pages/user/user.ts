@@ -50,6 +50,10 @@ export class UserPage
       });
   }
 
+  pushSettings(){
+    this.navCtrl.push('SettingsPage');
+  }
+
   pushAuthUser()
   {
       if (this.af.app.auth().currentUser)

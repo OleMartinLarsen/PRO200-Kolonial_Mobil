@@ -37,6 +37,9 @@ export class HomePage
     this.navCtrl.push("UserPage");
   }
 
+
+
+
   
   // @ViewChild(AccordionComponent)
   // acc: AccordionComponent;
