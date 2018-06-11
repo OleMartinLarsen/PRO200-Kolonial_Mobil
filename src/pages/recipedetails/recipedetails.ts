@@ -86,7 +86,6 @@ export class RecipedetailsPage
 
   addRecipeToDay()
   {
-    //TODO save locally
     this.functions.addRecipeToDayPlans(this.planningDay);
     this.functions.setIsPlanning(false);
     //this.functions.addRecipeToHistory(this.planningDay.recipe); //Pushes only recipes added to plans to history
