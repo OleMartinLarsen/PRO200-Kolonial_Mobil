@@ -18,8 +18,8 @@
 
 
 <ion-content padding class="default">
-    <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg">
     <ion-item class ="recipeCard">
+        <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg" id="image">
       <div class="cardText">
         <h2 text-wrap>{{recipe.recipeName}}</h2>
         <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p>
