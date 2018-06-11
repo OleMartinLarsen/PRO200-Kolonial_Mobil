@@ -61,6 +61,13 @@ export class CartPage
     return price;
   }
 
+  popRecipe(recipe: any)
+  {
+    var index = this.recipesInCart.map((e) => { return e; }).indexOf(recipe);
+    this.recipesInCart.splice(index, 1);
+    this.cartPrice = this.getPrice();
+  }
+
   ionViewDidLoad() 
   {
     console.log('ionViewDidLoad CartPage');
