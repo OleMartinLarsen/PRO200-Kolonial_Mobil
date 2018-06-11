@@ -49,14 +49,13 @@ export class RecipesPage
       });
 
     // this.favorites = this.storage.get("recipeFavlorites..."); //For phones internal storage
-    this.favorites = this.functions.getRecipeFavorites();
     this.myRecipes = this.functions.getMyRecipes();
   }
 
   pushRecipeDetails(recipe :any)
   {
     this.navCtrl.push("RecipedetailsPage", { recipe });
-    this.functions.addRecipeToHistory(recipe); //Pushes all recipes viewd to history
+    // this.functions.addRecipeToHistory(recipe); //Pushes all recipes viewd to history
   }
 
   pushUser()
@@ -64,10 +63,9 @@ export class RecipesPage
     this.navCtrl.push("UserPage");
   }
 
-  ionViewDidLoad() 
+  ionViewWillEnter() 
   {
-    console.log('ionViewDidLoad RecipesPage');
-    this.showAllRecipes();
+    this.favorites = this.functions.getRecipeFavorites();
     this.loading = false;
   }
 

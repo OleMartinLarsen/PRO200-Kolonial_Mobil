@@ -11,6 +11,7 @@ import { GlobalFunctionsProvider } from '../../providers/global-functions/global
 export class CreaterecipePage 
 {
   private recipeIngredients: Array<any> = [];
+  private recipeIngredientsQ: Array<number> = [];
   private recipeInstructions: Array<any> = [];
   private addWare: any;
   private step: string;
@@ -23,29 +24,69 @@ export class CreaterecipePage
     img: ""
   };
 
+  
+  private arr: Array<any> = [];
+  private arr2:
+  {
+    q: 1,
+    i: any
+  }
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private af: AngularFirestore,
     private functions: GlobalFunctionsProvider)  
   {
-    this.recipeIngredients = functions.getRecipeIngredients();
-    this.recipeInstructions = functions.getRecipeInstructions();
+    this.recipeIngredients = this.functions.getRecipeIngredients();
+    this.recipeIngredientsQ = this.functions.getRecipeIngredientsQ();
+    this.recipeInstructions = this.functions.getRecipeInstructions();
   }
 
   pushWareslist()
   {
     this.navCtrl.push("WareslistPage");
   }
-  
-  popWare(ingredient)
+
+  incrementIngredient(ingredient: any)
   {
-    var i = 0;
-    for(i; i < this.recipeIngredients.length; i++)
+    for(var i = 0; i < this.recipeIngredients.length; i++)
     {
-      if (ingredient == this.recipeIngredients[i].wareName)
+      if (ingredient == this.recipeIngredients[i])
+      {
+        if(this.recipeIngredientsQ[i] > 9)
+        {
+          return;
+        }
+        this.recipeIngredientsQ[i]++;
+        console.log(this.recipeIngredientsQ[i] + " " + ingredient.wareName);
+      }
+    }
+  }
+
+  decrementIngredient(ingredient: any)
+  {
+    for(var i = 0; i < this.recipeIngredients.length; i++)
+    {
+      if (ingredient == this.recipeIngredients[i])
+      {
+        if(this.recipeIngredientsQ[i] <= 1)
+        {
+          this.recipeIngredients.splice(i, 1);
+          return;
+        }
+        this.recipeIngredientsQ[i]--;
+        console.log(this.recipeIngredientsQ[i] + " " + ingredient.wareName);
+      }
+    }
+  }
+  
+  popWare(ingredient: any)
+  {
+    for(var i = 0; i < this.recipeIngredients.length; i++)
+    {
+      if (ingredient == this.recipeIngredients[i])
       {
         this.recipeIngredients.splice(i, 1);
-        //this.navCtrl.push("createdummydataPage")
       }
     }
   }
@@ -71,6 +112,7 @@ export class CreaterecipePage
           recipeTimeInMinutes: this.recipe.timeInMins,
           recipePortions: this.recipe.portions,
           recipeIngredients: this.functions.getRecipeIngredients(),
+          recipeIngredientsQ: this.recipeIngredientsQ,
           recipeInstructions: this.functions.getRecipeInstructions(),
           // recipeImg: this.recipe.img
         });
@@ -81,6 +123,7 @@ export class CreaterecipePage
       this.recipe.timeInMins = 0;
       this.recipe.portions = 0;
       this.functions.clearRecipeIngredients();
+      this.functions.clearRecipeIngredientsQ();
       this.functions.clearRecipeInstructions();
     }
     else

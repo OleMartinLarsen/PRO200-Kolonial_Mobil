@@ -4,8 +4,10 @@
       Min ukesliste
     </ion-title>
     <ion-buttons end>
-      <button class="userbutton" ion-button icon-only (click)="pushUser()">  
-        <ion-icon name="contact"></ion-icon>
+      <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
+        <ion-icon name="contact" class="ion-icon-with-text">
+          <p class="ion-icon-text">Min Profil</p>
+        </ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -16,7 +18,7 @@
     <h1>{{displayWeek}}</h1>
   <!-- </ion-title> -->
   <ion-list no-lines>
-    <ion-item *ngFor="let days of week" class="ion-list">
+    <ion-item *ngFor="let days of week" class="ion-item-background-aubergine">
       <accordion></accordion>
     </ion-item>
   </ion-list>

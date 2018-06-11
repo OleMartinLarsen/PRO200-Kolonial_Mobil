@@ -27,7 +27,6 @@ export class AccordionComponent implements OnInit
   {
     if(!this.planned)
     {
-      //TODO implement abort option for choosing recipe for day
       this.functions.setIsPlanning(true);
       //NB: the value(string) in setDayPlanningFor will be set on add-button in RecipeDetails!
       this.functions.setDayPlanningFor(this.displaydate);
@@ -35,7 +34,18 @@ export class AccordionComponent implements OnInit
     }
     else
     {
-      this.functions.makeToast("Vil du endre?"); //TODO change recipe
+      this.functions.makeToast("Vil du endre?"); 
+
+      //TODO change recipe | rehaul recipe cards first
+      //1. warning/confirm change
+      //2. clear array for that day OR overwrite recipe
+      var acceptedChangePlans = false;
+      if(acceptedChangePlans)
+      {
+        this.functions.setIsPlanning(true);
+        this.functions.setDayPlanningFor(this.displaydate);
+        this.navCtrl.push("RecipesPage");
+      }
     }
   }
 
