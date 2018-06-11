@@ -36,3 +36,4 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 src/app/env.ts
 src/app/apikeys.ts
+package.json

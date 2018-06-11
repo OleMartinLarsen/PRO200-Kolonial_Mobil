@@ -17,6 +17,8 @@ export class RecipesPage
   private allRecipes: Observable<Recipe[]>;
   private favorites: Array<any> = [];
   private myRecipes: Array<any> = [];
+  private tabItemList = document.getElementsByClassName('tab-item') as HTMLCollectionOf<HTMLElement>;
+  private tabText = document.getElementsByClassName('tab-text') as HTMLCollectionOf<HTMLElement>;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -63,5 +65,39 @@ export class RecipesPage
     this.favorites = this.functions.getRecipeFavorites();
     this.myRecipes = this.functions.getMyRecipes();
     this.loading = false;
+  }
+
+  tabItemStyle(tabIndex)
+  {
+    let recipeLists = document.getElementsByClassName('recipeList') as HTMLCollectionOf<HTMLElement>;
+    for(var i = 0; i<3; i++)
+    {
+      recipeLists[i].style.display = "none";
+      this.tabItemList[i].style.backgroundColor = "#2B242F";
+      this.tabItemList[i].style.color = "#FFFFFF";
+      this.tabText[i].style.color = "#FFFFFF";
+      this.tabText[i].style.fontWeight = "normal";
+    }
+
+    recipeLists[tabIndex].style.display = "block";
+    this.tabItemList[tabIndex].style.color = "#2B242F";
+    this.tabItemList[tabIndex].style.backgroundColor = "#ffa514";
+    this.tabText[tabIndex].style.color = "#2B242F";
+    this.tabText[tabIndex].style.fontWeight = "bold";
+  }
+
+  showAllRecipes()
+  {
+    this.tabItemStyle(0);
+  }
+
+  showMyFavorites()
+  {
+    this.tabItemStyle(1);
+  }
+
+  showOwnRecipes()
+  {
+    this.tabItemStyle(2);
   }
 }

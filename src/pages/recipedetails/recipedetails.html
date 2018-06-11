@@ -11,7 +11,7 @@
     </ion-buttons>
     <ion-buttons end *ngIf="!isFavorited">
       <button class="userbutton" ion-button icon-only (click)="addToFavorites()"> 
-        <ion-icon name="star"></ion-icon>
+        <ion-icon name="heart"></ion-icon>
       </button>
     </ion-buttons>
     <ion-buttons end *ngIf="isFavorited">
@@ -30,22 +30,27 @@
 </ion-header>
 
 
-<ion-content padding>
-    <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg">
-    <h1>{{recipe.recipeName}}</h1>
+<ion-content padding class="default">
+    <ion-item class ="recipeCard">
+        <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg" id="image">
+      <div class="cardText">
+        <h1 class="imageText" text-wrap>{{recipe.recipeName}}</h1>
+        <!-- <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p> -->
+      </div>
+    </ion-item>
     <p>{{recipe.recipeTimeInMinutes}} minutter, {{recipe.recipePortions}} porsjoner</p>
     
     <p>Ingredienser</p>
     <ion-list no-lines>
-      <ion-item *ngFor="let ingredient of ingredients; let i = index">
-        <p text-wrap>{{ingredientsQ[i]}} {{ingredient.wareName}}</p>
+      <ion-item class="default" *ngFor="let ingredient of ingredients; let i = index">
+        <p class="text" text-wrap><!--{{ingredientsQ[i]}} {{ingredient.wareName}}--></p>
       </ion-item>
     </ion-list>
     
     <p>Instrukser</p>
     <ion-list no-lines>
-      <ion-item *ngFor="let step of instructions">
-        <p text-wrap>{{step}}</p>
+      <ion-item *ngFor="let step of instructions" class="default">
+        <p class="text" text-wrap>{{step}}</p>
       </ion-item>
     </ion-list>
 

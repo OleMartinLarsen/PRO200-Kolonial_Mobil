@@ -18,4 +18,32 @@ ion-navbar {
     transform: translateY(-60px) !important;
 }
 
+.userbutton
+{
+    font-size: 20px;
+}
 
+.ion-list
+{
+    background-color: #433445;
+}
+
+.recipeCard
+{
+
+        height: 150px;
+        background-color: white;
+        margin-bottom: 10px;
+}
+
+.cardText
+{
+    position: absolute; 
+    bottom: 10px;
+}
+
+.default
+    {
+        color: #FFFFFF;
+        background-color: #433445;
+    }

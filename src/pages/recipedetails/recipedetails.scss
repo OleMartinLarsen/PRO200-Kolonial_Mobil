@@ -1,3 +1,44 @@
 page-recipedetails {
+    .ion-content
+    {
+        color: #FFFFFF;
+        background-color: #433445;
+    }
 
+    .recipeCard
+    {
+        position: relative;
+        color: #FFFFFF;
+        font-weight: bold;
+        width: 100%;
+        height: 200px;
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+        text-shadow: black 1px 1px 1px;
+    }
+
+    #image
+    {
+        top: 0;
+        position: absolute;
+        //object-fit: fill;
+        width:  100%;
+        height: 100%;
+        filter: brightness(85%);
+    }
+
+    .imageText
+    {
+        position: absolute;
+        font-weight: bold;
+        width: 400px;
+        left: 20px;
+        bottom: 25px;
+    }
+
+    .text
+    {
+        color: #FFFFFF;
+    }
 }
