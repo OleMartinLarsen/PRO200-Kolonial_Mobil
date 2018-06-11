@@ -10,9 +10,8 @@
 
   <ion-card-content #cc>
     <div *ngIf="planned">
-      <ion-item (click)="pushRecipeDetails()">
-          <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg"> <!-- Image -->
-          <p>{{recipe.recipeName}}</p>
+      <ion-item (click)="pushRecipeDetails()" class="recipeCard">
+          <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg" class="image">
           <!-- {{recipe.recipeTimeInMinutes}}
           {{recipe.recipePortions}}
           {{recipe.recipeGrade}} 
