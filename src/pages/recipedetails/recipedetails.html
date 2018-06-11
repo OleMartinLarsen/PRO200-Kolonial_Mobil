@@ -2,9 +2,17 @@
   <ion-navbar class="navbarStyle">
     <ion-title>
     </ion-title>
+    <ion-buttons end *ngIf="myRecipe">
+        <button class="userbutton" ion-button icon-only (click)="deleteMyRecipe()"> 
+          <ion-icon name="trash" class="ion-icon-with-text">
+          </ion-icon>
+        </button>
+    </ion-buttons>
+    </ion-buttons>
     <ion-buttons end>
         <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
           <ion-icon name="contact" class="ion-icon-with-text">
+            <p class="ion-icon-text">Min Profil</p>
           </ion-icon>
         </button>
     </ion-buttons>

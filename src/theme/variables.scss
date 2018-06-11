@@ -103,3 +103,29 @@ $searchbar-ios-toolbar-input-background:	#fff;
 {
   background-color: #433445;
 }
+
+// "Min Profil" text under contacts icon
+
+.ion-icon-with-text
+{
+  position: relative;
+  transform: translateY(10px);
+}
+
+.md .ion-icon-text
+{
+  display: block;
+  font-size: 0.4em;
+}
+
+.ios .ion-icon-text
+{
+  display: block;
+  font-size: 0.4em;
+  transform: translateY(-6px);
+}
+
+.ion-item-background-aubergine
+{
+  background-color: #433445 !important;
+}

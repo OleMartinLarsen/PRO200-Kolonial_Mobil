@@ -27,21 +27,19 @@ export class HomePage
 
   addToCart()
   {
-    this.functions.addRecipeToCart();
-    this.functions.makeToast("Lagt til i handlevogn.");
-    // this.navCtrl.push("CartPage"); //TODO bug
+    if(this.functions.addRecipesToCart())
+    {
+      this.functions.makeToast("Lagt til i handlevogn.");
+      // this.navCtrl.push("CartPage"); //TODO bug
+    }
+    else
+    {
+      this.functions.makeToast("Legg til minst én oppskrift!");
+    }
   }
 
   pushUser() 
   {
     this.navCtrl.push("UserPage");
   }
-
-  
-  // @ViewChild(AccordionComponent)
-  // acc: AccordionComponent;
-  // ionViewDidEnter()
-  // {
-  //   this.acc.checkPlannedStatus();
-  // }
 }

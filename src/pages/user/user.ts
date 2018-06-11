@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { User } from '../../models/user';
 import { Observable } from 'rxjs/Observable';
-import { AuthPage } from '../auth/auth';
+import { User } from '../../models/user';
 
 @IonicPage()
 @Component({
@@ -35,7 +34,7 @@ export class UserPage
   {
     this.currentUserEmail = af.app.auth().currentUser.email;
     
-    //TODO find a btter way to load userdata
+    //TODO! find a btter way to load userdata
     //NB: this method fetches the userdata async from the DB with a query, so it might take some time.
     this.collection = af.collection<User>("users", (ref) => 
     {
