@@ -133,7 +133,9 @@ export class GlobalFunctionsProvider
   addRecipeToDayPlans(recipe: any)
   {
     this.dayPlans.push(recipe);
-    console.log(recipe.recipe.recipeName + " added to dayPlans");
+    //TODO save locally -> get from local on boot
+    localStorage.setItem("dayPlans", JSON.stringify(this.dayPlans));
+    console.log(JSON.parse(localStorage.getItem("dayPlans") +  " added to dayPlans"));
   }
 
   getDayPlans()
