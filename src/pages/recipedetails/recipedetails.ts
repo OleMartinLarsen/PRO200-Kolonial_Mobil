@@ -34,7 +34,6 @@ export class RecipedetailsPage
     this.instructions = this.recipe.recipeInstructions;
 
     //If recipe is favorited, remove "add-to-favorite" button
-    //TODO! cannot find on json
     var res = this.functions.getRecipeFavorites().find((e) => { return e === this.recipe; }); 
     if(res) 
     { 
@@ -58,6 +57,7 @@ export class RecipedetailsPage
     {
       if(this.functions.addRecipeFavorite(this.recipe))
       {
+        this.isFavorited = true;
         this.functions.makeToast("Oppskrift lagt til i favoritter");
       }
     }
@@ -69,6 +69,7 @@ export class RecipedetailsPage
     {
       if(this.functions.removeRecipeFavorite(this.recipe))
       {
+        this.isFavorited = false;
         this.functions.makeToast("Oppskrift fjernet fra favoritter");
       }
     }
