@@ -17,6 +17,7 @@ export class RecipedetailsPage
   private addDinnerButtonText = "";
   private isFavorited: boolean = false;
   private isPlanning: boolean = false;
+  private myRecipe: boolean = false;
   private planningDay =
   {
     date: "",
@@ -33,7 +34,7 @@ export class RecipedetailsPage
     this.instructions = this.recipe.recipeInstructions;
 
     //If recipe is favorited, remove "add-to-favorite" button
-    var res = this.functions.getRecipeFavorites().find((found) => { return found == this.recipe; });
+    var res = this.functions.getRecipeFavorites().find((e) => { return e === this.recipe; }); 
     if(res) 
     { 
       this.isFavorited = true; 
@@ -56,6 +57,7 @@ export class RecipedetailsPage
     {
       if(this.functions.addRecipeFavorite(this.recipe))
       {
+        this.isFavorited = true;
         this.functions.makeToast("Oppskrift lagt til i favoritter");
       }
     }
@@ -67,8 +69,18 @@ export class RecipedetailsPage
     {
       if(this.functions.removeRecipeFavorite(this.recipe))
       {
+        this.isFavorited = false;
         this.functions.makeToast("Oppskrift fjernet fra favoritter");
       }
+    }
+  }
+
+  deleteMyRecipe()
+  {
+    if(this.functions.removeMyRecipe(this.recipe))
+    {
+      this.functions.makeToast("Oppskrift slettet");
+      this.navCtrl.pop();
     }
   }
 

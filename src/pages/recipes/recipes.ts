@@ -47,15 +47,12 @@ export class RecipesPage
           }
         });
       });
-
-    // this.favorites = this.storage.get("recipeFavlorites..."); //For phones internal storage
-    this.myRecipes = this.functions.getMyRecipes();
   }
 
   pushRecipeDetails(recipe :any)
   {
     this.navCtrl.push("RecipedetailsPage", { recipe });
-    // this.functions.addRecipeToHistory(recipe); //Pushes all recipes viewd to history
+    // this.functions.addRecipeToHistory(recipe); //Pushes all recipes viewed to history
   }
 
   pushUser()
@@ -66,6 +63,7 @@ export class RecipesPage
   ionViewWillEnter() 
   {
     this.favorites = this.functions.getRecipeFavorites();
+    this.myRecipes = this.functions.getMyRecipes();
     this.loading = false;
   }
 

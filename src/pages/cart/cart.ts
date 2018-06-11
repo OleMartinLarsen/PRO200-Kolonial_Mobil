@@ -53,11 +53,19 @@ export class CartPage
       {
         for(var j = 0; j < this.recipesInCart[i].recipeIngredients.length; j++)
         {
-          price += parseInt(this.recipesInCart[i].recipeIngredients[j].warePrice);
+          price += (parseInt(this.recipesInCart[i].recipeIngredientsQ[j]) 
+            * parseInt(this.recipesInCart[i].recipeIngredients[j].warePrice));
         }
       }
     }
     return price;
+  }
+
+  popRecipe(recipe: any)
+  {
+    var index = this.recipesInCart.map((e) => { return e; }).indexOf(recipe);
+    this.recipesInCart.splice(index, 1);
+    this.cartPrice = this.getPrice();
   }
 
   ionViewDidLoad() 

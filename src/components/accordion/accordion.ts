@@ -36,8 +36,8 @@ export class AccordionComponent implements OnInit
     {
       this.functions.makeToast("Vil du endre?"); 
 
-      //TODO change recipe | rehaul recipe cards first
-      //1. warning/confirm change
+      //TODO change recipe | temp button
+      //1. separate button
       //2. clear array for that day OR overwrite recipe
       var acceptedChangePlans = false;
       if(acceptedChangePlans)

@@ -96,15 +96,36 @@ export class GlobalFunctionsProvider
 
   // --- Create recipes (users recipes) --- 
 
-  addMyRecipes(recipe: any)
-  {
-    this.myRecipes.push(recipe);
-    console.log(recipe.recipeName + " added to myRecipes");
-  }
-
   getMyRecipes()
   {
     return this.myRecipes;
+  }
+
+  addMyRecipes(recipe: any) 
+  {
+    var i = this.myRecipes.length;
+    this.myRecipes.push(recipe);
+    localStorage.setItem('myRecipes', JSON.stringify(this.myRecipes));
+    console.log(JSON.parse(localStorage.getItem('myRecipes')));
+    if(this.myRecipes.length > i)
+    {
+      return true;
+    }
+    return false;
+  }
+
+  removeMyRecipe(recipe: any)
+  {
+    var res = this.myRecipes.find((e) => e === recipe);
+    if(res)
+    {
+      var i = this.myRecipes.indexOf(res);
+      this.myRecipes.splice(i, 1);
+      localStorage.removeItem("myRecipes"); //Clear
+      localStorage.setItem("myRecipes", JSON.stringify(this.myRecipes)); //Updated array
+      return true;
+    }
+    return false;
   }
 
   // --- Planning for dinner --- 
@@ -287,7 +308,8 @@ export class GlobalFunctionsProvider
     return this.recipeHistory;
   }
 
-  addRecipeFavorite(recipe: any) {
+  addRecipeFavorite(recipe: any) 
+  {
     var i = this.recipeFavorites.length;
     this.recipeFavorites.push(recipe);
     localStorage.setItem('recipeFavorites', JSON.stringify(this.recipeFavorites));
@@ -306,6 +328,8 @@ export class GlobalFunctionsProvider
     {
       var i = this.recipeFavorites.indexOf(res);
       this.recipeFavorites.splice(i, 1);
+      localStorage.removeItem("recipeFavorites"); //Clear
+      localStorage.setItem("recipeFavorites", JSON.stringify(this.recipeFavorites)); //Updated array
       return true;
     }
     return false;
@@ -313,7 +337,7 @@ export class GlobalFunctionsProvider
 
   getRecipeFavorites() 
   {
-    return JSON.parse(localStorage.getItem('recipeFavorites'));
+    return this.recipeFavorites;
   }
 
   // --- Cart handeling --- 
