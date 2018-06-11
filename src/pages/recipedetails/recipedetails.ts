@@ -17,6 +17,7 @@ export class RecipedetailsPage
   private addDinnerButtonText = "";
   private isFavorited: boolean = false;
   private isPlanning: boolean = false;
+  private myRecipe: boolean = false;
   private planningDay =
   {
     date: "",
@@ -70,6 +71,15 @@ export class RecipedetailsPage
       {
         this.functions.makeToast("Oppskrift fjernet fra favoritter");
       }
+    }
+  }
+
+  deleteMyRecipe()
+  {
+    if(this.functions.removeMyRecipe(this.recipe))
+    {
+      this.functions.makeToast("Oppskrift slettet");
+      this.navCtrl.pop();
     }
   }
 

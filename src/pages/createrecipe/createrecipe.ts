@@ -93,7 +93,7 @@ export class CreaterecipePage
 
   saveStep(step: string) 
   {
-    if(step != "")
+    if(step != null)
     {
       this.functions.addInstructionsToRecipeInstructions(step);
       this.step = "";
@@ -104,27 +104,34 @@ export class CreaterecipePage
   {
     if(this.recipe.name != "" && this.recipe.grade != "")
     {
-      //TODO save locally
-      this.functions.addMyRecipes(
+      var isSaved: boolean = false;
+      isSaved = this.functions.addMyRecipes(
         {
-          recipeName: this.recipe.name,
-          recipeGrade: this.recipe.grade,
-          recipeTimeInMinutes: this.recipe.timeInMins,
-          recipePortions: this.recipe.portions,
-          recipeIngredients: this.functions.getRecipeIngredients(),
-          recipeIngredientsQ: this.recipeIngredientsQ,
-          recipeInstructions: this.functions.getRecipeInstructions(),
-          // recipeImg: this.recipe.img
+            recipeName: this.recipe.name,
+            recipeGrade: this.recipe.grade,
+            recipeTimeInMinutes: this.recipe.timeInMins,
+            recipePortions: this.recipe.portions,
+            recipeIngredients: this.functions.getRecipeIngredients(),
+            recipeIngredientsQ: this.recipeIngredientsQ,
+            recipeInstructions: this.functions.getRecipeInstructions(),
+            // recipeImg: this.recipe.img
         });
-
-      this.functions.makeToast("Oppskrift lagret!");
-      this.recipe.name = "";
-      this.recipe.grade = "";
-      this.recipe.timeInMins = 0;
-      this.recipe.portions = 0;
-      this.functions.clearRecipeIngredients();
-      this.functions.clearRecipeIngredientsQ();
-      this.functions.clearRecipeInstructions();
+        
+      if(isSaved)
+      {
+        this.functions.makeToast("Oppskrift lagret!");
+        this.recipe.name = "";
+        this.recipe.grade = "";
+        this.recipe.timeInMins = 0;
+        this.recipe.portions = 0;
+        this.functions.clearRecipeIngredients();
+        this.functions.clearRecipeIngredientsQ();
+        this.functions.clearRecipeInstructions();
+      }
+      else
+      {
+        this.functions.makeToast("Kunne ikke lagre!");
+      }
     }
     else
     {

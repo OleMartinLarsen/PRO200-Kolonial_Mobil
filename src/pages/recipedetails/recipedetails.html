@@ -3,6 +3,12 @@
     <ion-title>
       {{recipe.recipeName}}
     </ion-title>
+    <ion-buttons end *ngIf="myRecipe">
+        <button class="userbutton" ion-button icon-only (click)="deleteMyRecipe()"> 
+          <ion-icon name="trash" class="ion-icon-with-text">
+          </ion-icon>
+        </button>
+    </ion-buttons>
     <ion-buttons end *ngIf="!isFavorited">
       <button class="userbutton" ion-button icon-only (click)="addToFavorites()"> 
         <ion-icon name="star"></ion-icon>

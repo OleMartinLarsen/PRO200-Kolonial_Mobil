@@ -46,7 +46,6 @@ export class CartPage
 
   getPrice()
   {
-    //TODO take into accoutn price per ingredients and number of ingredients
     var price = 0;
     if(this.recipesInCart.length > 0)
     {
@@ -54,7 +53,8 @@ export class CartPage
       {
         for(var j = 0; j < this.recipesInCart[i].recipeIngredients.length; j++)
         {
-          price += parseInt(this.recipesInCart[i].recipeIngredients[j].warePrice);
+          price += (parseInt(this.recipesInCart[i].recipeIngredientsQ[j]) 
+            * parseInt(this.recipesInCart[i].recipeIngredients[j].warePrice));
         }
       }
     }
