@@ -61,7 +61,6 @@
   <br>
 
   <section class="recipeList">
-    <h1>Favoritter</h1> 
       <div *ngIf="loading">
         <p>Laster</p>
         <ion-spinner></ion-spinner>
@@ -69,10 +68,11 @@
       <div *ngIf="!loading">
         <ion-list no-lines>
           <ion-item *ngFor="let recipe of favorites" (click)="pushRecipeDetails(recipe)" class ="recipeCard">
-            <div class="cardText">
-            <h2 text-wrap>{{recipe.recipeName}}</h2>
-            <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p>
-              </div>
+              <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg" class="image">
+          <div class="cardText">
+          <h1 class="imageText" text-wrap>{{recipe.recipeName}}</h1>
+          <h3 class="imageDescription">{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</h3>
+            </div>
           </ion-item>
         </ion-list>
       </div>
@@ -90,10 +90,11 @@
       <div *ngIf="!loading">
         <ion-list no-lines>
           <ion-item *ngFor="let recipe of myRecipes" (click)="pushRecipeDetails(recipe)" class ="recipeCard">
-            <div class="cardText">  
-            <h2 text-wrap>{{recipe.recipeName}}</h2>
-            <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p>
-          </div>
+              <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg" class="image">
+              <div class="cardText">
+              <h1 class="imageText" text-wrap>{{recipe.recipeName}}</h1>
+              <h3 class="imageDescription">{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</h3>
+                </div>
           </ion-item>
         </ion-list>
       </div>

@@ -10,7 +10,7 @@
 
   <ion-card-content #cc>
     <div *ngIf="planned">
-      <ion-item (click)="pushRecipeDetails()">
+      <ion-item (click)="pushRecipeDetails()" class="recipeCard" color="color3">
         <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg">
         <p>{{recipe.recipeName}}</p>
         <button block ion-button (click)="removeDayPlans()">Slett</button> <!-- TODO removing plans leaves whitespace -->
