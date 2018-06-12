@@ -4,15 +4,16 @@
       Historikk
     </ion-title>
     <ion-buttons end>
-      <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
-        <ion-icon name="contact"></ion-icon>
-      </button>
+        <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
+          <ion-icon name="contact" class="ion-icon-with-text">
+            <p class="ion-icon-text">Min Profil</p>
+          </ion-icon>
+        </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="contentStyle">
-  <!-- TODO mock accordian week/month with recipes from an array -->
   <ion-list no-lines>
     <ion-item *ngFor="let recipe of history" (click)="pushRecipeDetails(recipe)" class="recipeCard">
         <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg" class="image">

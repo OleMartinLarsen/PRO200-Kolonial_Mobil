@@ -2,9 +2,11 @@
   <ion-navbar class="navbarStyle">
     <ion-title>Cart</ion-title>
     <ion-buttons end>
-      <button class="userbutton" ion-button icon-only (click)="pushUser()">
-        <ion-icon name="contact"></ion-icon>
-      </button>
+        <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
+          <ion-icon name="contact" class="ion-icon-with-text">
+            <p class="ion-icon-text">Min Profil</p>
+          </ion-icon>
+        </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -17,6 +19,9 @@
         <h1 class="imageText" text-wrap>{{recipe.recipeName}}</h1>
         <h3 class="imageDescription">{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</h3>
           </div>
+          <div item-right>
+              <ion-icon name="trash" (click)="popRecipe()"></ion-icon>
+            </div>
     </ion-item>
   </ion-list>
 

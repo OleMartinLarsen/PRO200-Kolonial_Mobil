@@ -20,6 +20,7 @@ import { CartPage } from '../pages/cart/cart';
 import { RecipehistoryPage } from '../pages/recipehistory/recipehistory';
 import { AccordionComponent } from '../components/accordion/accordion';
 import { RecipesPageModule } from '../pages/recipes/recipes.module';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { RecipesPageModule } from '../pages/recipes/recipes.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, {scrollAssist: false, autoFocusAssist: false}),
+    IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(env),
     AngularFirestoreModule,
     AngularFireAuthModule,
