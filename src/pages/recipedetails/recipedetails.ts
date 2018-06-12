@@ -92,10 +92,6 @@ export class RecipedetailsPage
     this.navCtrl.popToRoot();
   }
 
-  removeFromFavorites()
-  {
-  }
-
   ionViewDidLoad() 
   {
     console.log('ionViewDidLoad RecipedetailsPage');
