@@ -42,4 +42,5 @@ export class HomePage
   {
     this.navCtrl.push("UserPage");
   }
+
 }
