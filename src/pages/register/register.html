@@ -8,46 +8,48 @@
     <section>
       <img id="logo" src="../assets/imgs/Logo.png">
       <h1 id="oprettbruker">Opprett konto</h1>
-      <p id="steg">Steg 1 av 2</p>
+      <!-- <p id="steg">Steg 1 av 2</p> -->
     </section>
 
     <section>
       <ion-label fixed>Fornavn *</ion-label>
-      <ion-input class="textInputField" type="text" placeholder="Fornavn" [(ngModel)]="user.name"></ion-input>
+      <ion-input class="textInputField" id="firstnameField" type="text" placeholder="Fornavn" [(ngModel)]="user.name"></ion-input>
     </section>
 
     <section>
       <ion-label fixed>Etternavn *</ion-label>
-      <ion-input class="textInputField" type="text" placeholder="Etternavn" [(ngModel)]="user.surname"></ion-input>    
+      <ion-input class="textInputField" id="surnameField" type="text" placeholder="Etternavn" [(ngModel)]="user.surname"></ion-input>    
     </section>
 
     <section>
       <ion-label fixed>Mobilnummer *</ion-label>
-      <ion-input class="textInputField" type="number" placeholder="Mobilnummer" [(ngModel)]="user.phone"></ion-input>
+      <ion-input class="textInputField" id="phoneField" type="number" placeholder="Mobilnummer" [(ngModel)]="user.phone"></ion-input>
     </section>
 
     <section>
-      <ion-label fixed>Email *</ion-label>
-      <ion-input class="textInputField" type="text" placeholder="Email" [(ngModel)]="user.email"></ion-input>
+      <ion-label fixed>E-post *</ion-label>
+      <ion-input class="textInputField" id="emailField" type="text" placeholder="E-post" [(ngModel)]="user.email"></ion-input>
     </section>
 
     <section>
       <ion-label fixed>Adresse *</ion-label>
-      <ion-input class="textInputField" type="text" placeholder="Adresse" [(ngModel)]="user.adress"></ion-input>
+      <ion-input class="textInputField" id="adressField" type="text" placeholder="Adresse" [(ngModel)]="user.adress"></ion-input>
     </section>
 
     <section>
-      <ion-label fixed>Passord *</ion-label>
-      <ion-input class="textInputField" type="password" placeholder="Passord" [(ngModel)]="user.password"></ion-input>
+      <ion-label>Passord * (minimum 6 tegn)</ion-label>
+      <ion-input class="textInputField passwordFields" id="passwordField" type="password" placeholder="Passord" [(ngModel)]="user.password"></ion-input>
     </section>
 
     <section>
-        <ion-label fixed>Gjenta Passord *</ion-label>
-      <ion-input class="textInputField" type="password" placeholder="Gjenta Passord" [(ngModel)]="user.repeatPassword"></ion-input>
+        <ion-label>Gjenta Passord *</ion-label>
+      <ion-input class="textInputField passwordFields" id="repeatPasswordField" type="password" placeholder="Gjenta Passord" [(ngModel)]="user.repeatPassword"></ion-input>
     </section>
   
+    <br>
+
     <section>
-      <button block ion-button color (click)="registerUser()" class="registerbutton">Register</button>
+      <button block ion-button color (click)="registerUser()" class="registerbutton">Opprett konto</button>
     </section>
   </section>
 </ion-content>

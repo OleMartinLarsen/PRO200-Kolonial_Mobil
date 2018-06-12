@@ -5,29 +5,23 @@
     </ion-title>
     <ion-buttons end>
       <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
-        <ion-icon name="contact"></ion-icon>
+        <ion-icon name="contact" class="ion-icon-with-text">
+          <p class="ion-icon-text">Min Profil</p>
+        </ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="contentStyle">
+  <!-- <ion-title gravity="left"> -->
+    <h1>{{displayWeek}}</h1>
+  <!-- </ion-title> -->
   <ion-list no-lines>
-      <ion-item *ngFor="let week of weeksPlanned">
-        <!-- <ion-title gravity="left"> -->
-          <h1>{{week}}</h1>
-        <!-- </ion-title> -->
-        <accordion></accordion>
-        <accordion></accordion>
-        <accordion></accordion>
-        <accordion></accordion>
-        <accordion></accordion>
-        <accordion></accordion>
-        <accordion></accordion>
+    <ion-item *ngFor="let days of week" class="ion-item-background-aubergine">
+      <accordion></accordion>
     </ion-item>
   </ion-list>
 
-  <!-- TODO add week location? -->
-  <button block ion-button (click)="addWeek()">Legg til uke</button>
-  <button block ion-button (click)="mockAddToCart()">Legg til i handlekurv</button>
+  <button block ion-button (click)="addToCart()"> <p id="addToCartText">Legg til i handlekurv </p></button>
 </ion-content>

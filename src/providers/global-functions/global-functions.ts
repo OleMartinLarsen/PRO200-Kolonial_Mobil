@@ -1,22 +1,46 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastController } from 'ionic-angular';
+import { ElementSchemaRegistry } from '@angular/compiler';
 
 @Injectable()
 export class GlobalFunctionsProvider 
 {
-  recipeHistory: Array<any> = [];
-  recipeFavorites: Array<any> = [];
-  recipeIngredients: Array<any> = [];
-  recipeInstructions: Array<any> = [];
-  plannedWeeks: Array<any> = [];
-  dayPlans: Array<any> = [];
-  private isPlanning: boolean = false;
-  private planningFor: string = "";
+  private recipeHistory: Array<any> = []; //List of recipes ordered
+  private recipeFavorites: Array<any> = []; //List og recipes favorited
+  private recipeIngredients: Array<any> = []; //List of ingredients when adding a recipe
+  private recipeIngredientsQ: Array<any> = []; //Used for initializing the quantity of the added ingredient
+  private recipeInstructions: Array<any> = []; //List of instructions when adding recipe
+  private myRecipes: Array<any> = []; //List of recipes added by the user
+  private dayPlans: Array<any> = []; //List that holds date and recipe
+  private isPlanning: boolean = false; //Toggles "Legg til for [day] [date]" button in RecipeDetails
+  private planningFor: string = ""; //Date planning when adding recipe to day
+
+  private daysArrayNo: Array<string> = []; //Weekdays in norwegian
+  private oneWeakAheadArray: Array<string> = []; //List of dates one week ahead
+  private nextDayFromOneWeakAheadArrayIndex: number = 0; //Index indicating which day to get in accordion
+  private recipesCart: Array<any> = []; //List of recipes in cart
 
   constructor(private toastCtrl: ToastController) 
   {
+    this.populateDaysArrayNo();
+    this.populateOneWeakAheadArray();
+
+    this.recipeFavorites.push.apply(this.recipeFavorites, JSON.parse(localStorage.getItem("recipeFavorites")));
+    this.myRecipes.push.apply(this.myRecipes, JSON.parse(localStorage.getItem("myRecipes")));
+    this.dayPlans.push.apply(this.dayPlans, JSON.parse(localStorage.getItem("dayPlans")));
   }
+
+  //TODO? tests?
+
+  //Unused, can be used for testing 
+  // getOneWeakAheadArrayDay(i: number)
+  // {
+  //   console.log("oneWeakAheadArray: " + this.oneWeakAheadArray.toString());
+  //   console.log("nextday test: " + this.getNextDay(30, 6));
+  //   return this.oneWeakAheadArray[i];
+  // }
+
+  // --- Toasts ---
 
   makeToast(toastMessage :string)
   {
@@ -27,32 +51,12 @@ export class GlobalFunctionsProvider
     }).present();
   }
 
-  //Getters and setters
-
-  addRecipeToHistory(recipe: any)
-  {
-    this.recipeHistory.push(recipe);
-  }
-
-  getRecipeHistory()
-  {
-    return this.recipeHistory;
-  }
-
-  addRecipeFavorites(recipe: any)
-  {
-    this.recipeFavorites.push(recipe);
-  }
-
-  getRecipeFavorites()
-  {
-    return this.recipeFavorites;
-  }
+  // --- Create recipes (dummy data) --- 
 
   addIngredientToRecipeIngredients(ingredient: any)
   {
+    this.recipeIngredientsQ.push(1);
     this.recipeIngredients.push(ingredient);
-    console.log(ingredient.wareName + " added to recipe");
   }
 
   getRecipeIngredients()
@@ -72,6 +76,17 @@ export class GlobalFunctionsProvider
     console.log(instructions + " added to recipe");
   }
 
+  getRecipeIngredientsQ()
+  {
+    return this.recipeIngredientsQ;
+  }
+
+  clearRecipeIngredientsQ()
+  {
+    this.recipeIngredientsQ = [];
+    return true;
+  }
+
   getRecipeInstructions()
   {
     return this.recipeInstructions;
@@ -83,20 +98,60 @@ export class GlobalFunctionsProvider
     return true;
   }
 
-  addWeekToPlannedWeeks(weeknumber: number)
+  // --- Create recipes (users recipes) --- 
+
+  getMyRecipes()
   {
-    this.plannedWeeks.push("Uke " + weeknumber);
+    return this.myRecipes;
   }
 
-  getPlannedWeeks()
+  addMyRecipes(recipe: any) 
   {
-    return this.plannedWeeks;
+    var i = this.myRecipes.length;
+    this.myRecipes.push(recipe);
+    localStorage.setItem('myRecipes', JSON.stringify(this.myRecipes));
+    console.log(JSON.parse(localStorage.getItem('myRecipes')));
+    if(this.myRecipes.length > i)
+    {
+      return true;
+    }
+    return false;
   }
+
+  removeMyRecipe(recipe: any)
+  {
+    var res = this.myRecipes.find((e) => e === recipe);
+    if(res)
+    {
+      var i = this.myRecipes.indexOf(res);
+      this.myRecipes.splice(i, 1);
+      localStorage.removeItem("myRecipes"); //Clear
+      localStorage.setItem("myRecipes", JSON.stringify(this.myRecipes)); //Updated array
+      return true;
+    }
+    return false;
+  }
+
+  // --- Planning for dinner --- 
 
   addRecipeToDayPlans(recipe: any)
   {
     this.dayPlans.push(recipe);
-    console.log(recipe.recipe.recipeName + " added to dayPlans");
+    localStorage.setItem("dayPlans", JSON.stringify(this.dayPlans));
+    console.log(recipe.recipeName + " added to dayPlans");
+  }
+
+  removeRecipeToDayPlans(recipe: any)
+  {
+    var res = this.dayPlans.find((e) => e.recipe === recipe);
+    if(res)
+    {
+      var index = this.dayPlans.indexOf(res);
+      this.dayPlans.splice(index, 1);
+      localStorage.setItem("dayPlans", JSON.stringify(this.dayPlans));
+      return true;
+    }
+    return false;
   }
 
   getDayPlans()
@@ -122,5 +177,210 @@ export class GlobalFunctionsProvider
   getDayPlanningFor()
   {
     return this.planningFor;
+  }
+
+  // --- Set up days and dates for planner --- 
+
+  populateDaysArrayNo()
+  {
+    this.daysArrayNo.push("Mandag");
+    this.daysArrayNo.push("Tirsdag");
+    this.daysArrayNo.push("Onsdag");
+    this.daysArrayNo.push("Torsdag");
+    this.daysArrayNo.push("Fredag");
+    this.daysArrayNo.push("Lørdag");
+    this.daysArrayNo.push("Søndag");
+  }
+
+  getDayInNorwegian(day: number)
+  {
+    return this.daysArrayNo[day - 1];
+  }
+
+  populateOneWeakAheadArray()
+  {
+    var day = new Date().getDate();
+    var month = new Date().getMonth() + 1;
+    //Get the next week
+    var next0 = this.getNextDay(day - 1, month); //Today
+    var next1 = this.getNextDay(day++, month);
+    var next2 = this.getNextDay(day++, month);
+    var next3 = this.getNextDay(day++, month);
+    var next4 = this.getNextDay(day++, month);
+    var next5 = this.getNextDay(day++, month);
+    var next6 = this.getNextDay(day, month);
+
+    this.oneWeakAheadArray.push(next0);
+    this.oneWeakAheadArray.push(next1);
+    this.oneWeakAheadArray.push(next2);
+    this.oneWeakAheadArray.push(next3);
+    this.oneWeakAheadArray.push(next4);
+    this.oneWeakAheadArray.push(next5);
+    this.oneWeakAheadArray.push(next6);
+  }
+
+  getNextDayFromOneWeakAheadArray()
+  {
+    var res = this.oneWeakAheadArray[this.nextDayFromOneWeakAheadArrayIndex];
+    this.nextDayFromOneWeakAheadArrayIndex++;
+    return res;
+  }
+
+  getNextDay(day: number, month: number)
+  {
+    //NB: does not take into account leap years
+    day++;
+
+    if(month == 2)
+    {
+      if(day > 27)
+      {
+        day = 1;
+        month++;
+      }
+    }
+    else if(month == 4 || month == 6 || month == 9 || month == 11)
+    {
+      if(day > 29)
+      {
+        day = 1;
+        month++;
+      }
+    }
+    else if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10)
+    {
+      if(day > 30)
+      {
+        day = 1;
+        month++;
+      }
+    }
+    else if(month == 12)
+    {
+      if(day > 30)
+      {
+        day = 1;
+        month = 1;
+      }
+    }
+
+    var findDayInFuture = day - (new Date().getDate());
+    var findDayFor = findDayInFuture + (new Date().getDay());
+
+    //Reset week once findDayFor passes 7 (sunday), only works for 1 week and a few days depending on current day
+    if(findDayFor > 7)
+    {
+      findDayFor -= 7;
+    }
+
+    var dayNo = this.getDayInNorwegian(findDayFor);
+
+    return dayNo + " " + day + "." + month;
+  }
+
+  getWeekNumber()
+  {
+    var month = new Date().getMonth();
+    var day = new Date().getDate() + 2;
+
+    // console.log("getweek date: " + day + "." + month);
+
+    //Not accurate on a month to month basis, does not take leap year into account, may need tweeking from day to day
+    return Math.round((month * 4.348214) + (day / 7));
+  }
+
+  getRecipeOfPlannedDayInDayPlans(displaydate: any)
+  {
+    var days = this.getDayPlans();
+    var day = days.find((e) => e.date === displaydate);
+
+    if(day)
+    {
+      var index = days.map((e) => { return e.date; }).indexOf(displaydate);
+      // console.log("index for displaydate: " + index + " and " + displaydate); //Beware of spam
+      return days[index];
+    }
+    return false;
+  }
+
+  // --- History/Favorites handeling --- 
+
+  addRecipeToHistory(recipe: any)
+  {
+    this.recipeHistory.push(recipe);
+  }
+
+  addOrderToHistory(order: Array<any>)
+  {
+    var i = this.recipeHistory.length;
+    this.recipeHistory.push.apply(this.recipeHistory, order);
+    if(this.recipeHistory.length > i)
+    {
+      return true;
+    }
+    return false;
+  }
+
+  getRecipeHistory()
+  {
+    return this.recipeHistory;
+  }
+
+  addRecipeFavorite(recipe: any) 
+  {
+    var i = this.recipeFavorites.length;
+    this.recipeFavorites.push(recipe);
+    localStorage.setItem('recipeFavorites', JSON.stringify(this.recipeFavorites));
+    console.log(JSON.parse(localStorage.getItem('recipeFavorites')));
+    if(this.recipeFavorites.length > i)
+    {
+      return true;
+    }
+    return false;
+  }
+
+  removeRecipeFavorite(recipe: any)
+  {
+    var res = this.recipeFavorites.find((e) => e === recipe);
+    if(res)
+    {
+      var i = this.recipeFavorites.indexOf(res);
+      this.recipeFavorites.splice(i, 1);
+      localStorage.removeItem("recipeFavorites"); //Clear
+      localStorage.setItem("recipeFavorites", JSON.stringify(this.recipeFavorites)); //Updated array
+      return true;
+    }
+    return false;
+  }
+
+  getRecipeFavorites() 
+  {
+    return this.recipeFavorites;
+  }
+
+  // --- Cart handeling --- 
+  
+  getRecipesCart()
+  {
+    return this.recipesCart;
+  }
+
+  addRecipesToCart()
+  {
+    var days = this.getDayPlans();
+    if(days.length > 0)
+    {
+      for(var i = 0; i < days.length; i++)
+      {
+        //NB: adding the same recipe 2 times will result in 2 orders.
+        var res = this.recipesCart.find((e) => e === days[i].recipe);
+        if(!res)
+        {
+          this.recipesCart.push(days[i].recipe);
+        }
+      }
+      return true;
+    }
+    return false;
   }
 }

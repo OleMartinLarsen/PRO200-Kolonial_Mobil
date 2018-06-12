@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Min oppskrift
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <section class="container">
+    <section>
+      <h1>Legg til oppskrift</h1>
+    </section>
+
+    <section>
+      <ion-label fixed>Oppskriftsnavn</ion-label>
+      <ion-input class="textInputField" type="text" placeholder="Oppskriftsnavn" [(ngModel)]="recipe.name"></ion-input>
+    </section>
+
+    <section>
+      <ion-label fixed>Vanskelighetsgrad</ion-label>
+      <select [(ngModel)]="recipe.grade">
+          <option value="Enkel">Enkel</option>
+          <option value="Middels">Middels</option>
+          <option value="Vanskelig">Vanskelig</option>
+        </select>
+    </section>
+
+    <section>
+      <ion-label fixed>Tid i minutter</ion-label>
+      <ion-input class="textInputField" type="number" placeholder="Tid i minutter" [(ngModel)]="recipe.timeInMins"></ion-input>    
+    </section>
+
+    <section>
+      <ion-label fixed>Antall porsjoner</ion-label>
+      <ion-input class="textInputField" type="number" placeholder="Antall porsjoner" [(ngModel)]="recipe.portions"></ion-input>    
+    </section>
+
+    <section>
+      <ion-label fixed>Ingredienser</ion-label>
+      <!-- List over ingredients added -->
+      <ion-list no-lines>
+        <ion-item *ngFor="let ingredient of recipeIngredients; let i = index">
+          
+          <div item-left>
+            <button class="change-ingredients-q-button" (click)="incrementIngredient(i)">+ </button>
+            {{recipeIngredientsQ[i]}}
+            <button class="change-ingredients-q-button" (click)="decrementIngredient(i)"> -</button>
+          </div>
+          
+          <p>{{ingredient.wareName}}</p>
+        </ion-item>
+      </ion-list>
+      <button block ion-button color="light" (click)="pushWareslist()">Legg til vare</button>
+    </section>
+
+    <section>
+      <ion-label fixed>Instrukser</ion-label>
+      <!-- List over instructions added -->
+      <ion-list no-lines>
+        <ion-item *ngFor="let step of recipeInstructions; let i = index">
+          <!-- <p text-wrap>{{i + 1}}. {{step}}</p> --> <!-- With numbered steps -->
+          <p text-wrap>{{step}}</p>
+          <div item-right>
+            <ion-icon name="trash" (click)="popStep(i)"></ion-icon>
+          </div>
+        </ion-item>
+      </ion-list> 
+    </section>
+    <section>
+      <ion-input type="text" placeholder="Instruks" [(ngModel)]="step"></ion-input> 
+      <button block ion-button color="light" (click)="saveStep(step)">Lagre instruks</button>     
+    </section>
+  
+    <section>
+      <button block ion-button (click)="saveRecipe()">Lagre oppskrift</button>
+    </section>
+  </section>
+</ion-content>

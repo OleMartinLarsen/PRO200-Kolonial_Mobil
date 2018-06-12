@@ -45,10 +45,10 @@
           </select>
       </section>
   
-      <section>
-        <p>Ferdigmatmat: frossenpizza, rett-i-koppen</p>
-        <p>Desert: kjeks, kake, is</p>  
-      </section>
+      <!-- <section>
+        <ion-label fixed>Bilde</ion-label>
+        <ion-input class="textInputField" type="text" placeholder="URL" [(ngModel)]="ware.img"></ion-input>
+      </section> -->
     
       <section>
         <button block ion-button (click)="saveWare()">Lagre vare</button>
@@ -92,11 +92,15 @@
         <ion-label fixed>Ingredienser</ion-label>
         <!-- List over ingredients added -->
         <ion-list no-lines>
-          <ion-item *ngFor="let ingredient of recipeIngredients">
-            <!-- TODO quantitiy -->
-            <p>{{ingredient.wareName}}
-            <ion-icon name="trash" (click)="popWare(ingredient.wareName)" style="float: right; right: 0;"></ion-icon>
-            </p>
+          <ion-item *ngFor="let ingredient of recipeIngredients; let i = index">
+
+            <div item-left>
+              <button class="change-ingredients-q-button" (click)="incrementIngredient(i)">+ </button>
+              {{recipeIngredientsQ[i]}}
+              <button class="change-ingredients-q-button" (click)="decrementIngredient(i)"> -</button>
+            </div>
+            
+            <p>{{ingredient.wareName}}</p>
           </ion-item>
         </ion-list>
         <button block ion-button color="light" (click)="pushWareslist()">Legg til vare</button>
@@ -106,14 +110,23 @@
         <ion-label fixed>Instrukser</ion-label>
         <!-- List over instructions added -->
         <ion-list no-lines>
-          <ion-item *ngFor="let step of recipeInstructions">
+          <ion-item *ngFor="let step of recipeInstructions; let i = index">
+            <!-- <p text-wrap>{{i + 1}}. {{step}}</p> --> <!-- With numbered steps -->
             <p>{{step}}</p>
+            <div item-right>
+              <ion-icon name="trash" (click)="popStep(i)"></ion-icon>
+            </div>
           </ion-item>
         </ion-list> 
       </section>
       <section>
         <ion-input type="text" placeholder="Instruks" [(ngModel)]="step"></ion-input> 
         <button block ion-button color="light" (click)="saveStep(step)">Lagre instruks</button>     
+      </section>
+  
+      <section>
+        <ion-label fixed>Bilde</ion-label>
+        <ion-input class="textInputField" type="text" placeholder="URL" [(ngModel)]="recipe.img"></ion-input>
       </section>
     
       <section>

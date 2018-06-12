@@ -1,29 +1,24 @@
 <ion-card>
-  <ion-card-header (click)="toggleAccordion()">
-    <ion-item color="primary">
+  <ion-card-header (click)="addRecipes()">
+    <ion-item color="primary" class="accordion-display-text">
       {{displaydate}}
       <button ion-button clear small icon-only item-right>
         <ion-icon color="light" [name]="icon"></ion-icon>
       </button>
     </ion-item>
   </ion-card-header>
-  <ion-card-content #cc>
 
-  <div *ngIf="planned">
-    <ion-item (click)="pushRecipeDetails()">
-        <!-- TODO dinner model/design onclick til RecipedetailsPage
-        <img [src]="recipe.recipeImg"> -->
+  <ion-card-content #cc>
+    <div *ngIf="planned">
+      <ion-item (click)="pushRecipeDetails()">
+        <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg">
         <p>{{recipe.recipeName}}</p>
+        <button block ion-button (click)="removeDayPlans()">Slett</button> <!-- TODO removing plans leaves whitespace -->
         <!-- {{recipe.recipeTimeInMinutes}}
         {{recipe.recipePortions}}
         {{recipe.recipeGrade}} 
         -->
-    </ion-item>
-  </div>
-  <div *ngIf="!planned">
-    <!-- TODO white space under accordion due to button -->
-    <button block ion-button (click)="addRecipes()">Legg til middag</button>
-  </div>
-
+      </ion-item>
+    </div>
   </ion-card-content>
 </ion-card>

@@ -2,12 +2,26 @@
   <ion-navbar class="navbarStyle">
     <ion-title>Cart</ion-title>
     <ion-buttons end>
-      <button class="userbutton" ion-button icon-only (click)="pushUser()">
-        <ion-icon name="contact"></ion-icon>
-      </button>
+        <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
+          <ion-icon name="contact" class="ion-icon-with-text">
+            <p class="ion-icon-text">Min Profil</p>
+          </ion-icon>
+        </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="contentStyle">
+  <ion-list no-lines>
+    <ion-item *ngFor="let recipe of recipesInCart"  (click)="pushRecipeDetails(recipe)">
+      <p>{{recipe.recipeName}}</p>
+      <div item-right>
+        <ion-icon name="trash" (click)="popRecipe()"></ion-icon>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  Total pris: {{cartPrice}} kr
+
+  <button block ion-button (click)="goToOrder()">Gå til bestilling</button>
 </ion-content>

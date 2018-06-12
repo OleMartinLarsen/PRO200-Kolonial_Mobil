@@ -45,7 +45,9 @@ $colors: (
   dark:       #222,
 
   color1: #433445,
-  color2: #FFA700
+  color2: #FFA700,
+  color3: #921420,
+  color4: #0f1
 );
 
 
@@ -92,3 +94,38 @@ $searchbar-ios-toolbar-input-background:	#fff;
 
 @import "roboto";
 @import "noto-sans";
+
+
+//globale classes
+//--------------------------------------------------
+
+.page-background
+{
+  background-color: #433445;
+}
+
+// "Min Profil" text under contacts icon
+
+.ion-icon-with-text
+{
+  position: relative;
+  transform: translateY(10px);
+}
+
+.md .ion-icon-text
+{
+  display: block;
+  font-size: 0.4em;
+}
+
+.ios .ion-icon-text
+{
+  display: block;
+  font-size: 0.4em;
+  transform: translateY(-6px);
+}
+
+.ion-item-background-aubergine
+{
+  background-color: #433445 !important;
+}

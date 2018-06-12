@@ -1,3 +1,28 @@
 page-recipedetails {
+    .ion-content
+    {
+        color: #FFFFFF;
+        background-color: #433445;
+    }
 
+    .text
+    {
+        color: #FFFFFF;
+    }
+
+    .favButton
+    {
+        font-size: 35px;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .static-planning-button
+    {
+        position: fixed;
+        bottom: 10%;
+        left: 3%;
+        width: 90%;
+    }
 }

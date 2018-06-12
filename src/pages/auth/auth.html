@@ -6,7 +6,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="pageBackground">
     <section class="container">
   
         <section>
@@ -15,17 +15,19 @@
   
       <section>
         <ion-label fixed>Email</ion-label>
-        <ion-input class="textInputField" type="text" placeholder ="Email" [(ngModel)]="user.email"></ion-input>
+        <ion-input class="textInputField" type="text" placeholder ="E-post" [(ngModel)]="user.email"></ion-input>
       </section>
   
       <section>
-        <ion-label fixed>Password</ion-label>
+        <ion-label fixed>Passord</ion-label>
         <ion-input class="textInputField" type="password" placeholder ="Passord" [(ngModel)]="user.pass"></ion-input>
       </section>
   
       <section>
-        <button block ion-button (click)="loginUser()">Login</button>
-        <button block ion-button color="light" (click)="pushRegister()">Register</button>
+        <br>
+        <button block ion-button (click)="loginUser()">Logg inn</button>
+        <br>
+        <button block ion-button color="light" (click)="pushRegister()">Opprett konto</button>
       </section>
     </section>
   </ion-content>

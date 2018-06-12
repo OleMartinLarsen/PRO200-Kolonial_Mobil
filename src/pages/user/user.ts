@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { User } from '../../models/user';
 import { Observable } from 'rxjs/Observable';
-import { AuthPage } from '../auth/auth';
+import { User } from '../../models/user';
 
 @IonicPage()
 @Component({
@@ -18,6 +17,16 @@ export class UserPage
   private currentUserEmail: string;
   private users: Observable<any[]>;
 
+  private user: //Variable for user data (WIP)
+  {
+    name: "",
+    surname,
+    img,
+    phone,
+    email,
+    adress
+  }
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private af: AngularFirestore,
@@ -25,8 +34,8 @@ export class UserPage
   {
     this.currentUserEmail = af.app.auth().currentUser.email;
     
+    //TODO! find a better way to load userdata
     //NB: this method fetches the userdata async from the DB with a query, so it might take some time.
-    //TODO find a btter way to load userdata
     this.collection = af.collection<User>("users", (ref) => 
     {
       //Get correct user (limit 1 in case of duplicate emails in database 
@@ -50,19 +59,14 @@ export class UserPage
       });
   }
 
-  pushSettings()
-  {
-    // this.navCtrl.push('SettingsPage');
-  }
-
-  pushRecipeHistory()
-  {
-    this.navCtrl.push("RecipehistoryPage");
-  }
-
-  pushAddWares()
+  pushAddData()
   {
     this.navCtrl.push("CreatedummydataPage");
+  }
+
+  pushAddMyRecipe()
+  {
+    this.navCtrl.push("CreaterecipePage");
   }
 
   logoutUser()
