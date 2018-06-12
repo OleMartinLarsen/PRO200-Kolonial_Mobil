@@ -55,8 +55,8 @@
     </ion-list>
 
     <div *ngIf="isPlanning">
-      <!-- //todo make buttons static on bottom of screen, remember to add space so the button doesn't block text -->
-      <button block ion-button (click)="addRecipeToDay()">{{addDinnerButtonText}}</button>
+      <button class="static-planning-button" block ion-button (click)="addRecipeToDay()">{{addDinnerButtonText}}</button>
+      <br>
     </div>
 </ion-content>
 
