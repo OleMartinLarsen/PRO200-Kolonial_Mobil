@@ -16,16 +16,16 @@ import "rxjs/add/operator/debounceTime";
 export class RecipesPage {
   private loading: boolean = true;
   public recipeCollection: AngularFirestoreCollection<Recipe>;
-  private allRecipes: Observable<Recipe[]>;
   private favorites: Array<any> = [];
   private myRecipes: Array<any> = [];
   private tabItemList = document.getElementsByClassName('tab-item') as HTMLCollectionOf<HTMLElement>;
   private tabText = document.getElementsByClassName('tab-text') as HTMLCollectionOf<HTMLElement>;
 
-  searchTerm: string = '';
-  searchControl: FormControl;
-  filterData: Recipe[] = [];
-  searching: any = false;
+  private searchTerm: string = '';
+  private recipes: Observable<Recipe[]>;
+  private searchControl: FormControl;
+  private filterData: Recipe[] = [];
+  private searching: any = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -40,20 +40,7 @@ export class RecipesPage {
       return ref.orderBy("recipeName", "asc");
     });
 
-    this.allRecipes = this.recipeCollection.snapshotChanges()
-      .map(actions =>
-      {
-        return actions.map(action =>
-        {
-          let data = action.payload.doc.data() as Recipe;
-          let id = action.payload.doc.id;
-          
-          return {
-            id, 
-            ...data
-          }
-        });
-      });
+    this.getRecipeList();
   }
 
   pushRecipeDetails(recipe :any)
@@ -106,5 +93,52 @@ export class RecipesPage {
   showOwnRecipes()
   {
     this.tabItemStyle(2);
+  }
+
+  ionViewDidLoad() {
+    this.setFilteredItems();
+
+    //Ser etter verdi endringer i searchbaren
+    this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
+      this.searching = false;
+      this.setFilteredItems();
+    });
+
+  }
+
+  /*Henter ut oppskriftene fra firebase og putter de i et Obseravble array*/
+  getRecipeList() {
+    this.recipes = this.af.collection('recipes')
+      .snapshotChanges()
+      .map(actions => {
+        return actions.map(a => {
+          let data = a.payload.doc.data() as Recipe;
+          let id = a.payload.doc.id;
+          return { id, ...data }
+        })
+      });
+  }
+
+  //Filtrer filterData array basert på hvilket søkeord
+  filterItems(searchTerm) {
+    return this.filterData.filter((recipe) => {
+      return recipe.recipeName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    });
+  }
+
+  //Hvis søkeordet ikke er tomt filtrer den ut oppskriftene som passer søkeordet, hvis søkeordet er tomt blir filterData array resetta slik at all bøkene vises igjen
+  setFilteredItems() {
+    if (this.searchTerm) {
+      this.getRecipeList();
+      this.filterData = this.filterItems(this.searchTerm);
+    }
+    else {
+      this.getRecipeList();
+      this.recipes.subscribe(recipes => { this.filterData = recipes });
+    }
+  }
+
+  onSearchInput() {
+    this.searching = true;
   }
 }
