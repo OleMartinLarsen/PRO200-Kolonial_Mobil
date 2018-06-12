@@ -39,11 +39,21 @@ export class RecipedetailsPage
     { 
       this.isFavorited = true; 
     }
+    this.checkMyRecipe();
     
     this.isPlanning = this.functions.getIsPlanning();
     this.planningDay.date = this.functions.getDayPlanningFor();
     this.planningDay.recipe = this.recipe;
     this.addDinnerButtonText = "Legg til for " + this.planningDay.date;
+  }
+
+  checkMyRecipe()
+  {
+    var isMyRecipe = this.functions.getMyRecipes().find((e) => e === this.recipe);
+    if(isMyRecipe)
+    {
+      this.myRecipe = true;
+    }
   }
 
   pushUser()
