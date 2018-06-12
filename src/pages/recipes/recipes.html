@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar class="navbarStyle">
-    <ion-searchbar placeholder="Søk etter en oppskrift..."></ion-searchbar>
+    <ion-searchbar placeholder="Søk etter en oppskrift..." [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
     <ion-buttons end>
       <button class="userbutton" ion-button icon-only (click)="pushSettings()"> 
         <ion-icon name="cog" class="ion-icon-with-text">
@@ -38,6 +38,9 @@
 
   <section class="recipeList">
     <h1>Alle oppskrifter</h1>
+    <div *ngIf="searching" class="spinner-container">
+        <ion-spinner></ion-spinner>
+    </div>
     <div *ngIf="loading">
         <p>Laster</p>
         <ion-spinner></ion-spinner>
