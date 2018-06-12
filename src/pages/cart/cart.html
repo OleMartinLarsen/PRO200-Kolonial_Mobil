@@ -1,12 +1,21 @@
 <ion-header>
   <ion-navbar class="navbarStyle">
-    <ion-title>Cart</ion-title>
+    <ion-title>
+      Cart
+    </ion-title>
     <ion-buttons end>
-        <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
-          <ion-icon name="contact" class="ion-icon-with-text">
-            <p class="ion-icon-text">Min Profil</p>
-          </ion-icon>
-        </button>
+      <button class="userbutton" ion-button icon-only (click)="pushSettings()"> 
+        <ion-icon name="cog" class="ion-icon-with-text">
+          <p class="ion-icon-text">Instillinger</p>
+        </ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
+        <ion-icon name="contact" class="ion-icon-with-text">
+          <p class="ion-icon-text">Profil</p>
+        </ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>

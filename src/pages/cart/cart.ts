@@ -44,6 +44,12 @@ export class CartPage
     this.navCtrl.push('UserPage');
   }
 
+  pushSettings()
+  {
+    //TODO uncomment
+    // this.navCtrl.push("SettingsPage");
+  }
+
   getPrice()
   {
     var price = 0;

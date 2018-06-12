@@ -60,6 +60,22 @@ export class RecipesPage
     this.navCtrl.push("UserPage");
   }
 
+  pushSettings()
+  {
+    //TODO uncomment
+    // this.navCtrl.push("SettingsPage");
+  }
+
+  pushAddData()
+  {
+    this.navCtrl.push("CreatedummydataPage");
+  }
+
+  pushAddMyRecipe()
+  {
+    this.navCtrl.push("CreaterecipePage");
+  }
+
   ionViewWillEnter() 
   {
     this.favorites = this.functions.getRecipeFavorites();
