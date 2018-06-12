@@ -1,37 +1,46 @@
 <ion-header>
   <ion-navbar class="navbarStyle">
-    <ion-searchbar placeholder="Søk etter en oppskrift..."></ion-searchbar>
+    <ion-searchbar placeholder="Søk etter en oppskrift..." [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
     <ion-buttons end>
-        <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
-          <ion-icon name="contact" class="ion-icon-with-text">
-            <p class="ion-icon-text">Min Profil</p>
-          </ion-icon>
-        </button>
-      </ion-buttons>
+      <button class="userbutton" ion-button icon-only (click)="pushSettings()"> 
+        <ion-icon name="cog" class="ion-icon-with-text">
+          <p class="ion-icon-text">Instillinger</p>
+        </ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
+        <ion-icon name="contact" class="ion-icon-with-text">
+          <p class="ion-icon-text">Profil</p>
+        </ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
-
-
 
 <ion-content padding id="background">
     <div class = "tabs">
         <a class = "tab-item" id="tab-item-left" (click) = "showAllRecipes()">
            <ion-icon name="restaurant" class="tab-icon"></ion-icon>
-           <p class="tab-text">Alle<br>oppskrifter</p>
+           <p class="tab-text">Alle oppskrifter</p>
         </a>
        
         <a class = "tab-item" id="tab-item-center" (click) = "showMyFavorites()">
             <ion-icon name="heart" class="tab-icon"></ion-icon>
-            <p class="tab-text">Mine<br>favoritter</p>
+            <p class="tab-text">Mine favoritter</p>
         </a>
      
         <a class = "tab-item" id="tab-item-right" (click) = "showOwnRecipes()">
             <ion-icon name="book" class="tab-icon"></ion-icon>
-            <p class="tab-text">Egne<br>oppskrifter</p>
+            <p class="tab-text">Egne oppskrifter</p>
         </a>
      </div>
 
   <section class="recipeList">
+    <h1>Alle oppskrifter</h1>
+    <div *ngIf="searching" class="spinner-container">
+        <ion-spinner></ion-spinner>
+    </div>
     <div *ngIf="loading">
         <p>Laster</p>
         <ion-spinner></ion-spinner>
@@ -48,7 +57,6 @@
       </ion-list>
     </div>
   </section>
-
 
   <br>
 
@@ -73,6 +81,8 @@
   <br>
 
   <section class="recipeList">
+    <h1>Mine Oppskrifter</h1> 
+    <button block ion-button (click)="pushAddMyRecipe()" (swipe)="pushAddData()">Legg til oppskrift</button>
       <div *ngIf="loading">
         <p>Laster</p>
         <ion-spinner></ion-spinner>

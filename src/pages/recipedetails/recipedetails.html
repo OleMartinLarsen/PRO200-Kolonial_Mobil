@@ -2,22 +2,22 @@
   <ion-navbar class="navbarStyle">
     <ion-title>
     </ion-title>
-    <ion-buttons end *ngIf="myRecipe">
-        <button class="userbutton" ion-button icon-only (click)="deleteMyRecipe()"> 
-          <ion-icon name="trash" class="ion-icon-with-text">
-          </ion-icon>
-        </button>
+    <ion-buttons end>
+      <button class="userbutton" ion-button icon-only (click)="pushSettings()"> 
+        <ion-icon name="cog" class="ion-icon-with-text">
+          <p class="ion-icon-text">Instillinger</p>
+        </ion-icon>
+      </button>
     </ion-buttons>
     <ion-buttons end>
-        <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
-          <ion-icon name="contact" class="ion-icon-with-text">
-            <p class="ion-icon-text">Min Profil</p>
-          </ion-icon>
-        </button>
+      <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
+        <ion-icon name="contact" class="ion-icon-with-text">
+          <p class="ion-icon-text">Profil</p>
+        </ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-
 
 <ion-content padding class="default">
     <ion-item class ="recipeCard">
@@ -33,21 +33,17 @@
         </ion-buttons>
       <ion-buttons class="favButton" end *ngIf="isFavorited">
           <button clear ion-button (click)='removeFromFavorites()'>
-          <ion-icon name="heart"  color="color3" class="favButton" (click)='removeFromFavorites'></ion-icon>
+            <ion-icon name="heart"  color="color3" class="favButton" (click)='removeFromFavorites()'></ion-icon>
           </button>
       </ion-buttons>
     </ion-item>
 
-    
     <p>{{recipe.recipeTimeInMinutes}} minutter, {{recipe.recipePortions}} porsjoner</p>
-    <div *ngIf="isPlanning">
-        <!-- //todo make buttons static on bottom of screen, remember to add space so the button doesn't block text -->
-        <button block ion-button (click)="addRecipeToDay()">{{addDinnerButtonText}}</button>
-      </div>
+
     <p>Ingredienser</p>
     <ion-list no-lines>
       <ion-item class="default" *ngFor="let ingredient of ingredients; let i = index">
-        <p class="text" text-wrap><!--{{ingredientsQ[i]}} {{ingredient.wareName}}--></p>
+        <p class="text" text-wrap>{{ingredientsQ[i]}} {{ingredient.wareName}}</p>
       </ion-item>
     </ion-list>
     
@@ -59,8 +55,12 @@
     </ion-list>
 
     <div *ngIf="isPlanning">
-      <!-- //todo make buttons static on bottom of screen, remember to add space so the button doesn't block text -->
-      <button block ion-button (click)="addRecipeToDay()">{{addDinnerButtonText}}</button>
+      <button class="static-planning-button" block ion-button (click)="addRecipeToDay()">{{addDinnerButtonText}}</button>
+      <br>
+    </div>
+
+    <div *ngIf="myRecipe">
+      <button block ion-button (click)="deleteMyRecipe()">Slett Oppskrift</button>
     </div>
 </ion-content>
 

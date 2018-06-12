@@ -24,6 +24,15 @@ export class RecipedetailsPage
     recipe: ""
   }
 
+  private addDinnerButtonText = "";
+  private isFavorited: boolean = false;
+  private isPlanning: boolean = false;
+  private planningDay =
+  {
+    date: "",
+    recipe: ""
+  }
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private functions: GlobalFunctionsProvider) 
@@ -39,6 +48,7 @@ export class RecipedetailsPage
     { 
       this.isFavorited = true; 
     }
+    this.checkMyRecipe();
     
     this.isPlanning = this.functions.getIsPlanning();
     this.planningDay.date = this.functions.getDayPlanningFor();
@@ -46,9 +56,24 @@ export class RecipedetailsPage
     this.addDinnerButtonText = "Legg til for " + this.planningDay.date;
   }
 
+  checkMyRecipe()
+  {
+    var isMyRecipe = this.functions.getMyRecipes().find((e) => e === this.recipe);
+    if(isMyRecipe)
+    {
+      this.myRecipe = true;
+    }
+  }
+
   pushUser()
   {
     this.navCtrl.push("UserPage");
+  }
+
+  pushSettings()
+  {
+    //TODO uncomment
+    // this.navCtrl.push("SettingsPage");
   }
 
   addToFavorites()

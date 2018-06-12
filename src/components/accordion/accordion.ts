@@ -68,6 +68,12 @@ export class AccordionComponent implements OnInit
     this.navCtrl.push('RecipedetailsPage', { recipe });
   }
 
+  removeDayPlans()
+  {
+    this.planned = false;
+    this.functions.removeRecipeToDayPlans(this.recipe);
+  }
+
   ngOnInit()
   {
     // console.log(this.content.nativeElement);

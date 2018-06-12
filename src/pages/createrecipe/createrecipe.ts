@@ -47,48 +47,30 @@ export class CreaterecipePage
     this.navCtrl.push("WareslistPage");
   }
 
-  incrementIngredient(ingredient: any)
+  incrementIngredient(i: number)
   {
-    for(var i = 0; i < this.recipeIngredients.length; i++)
+    if(this.recipeIngredientsQ[i] > 9) // Max 10 of any ware
     {
-      if (ingredient == this.recipeIngredients[i])
-      {
-        if(this.recipeIngredientsQ[i] > 9)
-        {
-          return;
-        }
-        this.recipeIngredientsQ[i]++;
-        console.log(this.recipeIngredientsQ[i] + " " + ingredient.wareName);
-      }
+      return;
     }
+    this.recipeIngredientsQ[i]++;
+    console.log(this.recipeIngredientsQ[i] + " " + this.recipeIngredients[i].wareName);
   }
 
-  decrementIngredient(ingredient: any)
+  decrementIngredient(i: number)
   {
-    for(var i = 0; i < this.recipeIngredients.length; i++)
+    if(this.recipeIngredientsQ[i] <= 1) //If minus is pressed with only 1 ware, remove that ware
     {
-      if (ingredient == this.recipeIngredients[i])
-      {
-        if(this.recipeIngredientsQ[i] <= 1)
-        {
-          this.recipeIngredients.splice(i, 1);
-          return;
-        }
-        this.recipeIngredientsQ[i]--;
-        console.log(this.recipeIngredientsQ[i] + " " + ingredient.wareName);
-      }
+      this.recipeIngredients.splice(i, 1);
+      return;
     }
+    this.recipeIngredientsQ[i]--;
+    console.log(this.recipeIngredientsQ[i] + " " + this.recipeIngredients[i].wareName);
   }
   
-  popWare(ingredient: any)
+  popStep(i: number)
   {
-    for(var i = 0; i < this.recipeIngredients.length; i++)
-    {
-      if (ingredient == this.recipeIngredients[i])
-      {
-        this.recipeIngredients.splice(i, 1);
-      }
-    }
+    this.recipeInstructions.splice(i, 1);
   }
 
   saveStep(step: string) 

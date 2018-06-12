@@ -4,10 +4,18 @@
       Brukerinformasjon
     </ion-title>
     <ion-buttons end>
+      <button class="userbutton" ion-button icon-only (click)="pushSettings()"> 
+        <ion-icon name="cog" class="ion-icon-with-text">
+          <p class="ion-icon-text">Instillinger</p>
+        </ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
       <!-- Logout -->
       <button ion-button icon-only color="royal" (click)="logoutUser()"> 
-        Logg ut 
-        <ion-icon name="exit"></ion-icon>
+        <ion-icon name="exit" class="ion-icon-with-text">
+          <p class="ion-icon-text">Logg ut</p>
+        </ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -29,8 +37,7 @@
   </div>
 
   <br>
-  <button block ion-button (click)="pushSettings()" class="buttonText">Innstillinger</button>
-  <button block ion-button (click)="pushAddMyRecipe()" (swipe)="pushAddData()" class="buttonText">Legg til oppskrift</button>
-  <br>
-  <button block ion-button (click)="logoutUser()" class="buttonText">Logg ut</button>
+  
+  <button block ion-button onclick="window.open('https://kolonial.no/kundeservice/', '_system', 'location=yes'); return false;">Hjelp</button>
+  <button block ion-button (click)="logoutUser()">Logg ut</button>
 </ion-content>

@@ -12,7 +12,7 @@ export class GlobalFunctionsProvider
   private recipeInstructions: Array<any> = []; //List of instructions when adding recipe
   private myRecipes: Array<any> = []; //List of recipes added by the user
   private dayPlans: Array<any> = []; //List that holds date and recipe
-  private isPlanning: boolean = false; //Toggles "Legg til for x.y" button in RecipeDetails
+  private isPlanning: boolean = false; //Toggles "Legg til for [day] [date]" button in RecipeDetails
   private planningFor: string = ""; //Date planning when adding recipe to day
 
   private daysArrayNo: Array<string> = []; //Weekdays in norwegian
@@ -24,6 +24,10 @@ export class GlobalFunctionsProvider
   {
     this.populateDaysArrayNo();
     this.populateOneWeakAheadArray();
+
+    this.recipeFavorites.push.apply(this.recipeFavorites, JSON.parse(localStorage.getItem("recipeFavorites")));
+    this.myRecipes.push.apply(this.myRecipes, JSON.parse(localStorage.getItem("myRecipes")));
+    this.dayPlans.push.apply(this.dayPlans, JSON.parse(localStorage.getItem("dayPlans")));
   }
 
   //TODO? tests?
@@ -133,7 +137,21 @@ export class GlobalFunctionsProvider
   addRecipeToDayPlans(recipe: any)
   {
     this.dayPlans.push(recipe);
-    console.log(recipe.recipe.recipeName + " added to dayPlans");
+    localStorage.setItem("dayPlans", JSON.stringify(this.dayPlans));
+    console.log(recipe.recipeName + " added to dayPlans");
+  }
+
+  removeRecipeToDayPlans(recipe: any)
+  {
+    var res = this.dayPlans.find((e) => e.recipe === recipe);
+    if(res)
+    {
+      var index = this.dayPlans.indexOf(res);
+      this.dayPlans.splice(index, 1);
+      localStorage.setItem("dayPlans", JSON.stringify(this.dayPlans));
+      return true;
+    }
+    return false;
   }
 
   getDayPlans()
