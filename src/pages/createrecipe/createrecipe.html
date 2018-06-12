@@ -44,12 +44,15 @@
         <ion-item *ngFor="let ingredient of recipeIngredients; let i = index">
           
           <div item-left>
-            <div item-top (click)="incrementIngredient(ingredient)"> + </div>
-            <div item-bottom (click)="decrementIngredient(ingredient)"> - </div>
+            <div item-top (click)="incrementIngredient(i)"> + </div>
+            <div item-bottom (click)="decrementIngredient(i)"> - </div>
           </div>
           
           <p>{{recipeIngredientsQ[i]}} {{ingredient.wareName}}</p>
-          <ion-icon name="trash" (click)="popWare(ingredient.wareName)" style="float: right; right: 0;"></ion-icon>
+          <div item-right>
+            <ion-icon name="trash" (click)="popWare(i)"></ion-icon>
+          </div>
+          <!-- <ion-icon name="trash" (click)="popWare(ingredient.wareName)" style="float: right; right: 0;"></ion-icon> -->
         </ion-item>
       </ion-list>
       <button block ion-button color="light" (click)="pushWareslist()">Legg til vare</button>
@@ -59,8 +62,12 @@
       <ion-label fixed>Instrukser</ion-label>
       <!-- List over instructions added -->
       <ion-list no-lines>
-        <ion-item *ngFor="let step of recipeInstructions">
+        <ion-item *ngFor="let step of recipeInstructions; let i = index">
+          <!-- <p text-wrap>{{i + 1}}. {{step}}</p> --> <!-- With numbered steps -->
           <p text-wrap>{{step}}</p>
+          <div item-right>
+            <ion-icon name="trash" (click)="popStep(i)"></ion-icon>
+          </div>
         </ion-item>
       </ion-list> 
     </section>
