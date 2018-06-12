@@ -28,6 +28,12 @@ export class RecipehistoryPage
     this.navCtrl.push("UserPage");
   }
 
+  pushSettings()
+  {
+    //TODO uncomment
+    // this.navCtrl.push("SettingsPage");
+  }
+
   ionViewDidLoad() 
   {
     console.log('ionViewDidLoad RecipehistoryPage');

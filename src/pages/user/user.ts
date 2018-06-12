@@ -59,14 +59,10 @@ export class UserPage
       });
   }
 
-  pushAddData()
+  pushSettings()
   {
-    this.navCtrl.push("CreatedummydataPage");
-  }
-
-  pushAddMyRecipe()
-  {
-    this.navCtrl.push("CreaterecipePage");
+    //TODO uncomment
+    // this.navCtrl.push("SettingsPage");
   }
 
   logoutUser()

@@ -2,16 +2,21 @@
   <ion-navbar class="navbarStyle">
     <ion-searchbar placeholder="Søk etter en oppskrift..." [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
     <ion-buttons end>
-        <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
-          <ion-icon name="contact" class="ion-icon-with-text">
-            <p class="ion-icon-text">Min Profil</p>
-          </ion-icon>
-        </button>
-      </ion-buttons>
+      <button class="userbutton" ion-button icon-only (click)="pushSettings()"> 
+        <ion-icon name="cog" class="ion-icon-with-text">
+          <p class="ion-icon-text">Instillinger</p>
+        </ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
+        <ion-icon name="contact" class="ion-icon-with-text">
+          <p class="ion-icon-text">Profil</p>
+        </ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
-
-
 
 <ion-content padding id="background">
     <div class = "tabs">
@@ -77,6 +82,7 @@
 
   <section class="recipeList">
     <h1>Mine Oppskrifter</h1> 
+    <button block ion-button (click)="pushAddMyRecipe()" (swipe)="pushAddData()">Legg til oppskrift</button>
       <div *ngIf="loading">
         <p>Laster</p>
         <ion-spinner></ion-spinner>

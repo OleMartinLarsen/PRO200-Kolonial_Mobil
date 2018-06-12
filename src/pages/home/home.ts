@@ -43,4 +43,9 @@ export class HomePage
     this.navCtrl.push("UserPage");
   }
 
+  pushSettings()
+  {
+    //TODO uncomment
+    // this.navCtrl.push("SettingsPage");
+  }
 }

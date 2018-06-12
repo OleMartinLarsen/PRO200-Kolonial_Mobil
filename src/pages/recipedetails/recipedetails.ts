@@ -70,6 +70,12 @@ export class RecipedetailsPage
     this.navCtrl.push("UserPage");
   }
 
+  pushSettings()
+  {
+    //TODO uncomment
+    // this.navCtrl.push("SettingsPage");
+  }
+
   addToFavorites()
   {
     if(!this.isFavorited)
