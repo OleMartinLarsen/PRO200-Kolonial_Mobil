@@ -6,7 +6,6 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
   <section class="container">
     <section>
@@ -44,15 +43,12 @@
         <ion-item *ngFor="let ingredient of recipeIngredients; let i = index">
           
           <div item-left>
-            <div item-top (click)="incrementIngredient(i)"> + </div>
-            <div item-bottom (click)="decrementIngredient(i)"> - </div>
+            <button class="change-ingredients-q-button" (click)="incrementIngredient(i)">+ </button>
+            {{recipeIngredientsQ[i]}}
+            <button class="change-ingredients-q-button" (click)="decrementIngredient(i)"> -</button>
           </div>
           
-          <p>{{recipeIngredientsQ[i]}} {{ingredient.wareName}}</p>
-          <div item-right>
-            <ion-icon name="trash" (click)="popWare(i)"></ion-icon>
-          </div>
-          <!-- <ion-icon name="trash" (click)="popWare(ingredient.wareName)" style="float: right; right: 0;"></ion-icon> -->
+          <p>{{ingredient.wareName}}</p>
         </ion-item>
       </ion-list>
       <button block ion-button color="light" (click)="pushWareslist()">Legg til vare</button>

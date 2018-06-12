@@ -68,11 +68,6 @@ export class CreaterecipePage
     console.log(this.recipeIngredientsQ[i] + " " + this.recipeIngredients[i].wareName);
   }
   
-  popWare(i: number)
-  {
-    this.recipeIngredients.splice(i, 1);
-  }
-  
   popStep(i: number)
   {
     this.recipeInstructions.splice(i, 1);
