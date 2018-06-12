@@ -4,7 +4,7 @@
     <ion-buttons end>
       <button class="userbutton" ion-button icon-only (click)="pushSettings()"> 
         <ion-icon name="cog" class="ion-icon-with-text">
-          <p class="ion-icon-text">Instillinger</p>
+          <p class="ion-icon-text">Preferanser</p>
         </ion-icon>
       </button>
     </ion-buttons>
@@ -22,22 +22,21 @@
     <div class = "tabs">
         <a class = "tab-item" id="tab-item-left" (click) = "showAllRecipes()">
            <ion-icon name="restaurant" class="tab-icon"></ion-icon>
-           <p class="tab-text">Alle oppskrifter</p>
+           <p class="tab-text">Alle<br>oppskrifter</p>
         </a>
        
         <a class = "tab-item" id="tab-item-center" (click) = "showMyFavorites()">
             <ion-icon name="heart" class="tab-icon"></ion-icon>
-            <p class="tab-text">Mine favoritter</p>
+            <p class="tab-text">Mine<br>favoritter</p>
         </a>
      
         <a class = "tab-item" id="tab-item-right" (click) = "showOwnRecipes()">
             <ion-icon name="book" class="tab-icon"></ion-icon>
-            <p class="tab-text">Egne oppskrifter</p>
+            <p class="tab-text">Egne<br>oppskrifter</p>
         </a>
      </div>
 
   <section class="recipeList">
-    <h1>Alle oppskrifter</h1>
     <div *ngIf="searching" class="spinner-container">
         <ion-spinner></ion-spinner>
     </div>
@@ -81,8 +80,7 @@
   <br>
 
   <section class="recipeList">
-    <h1>Mine Oppskrifter</h1> 
-    <button block ion-button (click)="pushAddMyRecipe()" (swipe)="pushAddData()">Legg til oppskrift</button>
+    <button block ion-button (click)="pushAddMyRecipe()" (swipe)="pushAddData()"><p class="darkText">Legg til oppskrift</p></button>
       <div *ngIf="loading">
         <p>Laster</p>
         <ion-spinner></ion-spinner>

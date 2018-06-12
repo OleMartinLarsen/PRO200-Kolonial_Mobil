@@ -3,17 +3,21 @@
     <ion-item color="primary" class="accordion-display-text">
       {{displaydate}}
       <button ion-button clear small icon-only item-right>
-        <ion-icon color="light" [name]="icon"></ion-icon>
+        <ion-icon class="darkText" color="light" name="add"></ion-icon>
       </button>
     </ion-item>
   </ion-card-header>
 
-  <ion-card-content #cc>
+  <ion-card-content #cc class="mainCard">
     <div *ngIf="planned">
       <ion-item (click)="pushRecipeDetails()" class="recipeCard" color="color3">
-        <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg">
+        <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg" class="acordianImg">
         <p>{{recipe.recipeName}}</p>
-        <button block ion-button (click)="removeDayPlans()">Slett</button> <!-- TODO removing plans leaves whitespace -->
+        <button block ion-button (click)="removeDayPlans()" class="delete" color="color3">
+          <p item-left>Slett</p>
+          <ion-icon class="trash" name="trash"></ion-icon>
+        </button>
+       <!-- TODO removing plans leaves whitespace -->
         <!-- {{recipe.recipeTimeInMinutes}}
         {{recipe.recipePortions}}
         {{recipe.recipeGrade}} 

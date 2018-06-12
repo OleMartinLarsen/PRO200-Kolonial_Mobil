@@ -24,15 +24,6 @@ export class RecipedetailsPage
     recipe: ""
   }
 
-  private addDinnerButtonText = "";
-  private isFavorited: boolean = false;
-  private isPlanning: boolean = false;
-  private planningDay =
-  {
-    date: "",
-    recipe: ""
-  }
-
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private functions: GlobalFunctionsProvider) 

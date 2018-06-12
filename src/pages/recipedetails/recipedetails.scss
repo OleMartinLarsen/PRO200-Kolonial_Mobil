@@ -5,6 +5,11 @@ page-recipedetails {
         background-color: #433445;
     }
 
+    .favButton
+    {
+        width: 33px;
+    }
+
     .text
     {
         color: #FFFFFF;
@@ -16,6 +21,7 @@ page-recipedetails {
         position: absolute;
         top: 0;
         right: 0;
+        border: black solid 0px;
     }
 
     .static-planning-button

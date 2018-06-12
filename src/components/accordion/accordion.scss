@@ -7,11 +7,39 @@ accordion {
     }
 
     .card-content {
-        padding: 0px 16px;
+        padding: 0px 0px;
         max-height: 0px;
     }
     .accordion-display-text
     {
         top: -7px;
+    }
+
+    .trash
+    {
+        position: absolute;
+        right: 10px;
+    }
+
+    .acordianImg
+    {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    .delete
+    {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        width: 80px;
+    }
+
+   .mainCard
+    {
+        height: 150px;
+        background-color: #433445;
     }
 }
