@@ -37,7 +37,7 @@
      </div>
 
   <section class="recipeList">
-    <h1>Alle oppskrifter</h1>
+    <h1 class="white-text">Alle oppskrifter</h1>
     <div *ngIf="searching" class="spinner-container">
         <ion-spinner></ion-spinner>
     </div>
@@ -61,7 +61,7 @@
   <br>
 
   <section class="recipeList">
-    <h1>Favoritter</h1> 
+    <h1 class="white-text">Favoritter</h1> 
       <div *ngIf="loading">
         <p>Laster</p>
         <ion-spinner></ion-spinner>
@@ -81,7 +81,7 @@
   <br>
 
   <section class="recipeList">
-    <h1>Mine Oppskrifter</h1> 
+    <h1 class="white-text">Mine Oppskrifter</h1> 
     <button block ion-button (click)="pushAddMyRecipe()" (swipe)="pushAddData()">Legg til oppskrift</button>
       <div *ngIf="loading">
         <p>Laster</p>
