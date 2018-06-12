@@ -141,6 +141,19 @@ export class GlobalFunctionsProvider
     console.log(recipe.recipeName + " added to dayPlans");
   }
 
+  removeRecipeToDayPlans(recipe: any)
+  {
+    var res = this.dayPlans.find((e) => e.recipe === recipe);
+    if(res)
+    {
+      var index = this.dayPlans.indexOf(res);
+      this.dayPlans.splice(index, 1);
+      localStorage.setItem("dayPlans", JSON.stringify(this.dayPlans));
+      return true;
+    }
+    return false;
+  }
+
   getDayPlans()
   {
     return this.dayPlans;
