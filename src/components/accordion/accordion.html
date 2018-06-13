@@ -13,7 +13,8 @@
       <ion-item (click)="pushRecipeDetails()" class="recipeCard" color="color3">
         <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg">
         <p>{{recipe.recipeName}}</p>
-        <button block ion-button (click)="removeDayPlans()">Slett</button> <!-- TODO removing plans leaves whitespace -->
+        <!-- TODO removing plans leaves whitespace -->
+        <button class="cardTrash" ion-button round (click)="removeDayPlans()"><ion-icon name="trash"></ion-icon></button>
         <!-- {{recipe.recipeTimeInMinutes}}
         {{recipe.recipePortions}}
         {{recipe.recipeGrade}} 
