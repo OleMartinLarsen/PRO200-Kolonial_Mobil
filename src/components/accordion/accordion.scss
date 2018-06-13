@@ -1,7 +1,7 @@
 accordion 
 {
     .card-header
-  {
+    {
         background-color: color($colors, primary);
         color: #fff;
         height: 60px;
@@ -9,11 +9,11 @@ accordion
     }
 
     .card-content 
-  {
+    {
         padding: 0px 16px;
         max-height: 0px;
     }
-  
+    
     .accordion-display-text
     {
         top: -7px;

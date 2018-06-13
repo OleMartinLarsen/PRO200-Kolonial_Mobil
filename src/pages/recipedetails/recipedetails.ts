@@ -21,12 +21,12 @@ export class RecipedetailsPage
   private isPlanning: boolean = false;
   private myRecipe: boolean = false;
   private planningDay =
-    {
-      date: "",
-      recipe: ""
-    }
+  {
+    date: "",
+    recipe: ""
+  }
 
-  constructor(public navCtrl: NavController,
+  constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private functions: GlobalFunctionsProvider,
     private af: AngularFirestore) {

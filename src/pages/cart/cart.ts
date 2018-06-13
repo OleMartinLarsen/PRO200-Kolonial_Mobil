@@ -67,11 +67,22 @@ export class CartPage
     return price;
   }
 
-  popRecipe(recipe: any)
+  getCurrentPrice()
   {
-    var index = this.recipesInCart.map((e) => { return e; }).indexOf(recipe);
-    this.recipesInCart.splice(index, 1);
     this.cartPrice = this.getPrice();
+  }
+
+  popRecipe(index: number)
+  {
+    this.recipesInCart.splice(index, 1);
+    this.getCurrentPrice();
+  }
+
+  emptyCart()
+  {
+    var length = this.recipesInCart.length;
+    this.recipesInCart.splice(0, length);
+    this.getCurrentPrice();
   }
 
   ionViewDidLoad() 
@@ -81,6 +92,6 @@ export class CartPage
 
   ionViewDidEnter()
   {
-    this.cartPrice = this.getPrice();
+    this.getCurrentPrice();
   }
 }
