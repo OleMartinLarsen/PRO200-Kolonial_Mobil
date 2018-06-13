@@ -28,7 +28,11 @@
           <h1 class="imageText" text-wrap>{{recipe.recipeName}}</h1>
           <h3 class="imageDescription">{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</h3>
         </div>
-        <button class="cardTrash" ion-button round (click)="popRecipe(i)"><ion-icon name="trash"></ion-icon></button>
+        <button block ion-button (click)="popRecipe(i)" class="delete" color="color3">
+          <p item-left class="deleteText">Slett</p>
+          <ion-icon class="trash" name="trash"></ion-icon>
+        </button>
+       <!-- <button class="cardTrash" ion-button round (click)="popRecipe(i)"><ion-icon name="trash"></ion-icon></button> -->
     </ion-item>
   </ion-list>
 

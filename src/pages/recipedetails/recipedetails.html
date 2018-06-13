@@ -5,7 +5,7 @@
     <ion-buttons end>
       <button ion-button icon-only (click)="pushSettings()"> 
         <ion-icon name="cog" class="ion-icon-with-text">
-          <p class="ion-icon-text">Instillinger</p>
+          <p class="ion-icon-text">Preferanser</p>
         </ion-icon>
       </button>
     </ion-buttons>
@@ -54,12 +54,12 @@
     </ion-list>
 
     <div *ngIf="isPlanning">
-      <button class="static-planning-button" block ion-button (click)="addRecipeToDay()">{{addDinnerButtonText}}</button>
+      <button class="static-planning-button darkText" block ion-button (click)="addRecipeToDay()">{{addDinnerButtonText}}</button>
       <br>
     </div>
 
     <div *ngIf="myRecipe">
-      <button block ion-button (click)="deleteMyRecipe()">Slett Oppskrift</button>
+      <button block ion-button class="darkText" (click)="deleteMyRecipe()">Slett Oppskrift</button>
     </div>
 </ion-content>
 

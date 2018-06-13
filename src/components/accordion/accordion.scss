@@ -33,6 +33,15 @@ accordion
         width: 100%;
     }
 
+    .change
+    {
+        position: absolute;
+        top: 34px;
+        right: 10px;
+        width: 80px;
+        background-color: gray;
+    }
+
     .delete
     {
         position: absolute;

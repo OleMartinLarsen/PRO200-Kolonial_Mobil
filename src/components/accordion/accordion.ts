@@ -15,6 +15,7 @@ export class AccordionComponent implements OnInit
   private planned: boolean = false;
   private displaydate: string;
   private recipe: any = "";
+  private count: number = 0;
 
   constructor(public renderer: Renderer,
     public navCtrl: NavController,
@@ -35,19 +36,20 @@ export class AccordionComponent implements OnInit
     }
     else
     {
-      this.functions.makeToast("Vil du endre?"); 
+      //this.functions.makeToast("Vil du endre?"); 
 
       //TODO change recipe | temp button
       //1. separate button
       //2. clear array for that day OR overwrite recipe
-      var acceptedChangePlans = false;
+      /*var acceptedChangePlans = false;
       if(acceptedChangePlans)
-      {
+      {*/
+        this.removeDayPlans();
         this.functions.setIsPlanning(true);
         this.functions.setDayPlanningFor(this.displaydate);
         this.renderer.setElementStyle(this.content.nativeElement, "height", "150px")
         this.navCtrl.push("RecipesPage");
-      }
+      //}
     }
   }
 
@@ -100,8 +102,14 @@ export class AccordionComponent implements OnInit
     this.icon = this.icon == "arrow-forward" ? "arrow-down" : "arrow-forward";
   }
   
-  ngDoCheck() //TODO Memleaks, any better ways?
+  ngDoCheck() //TODO! Memleaks, any better ways?
   {
-    this.checkPlannedStatus();
-  }
+    this.count ++;
+    if (this.count == 5)
+    {
+      //console.log("wa" + this.count)
+      this.checkPlannedStatus();
+      this.count = 0
+    }  
+    }
 }
