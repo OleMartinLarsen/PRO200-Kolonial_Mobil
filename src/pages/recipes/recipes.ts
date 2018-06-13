@@ -13,64 +13,43 @@ import "rxjs/add/operator/debounceTime";
   selector: 'page-recipes',
   templateUrl: 'recipes.html',
 })
-export class RecipesPage {
+export class RecipesPage 
+{
   private loading: boolean = true;
   public recipeCollection: AngularFirestoreCollection<Recipe>;
-  private allRecipes: Observable<Recipe[]>;
   private favorites: Array<any> = [];
   private myRecipes: Array<any> = [];
   private tabItemList = document.getElementsByClassName('tab-item') as HTMLCollectionOf<HTMLElement>;
   private tabText = document.getElementsByClassName('tab-text') as HTMLCollectionOf<HTMLElement>;
 
-  searchTerm: string = '';
-  searchControl: FormControl;
-  filterData: Recipe[] = [];
-  searching: any = false;
+  private searchTerm: string = '';
+  private recipes: Observable<Recipe[]>;
+  private searchControl: FormControl;
+  private filterData: Recipe[] = [];
+  private searching: any = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private af: AngularFirestore,
-    private functions: GlobalFunctionsProvider) {
+    private functions: GlobalFunctionsProvider) 
+  {
     this.searchControl = new FormControl();
 
-    this.recipeCollection = af.collection<Recipe>("recipes", ref => {
+    this.recipeCollection = af.collection<Recipe>("recipes", ref => 
+    {
       //Order by name (alphabetically)
       //Alternativly one could order by time, grade("enkel", "vanskelig" etc.) by using recipeGrade 
       //or price by adding warePrice in array (might be harder that it sounds)
       return ref.orderBy("recipeName", "asc");
     });
 
-    this.allRecipes = this.recipeCollection.snapshotChanges()
-      .map(actions =>
-      {
-        return actions.map(action =>
-        {
-          let data = action.payload.doc.data() as Recipe;
-          let id = action.payload.doc.id;
-          
-          return {
-            id, 
-            ...data
-          }
-        });
-      });
+    this.getRecipeList();
   }
 
   pushRecipeDetails(recipe :any)
   {
     this.navCtrl.push("RecipedetailsPage", { recipe });
     // this.functions.addRecipeToHistory(recipe); //Pushes all recipes viewed to history
-  }
-
-  pushUser()
-  {
-    this.navCtrl.push("UserPage");
-  }
-
-  pushSettings()
-  {
-    //TODO uncomment
-    // this.navCtrl.push("SettingsPage");
   }
 
   pushAddData()
@@ -83,12 +62,15 @@ export class RecipesPage {
     this.navCtrl.push("CreaterecipePage");
   }
 
-  ionViewWillEnter() 
+  pushSettings()
   {
-    this.favorites = this.functions.getRecipeFavorites();
-    this.myRecipes = this.functions.getMyRecipes();
-    this.showAllRecipes();
-    this.loading = false;
+    //TODO uncomment
+    // this.navCtrl.push("SettingsPage");
+  }
+
+  pushUser()
+  {
+    this.navCtrl.push("UserPage");
   }
 
   tabItemStyle(tabIndex)
@@ -123,5 +105,70 @@ export class RecipesPage {
   showOwnRecipes()
   {
     this.tabItemStyle(2);
+  }
+
+  // --- Search ---
+
+  /*Henter ut oppskriftene fra firebase og putter de i et Obseravble array*/
+  getRecipeList() 
+  {
+    this.recipes = this.af.collection('recipes')
+      .snapshotChanges()
+      .map(actions => {
+        return actions.map(a => {
+          let data = a.payload.doc.data() as Recipe;
+          let id = a.payload.doc.id;
+          return { id, ...data }
+        })
+      });
+    }
+
+  //Hvis søkeordet ikke er tomt filtrer den ut oppskriftene som passer søkeordet, hvis søkeordet er tomt blir filterData array resetta slik at all bøkene vises igjen
+  setFilteredItems() 
+  {
+    if (this.searchTerm) 
+    {
+      this.getRecipeList();
+      this.filterData = this.filterItems(this.searchTerm);
+    }
+    else 
+    {
+      this.getRecipeList();
+      this.recipes.subscribe(recipes => { this.filterData = recipes });
+    }
+  }
+  
+  //Filtrer filterData array basert på hvilket søkeord
+  filterItems(searchTerm) 
+  {
+    return this.filterData.filter((recipe) => 
+    {
+      return recipe.recipeName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    });
+  }
+
+  onSearchInput() 
+  {
+    this.searching = true;
+  }
+
+  ionViewDidLoad()
+  {
+    this.setFilteredItems();
+
+    //Ser etter verdi endringer i searchbaren
+    this.searchControl.valueChanges.debounceTime(700).subscribe(search => 
+      {
+      this.searching = false;
+      this.setFilteredItems();
+    });
+  }
+
+  ionViewWillEnter() 
+  {
+    this.favorites = this.functions.getRecipeFavorites();
+    this.myRecipes = this.functions.getMyRecipes();
+    this.showAllRecipes();
+    this.loading = false;
   }
 }
