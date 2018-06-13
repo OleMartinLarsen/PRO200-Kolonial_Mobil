@@ -2,14 +2,14 @@
   <ion-navbar class="navbarStyle">
     <ion-searchbar placeholder="Søk etter en oppskrift..." [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
     <ion-buttons end>
-      <button class="userbutton" ion-button icon-only (click)="pushSettings()"> 
+      <button ion-button icon-only (click)="pushSettings()"> 
         <ion-icon name="cog" class="ion-icon-with-text">
           <p class="ion-icon-text">Preferanser</p>
         </ion-icon>
       </button>
     </ion-buttons>
     <ion-buttons end>
-      <button class="userbutton" ion-button icon-only (click)="pushUser()"> 
+      <button ion-button icon-only (click)="pushUser()"> 
         <ion-icon name="contact" class="ion-icon-with-text">
           <p class="ion-icon-text">Profil</p>
         </ion-icon>
@@ -41,17 +41,17 @@
         <ion-spinner></ion-spinner>
     </div>
     <div *ngIf="loading">
-        <p>Laster</p>
-        <ion-spinner></ion-spinner>
-      </div>
+      <p>Laster</p>
+      <ion-spinner></ion-spinner>
+    </div>
     <div *ngIf="!loading">
       <ion-list no-lines>
-        <ion-item *ngFor="let recipe of allRecipes | async" (click)="pushRecipeDetails(recipe)" class ="recipeCard">
+        <ion-item *ngFor="let recipe of filterData" (click)="pushRecipeDetails(recipe)" class ="recipeCard">
             <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg" class="image">
           <div class="cardText">
-          <h1 class="imageText" text-wrap>{{recipe.recipeName}}</h1>
-          <h3 class="imageDescription">{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</h3>
-            </div>
+            <h1 class="imageText" text-wrap>{{recipe.recipeName}}</h1>
+            <h3 class="imageDescription">{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</h3>
+          </div>
         </ion-item>
       </ion-list>
     </div>
@@ -71,30 +71,31 @@
           <div class="cardText">
           <h1 class="imageText" text-wrap>{{recipe.recipeName}}</h1>
           <h3 class="imageDescription">{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</h3>
-            </div>
-          </ion-item>
-        </ion-list>
-      </div>
+        </div>
+        </ion-item>
+      </ion-list>
+    </div>
   </section>
 
   <br>
 
   <section class="recipeList">
-    <button block ion-button (click)="pushAddMyRecipe()" (swipe)="pushAddData()"><p class="darkText">Legg til oppskrift</p></button>
-      <div *ngIf="loading">
-        <p>Laster</p>
-        <ion-spinner></ion-spinner>
-      </div>
-      <div *ngIf="!loading">
-        <ion-list no-lines>
-          <ion-item *ngFor="let recipe of myRecipes" (click)="pushRecipeDetails(recipe)" class ="recipeCard">
-              <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg" class="image">
-              <div class="cardText">
-              <h1 class="imageText" text-wrap>{{recipe.recipeName}}</h1>
-              <h3 class="imageDescription">{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</h3>
-                </div>
-          </ion-item>
-        </ion-list>
-      </div>
+    <h1 class="white-text">Mine Oppskrifter</h1>
+    <button block ion-button (click)="pushAddMyRecipe()" (swipe)="pushAddData()">Legg til oppskrift</button>
+    <div *ngIf="loading">
+      <p>Laster</p>
+      <ion-spinner></ion-spinner>
+    </div>
+    <div *ngIf="!loading">
+      <ion-list no-lines>
+        <ion-item *ngFor="let recipe of myRecipes" (click)="pushRecipeDetails(recipe)" class ="recipeCard">
+          <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg" class="image">
+          <div class="cardText">
+            <h1 class="imageText" text-wrap>{{recipe.recipeName}}</h1>
+            <h3 class="imageDescription">{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</h3>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
   </section>
 </ion-content>
