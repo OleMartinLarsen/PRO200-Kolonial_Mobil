@@ -9,7 +9,8 @@ import { AngularFirestore } from 'angularfire2/firestore';
   selector: 'page-recipedetails',
   templateUrl: 'recipedetails.html',
 })
-export class RecipedetailsPage {
+export class RecipedetailsPage 
+{
   private recipe: any;
   private ingredientsQ: Array<number>;
   private ingredients: Array<any>;
@@ -36,35 +37,69 @@ export class RecipedetailsPage {
     this.instructions = this.recipe.recipeInstructions;
 
     //If recipe is favorited, remove "add-to-favorite" button
-    var res = this.functions.getRecipeFavorites().find((e) => { return e === this.recipe; });
-    if (res) {
-      this.isFavorited = true;
+    var res = this.functions.getRecipeFavorites().find((e) => { return e === this.recipe; }); 
+    if(res) 
+    { 
+      this.isFavorited = true; 
     }
     this.checkMyRecipe();
-
+   
     this.isPlanning = this.functions.getIsPlanning();
     this.planningDay.date = this.functions.getDayPlanningFor();
     this.planningDay.recipe = this.recipe;
     this.addDinnerButtonText = "Legg til for " + this.planningDay.date;
   }
 
-  checkMyRecipe() {
+  checkMyRecipe()
+  {
     var isMyRecipe = this.functions.getMyRecipes().find((e) => e === this.recipe);
-    if (isMyRecipe) {
+    if(isMyRecipe)
+    {
       this.myRecipe = true;
     }
   }
 
-  pushUser() {
+  pushUser()
+  {
     this.navCtrl.push("UserPage");
   }
 
-  addToFavorites() {
-    if (!this.isFavorited) {
-      if (this.functions.addRecipeFavorite(this.recipe)) {
+  pushSettings()
+  {
+    //TODO uncomment
+    // this.navCtrl.push("SettingsPage");
+  }
+
+  addToFavorites()
+  {
+    if(!this.isFavorited)
+    {
+      if(this.functions.addRecipeFavorite(this.recipe))
+      {
         this.isFavorited = true;
         this.functions.makeToast("Oppskrift lagt til i favoritter");
       }
+    }
+  }
+
+  removeFromFavorites()
+  {
+    if(this.isFavorited)
+    {
+      if(this.functions.removeRecipeFavorite(this.recipe))
+      {
+        this.isFavorited = false;
+        this.functions.makeToast("Oppskrift fjernet fra favoritter");
+      }
+    }
+  }
+
+  deleteMyRecipe()
+  {
+    if(this.functions.removeMyRecipe(this.recipe))
+    {
+      this.functions.makeToast("Oppskrift slettet");
+      this.navCtrl.pop();
     }
   }
 

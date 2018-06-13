@@ -67,6 +67,8 @@ export class UserPage
   pushAddMyRecipe()
   {
     this.navCtrl.push("CreaterecipePage");
+    //TODO uncomment
+    // this.navCtrl.push("SettingsPage");
   }
 
   logoutUser()

@@ -117,13 +117,53 @@ export class RecipesPage {
           return { id, ...data }
         })
       });
+
+  pushSettings()
+  {
+    //TODO uncomment
+    // this.navCtrl.push("SettingsPage");
   }
 
-  //Filtrer filterData array basert på hvilket søkeord
-  filterItems(searchTerm) {
-    return this.filterData.filter((recipe) => {
-      return recipe.recipeName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
-    });
+  pushAddData()
+  {
+    this.navCtrl.push("CreatedummydataPage");
+  }
+
+  pushAddMyRecipe()
+  {
+    this.navCtrl.push("CreaterecipePage");
+  }
+
+  ionViewWillEnter() 
+  {
+    this.favorites = this.functions.getRecipeFavorites();
+    this.myRecipes = this.functions.getMyRecipes();
+    this.showAllRecipes();
+    this.loading = false;
+  }
+
+  tabItemStyle(tabIndex)
+  {
+    let recipeLists = document.getElementsByClassName('recipeList') as HTMLCollectionOf<HTMLElement>;
+    for(var i = 0; i<3; i++)
+    {
+      recipeLists[i].style.display = "none";
+      this.tabItemList[i].style.backgroundColor = "#2B242F";
+      this.tabItemList[i].style.color = "#FFFFFF";
+      this.tabText[i].style.color = "#FFFFFF";
+      this.tabText[i].style.fontWeight = "normal";
+    }
+
+    recipeLists[tabIndex].style.display = "block";
+    this.tabItemList[tabIndex].style.color = "#2B242F";
+    this.tabItemList[tabIndex].style.backgroundColor = "#ffa514";
+    this.tabText[tabIndex].style.color = "#2B242F";
+    this.tabText[tabIndex].style.fontWeight = "bold";
+  }
+
+  showAllRecipes()
+  {
+    this.tabItemStyle(0);
   }
 
   //Hvis søkeordet ikke er tomt filtrer den ut oppskriftene som passer søkeordet, hvis søkeordet er tomt blir filterData array resetta slik at all bøkene vises igjen
@@ -136,9 +176,14 @@ export class RecipesPage {
       this.getRecipeList();
       this.recipes.subscribe(recipes => { this.filterData = recipes });
     }
+    
+  showMyFavorites()
+  {
+    this.tabItemStyle(1);
   }
 
-  onSearchInput() {
-    this.searching = true;
+  showOwnRecipes()
+  {
+    this.tabItemStyle(2);
   }
 }

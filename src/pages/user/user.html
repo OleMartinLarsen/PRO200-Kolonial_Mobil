@@ -4,6 +4,13 @@
       Brukerinformasjon
     </ion-title>
     <ion-buttons end>
+      <button ion-button icon-only (click)="pushSettings()"> 
+        <ion-icon name="cog" class="ion-icon-with-text">
+          <p class="ion-icon-text">Instillinger</p>
+        </ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
       <!-- Logout -->
       <button ion-button icon-only color="royal" (click)="logoutUser()"> 
         <ion-icon name="exit" class="ion-icon-with-text">
@@ -20,19 +27,17 @@
       <ion-spinner></ion-spinner>
     </div>
   <div *ngIf="!loading">
-      <ion-item text-wrap *ngFor="let user of users | async">
+      <ion-item text-wrap *ngFor="let user of users | async" class="default">
         <img *ngIf="user.userImg" [src]="user.userImg">
-        <p>Navn: {{user.userSurname}}, {{user.userName}}</p>
-        <p>Email: {{user.userEmail}}</p>
-        <p>Telefon: {{user.userPhone}}</p>
-        <p>Adresse: {{user.userAdress}}</p>
+        <p class="text">Navn: {{user.userSurname}}, {{user.userName}}</p>
+        <p class="text">Email: {{user.userEmail}}</p>
+        <p class="text">Telefon: {{user.userPhone}}</p>
+        <p class="text">Adresse: {{user.userAdress}}</p>
       </ion-item>
   </div>
 
   <br>
-  <button block ion-button (click)="pushSettings()">Innstillinger</button>
-  <button block ion-button (click)="pushAddMyRecipe()" (swipe)="pushAddData()">Legg til oppskrift</button>
-  <br>
+  
   <button block ion-button onclick="window.open('https://kolonial.no/kundeservice/', '_system', 'location=yes'); return false;">Hjelp</button>
   <button block ion-button (click)="logoutUser()">Logg ut</button>
 </ion-content>
