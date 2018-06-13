@@ -16,16 +16,16 @@ import "rxjs/add/operator/debounceTime";
 export class RecipesPage {
   private loading: boolean = true;
   public recipeCollection: AngularFirestoreCollection<Recipe>;
-  private allRecipes: Observable<Recipe[]>;
   private favorites: Array<any> = [];
   private myRecipes: Array<any> = [];
   private tabItemList = document.getElementsByClassName('tab-item') as HTMLCollectionOf<HTMLElement>;
   private tabText = document.getElementsByClassName('tab-text') as HTMLCollectionOf<HTMLElement>;
 
-  searchTerm: string = '';
-  searchControl: FormControl;
-  filterData: Recipe[] = [];
-  searching: any = false;
+  private searchTerm: string = '';
+  private recipes: Observable<Recipe[]>;
+  private searchControl: FormControl;
+  private filterData: Recipe[] = [];
+  private searching: any = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -40,20 +40,7 @@ export class RecipesPage {
       return ref.orderBy("recipeName", "asc");
     });
 
-    this.allRecipes = this.recipeCollection.snapshotChanges()
-      .map(actions =>
-      {
-        return actions.map(action =>
-        {
-          let data = action.payload.doc.data() as Recipe;
-          let id = action.payload.doc.id;
-          
-          return {
-            id, 
-            ...data
-          }
-        });
-      });
+    this.getRecipeList();
   }
 
   pushRecipeDetails(recipe :any)
@@ -66,6 +53,70 @@ export class RecipesPage {
   {
     this.navCtrl.push("UserPage");
   }
+
+  ionViewWillEnter() 
+  {
+    this.favorites = this.functions.getRecipeFavorites();
+    this.myRecipes = this.functions.getMyRecipes();
+    this.loading = false;
+  }
+
+  tabItemStyle(tabIndex)
+  {
+    let recipeLists = document.getElementsByClassName('recipeList') as HTMLCollectionOf<HTMLElement>;
+    for(var i = 0; i<3; i++)
+    {
+      recipeLists[i].style.display = "none";
+      this.tabItemList[i].style.backgroundColor = "#2B242F";
+      this.tabItemList[i].style.color = "#FFFFFF";
+      this.tabText[i].style.color = "#FFFFFF";
+      this.tabText[i].style.fontWeight = "normal";
+    }
+
+    recipeLists[tabIndex].style.display = "block";
+    this.tabItemList[tabIndex].style.color = "#2B242F";
+    this.tabItemList[tabIndex].style.backgroundColor = "#ffa514";
+    this.tabText[tabIndex].style.color = "#2B242F";
+    this.tabText[tabIndex].style.fontWeight = "bold";
+  }
+
+  showAllRecipes()
+  {
+    this.tabItemStyle(0);
+  }
+
+  showMyFavorites()
+  {
+    this.tabItemStyle(1);
+  }
+
+  showOwnRecipes()
+  {
+    this.tabItemStyle(2);
+  }
+
+  ionViewDidLoad() {
+    this.setFilteredItems();
+
+    //Ser etter verdi endringer i searchbaren
+    this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
+      this.searching = false;
+      this.setFilteredItems();
+    });
+
+  }
+
+  /*Henter ut oppskriftene fra firebase og putter de i et Obseravble array*/
+  getRecipeList() {
+    this.recipes = this.af.collection('recipes')
+      .snapshotChanges()
+      .map(actions => {
+        return actions.map(a => {
+          let data = a.payload.doc.data() as Recipe;
+          let id = a.payload.doc.id;
+          return { id, ...data }
+        })
+      });
 
   pushSettings()
   {
@@ -115,6 +166,17 @@ export class RecipesPage {
     this.tabItemStyle(0);
   }
 
+  //Hvis søkeordet ikke er tomt filtrer den ut oppskriftene som passer søkeordet, hvis søkeordet er tomt blir filterData array resetta slik at all bøkene vises igjen
+  setFilteredItems() {
+    if (this.searchTerm) {
+      this.getRecipeList();
+      this.filterData = this.filterItems(this.searchTerm);
+    }
+    else {
+      this.getRecipeList();
+      this.recipes.subscribe(recipes => { this.filterData = recipes });
+    }
+    
   showMyFavorites()
   {
     this.tabItemStyle(1);
