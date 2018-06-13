@@ -87,6 +87,7 @@ export class RecipesPage {
   {
     this.favorites = this.functions.getRecipeFavorites();
     this.myRecipes = this.functions.getMyRecipes();
+    this.showAllRecipes();
     this.loading = false;
   }
 
