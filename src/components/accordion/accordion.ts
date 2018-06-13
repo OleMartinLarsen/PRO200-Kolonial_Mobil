@@ -24,6 +24,7 @@ export class AccordionComponent implements OnInit
     this.displaydate = this.functions.getNextDayFromOneWeakAheadArray();
   }
 
+  //legger til recipes per kort, endrings knappen bruker også denne
   addRecipes()
   {
     if(!this.planned)
@@ -53,6 +54,7 @@ export class AccordionComponent implements OnInit
     }
   }
 
+  //ser på om det er en planlagt middag, og hvis det er det vil den endre stylen til å vise bilde + knapper
   public checkPlannedStatus()
   {
     this.recipe = this.functions.getRecipeOfPlannedDayInDayPlans(this.displaydate).recipe;
