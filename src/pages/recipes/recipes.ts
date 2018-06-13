@@ -64,6 +64,10 @@ export class RecipesPage
 
   pushSettings()
   {
+    this.favorites = this.functions.getRecipeFavorites();
+    this.myRecipes = this.functions.getMyRecipes();
+    this.showAllRecipes();
+    this.loading = false;
     //TODO uncomment
     // this.navCtrl.push("SettingsPage");
   }

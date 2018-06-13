@@ -30,6 +30,7 @@ export class AccordionComponent implements OnInit
       this.functions.setIsPlanning(true);
       //NB: the value(string) in setDayPlanningFor will be set on add-button in RecipeDetails!
       this.functions.setDayPlanningFor(this.displaydate);
+      this.renderer.setElementStyle(this.content.nativeElement, "height", "150px")
       this.navCtrl.push("RecipesPage");
     }
     else
@@ -44,6 +45,7 @@ export class AccordionComponent implements OnInit
       {
         this.functions.setIsPlanning(true);
         this.functions.setDayPlanningFor(this.displaydate);
+        this.renderer.setElementStyle(this.content.nativeElement, "height", "150px")
         this.navCtrl.push("RecipesPage");
       }
     }
@@ -57,7 +59,7 @@ export class AccordionComponent implements OnInit
     {
       this.planned = true;
       this.renderer.setElementStyle(this.content.nativeElement, "max-height", "300px");
-      this.renderer.setElementStyle(this.content.nativeElement, "padding", "13px 16px");
+      this.renderer.setElementStyle(this.content.nativeElement, "padding", "0px 0px");
     }
   }
 
@@ -71,13 +73,14 @@ export class AccordionComponent implements OnInit
   removeDayPlans()
   {
     this.planned = false;
+    this.renderer.setElementStyle(this.content.nativeElement, "height", "0px")
     this.functions.removeRecipeToDayPlans(this.recipe);
   }
 
   ngOnInit()
   {
     // console.log(this.content.nativeElement);
-    this.renderer.setElementStyle(this.content.nativeElement, "webkitTransition", "max-height 400ms, padding 400ms");
+    this.renderer.setElementStyle(this.content.nativeElement, "webkitTransition", "max-height 150px");
   }
 
   toggleAccordion()
@@ -85,12 +88,12 @@ export class AccordionComponent implements OnInit
     if(this.accordionExpanded) 
     {
       this.renderer.setElementStyle(this.content.nativeElement, "max-height", "0px");
-      this.renderer.setElementStyle(this.content.nativeElement, "padding", "0px 16px");
+      //this.renderer.setElementStyle(this.content.nativeElement, "padding", "0px 16px");
     } 
     else 
     {
       this.renderer.setElementStyle(this.content.nativeElement, "max-height", "300px");
-      this.renderer.setElementStyle(this.content.nativeElement, "padding", "13px 16px");
+      //this.renderer.setElementStyle(this.content.nativeElement, "padding", "13px 16px");
     }
 
     this.accordionExpanded = !this.accordionExpanded;

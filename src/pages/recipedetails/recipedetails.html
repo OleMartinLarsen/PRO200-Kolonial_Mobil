@@ -1,7 +1,6 @@
 <ion-header>
   <ion-navbar class="navbarStyle">
     <ion-title>
-      {{recipe.recipeName}}
     </ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="pushSettings()"> 
@@ -27,7 +26,7 @@
         <h1 class="imageText" text-wrap>{{recipe.recipeName}}</h1>
       </div>
       <ion-buttons end class="favButton" *ngIf="!isFavorited"> 
-        <button clear ion-button (click)='addToFavorites()'>
+        <button clear ion-button (click)='addToFavorites()' class="button">
           <ion-icon name="heart" color="light" class="favButton"></ion-icon>
         </button>
         </ion-buttons>
@@ -63,3 +62,5 @@
       <button block ion-button (click)="deleteMyRecipe()">Slett Oppskrift</button>
     </div>
 </ion-content>
+
+

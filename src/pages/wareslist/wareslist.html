@@ -6,11 +6,13 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="default">
   <ion-list no-lines>
-    <ion-item *ngFor="let ware of wares | async" (click)="addToIngredients(ware)">
+    <ion-item *ngFor="let ware of wares | async" (click)="addToIngredients(ware)" class="default">
+      <br>
       <h2 text-wrap>{{ware.wareName}}</h2>
-      <p>{{ware.wareType}}, {{ware.warePrice}} kroner</p>
+      <h3 class="default">{{ware.wareType}}, {{ware.warePrice}} kroner</h3>
+      <div class="devider"></div>
     </ion-item>
   </ion-list>
 </ion-content>

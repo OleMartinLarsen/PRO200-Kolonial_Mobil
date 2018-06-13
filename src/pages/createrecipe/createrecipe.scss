@@ -4,7 +4,19 @@ page-createrecipe
     {
         background-color: #FFA700;
         border-radius: 50%;
-        height: 20px;
-        width: 20px;
+        height: 35px;
+        width: 35px;
+        font-size: 30px;
+    }
+
+    .multipleOptions
+    {
+        color: #000000;
+        background-color: #ffffff;
+    }
+
+    .quantity
+    {
+        font-size: 25px;
     }
 }
