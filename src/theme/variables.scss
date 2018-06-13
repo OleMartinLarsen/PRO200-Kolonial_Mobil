@@ -96,6 +96,20 @@ $searchbar-ios-toolbar-input-background:	#fff;
 @import "roboto";
 @import "noto-sans";
 
+@font-face 
+{
+  font-family: 'Poppins-Regular';
+  src: url('../fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+//TODO? ???
+*
+{
+  font-family: 'Poppins-Regular' !important;
+}
+
 
 //globale classes
 //--------------------------------------------------
