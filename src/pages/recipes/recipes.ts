@@ -77,6 +77,8 @@ export class RecipesPage
     this.navCtrl.push("UserPage");
   }
 
+  // --- Tabs ---
+
   tabItemStyle(tabIndex)
   {
     let recipeLists = document.getElementsByClassName('recipeList') as HTMLCollectionOf<HTMLElement>;
@@ -155,6 +157,8 @@ export class RecipesPage
   {
     this.searching = true;
   }
+
+  // --- Lifecycles ---
 
   ionViewDidLoad()
   {
