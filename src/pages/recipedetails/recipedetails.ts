@@ -103,22 +103,6 @@ export class RecipedetailsPage
     }
   }
 
-  removeFromFavorites() {
-    if (this.isFavorited) {
-      if (this.functions.removeRecipeFavorite(this.recipe)) {
-        this.isFavorited = false;
-        this.functions.makeToast("Oppskrift fjernet fra favoritter");
-      }
-    }
-  }
-
-  deleteMyRecipe() {
-    if (this.functions.removeMyRecipe(this.recipe)) {
-      this.functions.makeToast("Oppskrift slettet");
-      this.navCtrl.pop();
-    }
-  }
-
   addRecipeToDay() {
     this.functions.addRecipeToDayPlans(this.planningDay);
     this.functions.setIsPlanning(false);
