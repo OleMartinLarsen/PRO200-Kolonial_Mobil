@@ -6,12 +6,12 @@ import { ElementSchemaRegistry } from '@angular/compiler';
 export class GlobalFunctionsProvider 
 {
   private recipeHistory: Array<any> = []; //List of recipes ordered
-  private recipeFavorites: Array<any> = []; //List og recipes favorited
+  private recipeFavorites: Array<any> = []; //List of recipes favorited
   private recipeIngredients: Array<any> = []; //List of ingredients when adding a recipe
-  private recipeIngredientsQ: Array<any> = []; //Used for initializing the quantity of the added ingredient
+  private recipeIngredientsQ: Array<any> = []; //Used yo initialize the quantity of the added ingredient
   private recipeInstructions: Array<any> = []; //List of instructions when adding recipe
   private myRecipes: Array<any> = []; //List of recipes added by the user
-  private dayPlans: Array<any> = []; //List that holds date and recipe
+  private dayPlans: Array<any> = []; //List that holds date and recipe or a planned day
   private isPlanning: boolean = false; //Toggles "Legg til for [day] [date]" button in RecipeDetails
   private planningFor: string = ""; //Date planning when adding recipe to day
 
@@ -46,7 +46,7 @@ export class GlobalFunctionsProvider
   {
     this.toastCtrl.create({
       message: toastMessage,
-      duration: 3000,
+      duration: 2000,
       position: 'bottom'
     }).present();
   }

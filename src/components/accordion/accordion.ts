@@ -21,6 +21,23 @@ export class AccordionComponent implements OnInit
     public navCtrl: NavController,
     private functions: GlobalFunctionsProvider) 
   {
+    this.setDisplayDate();
+    var attempts = 0;
+    while(this.displaydate == null)
+    {
+      this.setDisplayDate();
+      attempts++;
+      if(attempts > 10)
+      {
+        //Crash? Reload?
+        this.functions.makeToast("Oops, det skjedde en feil");
+        return;
+      }
+    }
+  }
+  
+  setDisplayDate()
+  {
     this.displaydate = this.functions.getNextDayFromOneWeakAheadArray();
   }
 
