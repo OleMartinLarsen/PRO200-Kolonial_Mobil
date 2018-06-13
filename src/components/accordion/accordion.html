@@ -1,6 +1,6 @@
 <ion-card>
   <ion-card-header (click)="addRecipes()">
-    <ion-item color="primary" class="accordion-display-text">
+    <ion-item color="primary" class="accordion-display-text darkText">
       {{displaydate}}
       <button ion-button clear small icon-only item-right>
         <ion-icon class="darkText" color="light" name="add"></ion-icon>
@@ -16,6 +16,10 @@
         <button block ion-button (click)="removeDayPlans()" class="delete" color="color3">
           <p item-left>Slett</p>
           <ion-icon class="trash" name="trash"></ion-icon>
+        </button>
+        <button block ion-button (click)="addRecipes()" class="change" color="color3">
+          <p item-left>Endre</p>
+          <ion-icon class="trash" name="brush"></ion-icon>
         </button>
        <!-- TODO removing plans leaves whitespace -->
         <!-- {{recipe.recipeTimeInMinutes}}

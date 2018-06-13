@@ -57,8 +57,6 @@
     </div>
   </section>
 
-  <br>
-
   <section class="recipeList">
       <div *ngIf="loading">
         <p>Laster</p>
@@ -77,11 +75,9 @@
     </div>
   </section>
 
-  <br>
 
   <section class="recipeList">
-    <h1 class="white-text">Mine Oppskrifter</h1>
-    <button block ion-button (click)="pushAddMyRecipe()" (swipe)="pushAddData()">Legg til oppskrift</button>
+    <button block ion-button class="darkText" (click)="pushAddMyRecipe()" (swipe)="pushAddData()">Legg til oppskrift</button>
     <div *ngIf="loading">
       <p>Laster</p>
       <ion-spinner></ion-spinner>
