@@ -22,10 +22,9 @@
 
 <ion-content padding class="default">
     <ion-item class ="recipeCard">
-        <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg" class="image">
+      <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg" class="image">
       <div class="cardText">
         <h1 class="imageText" text-wrap>{{recipe.recipeName}}</h1>
-        <!-- <p>{{recipe.recipeGrade}}, {{recipe.recipeTimeInMinutes}} min</p> -->
       </div>
       <ion-buttons end class="favButton" *ngIf="!isFavorited"> 
         <button clear ion-button (click)='addToFavorites()'>
@@ -33,9 +32,9 @@
         </button>
         </ion-buttons>
       <ion-buttons class="favButton" end *ngIf="isFavorited">
-          <button clear ion-button (click)='removeFromFavorites()'>
-            <ion-icon name="heart"  color="color3" class="favButton" (click)='removeFromFavorites()'></ion-icon>
-          </button>
+        <button clear ion-button (click)='removeFromFavorites()'>
+          <ion-icon name="heart"  color="color3" class="favButton" (click)='removeFromFavorites()'></ion-icon>
+        </button>
       </ion-buttons>
     </ion-item>
 
