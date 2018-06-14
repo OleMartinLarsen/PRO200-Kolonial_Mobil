@@ -42,29 +42,38 @@ export class RegisterPage
   registerUser()
   {
 
+    let correct: number = 0;
     let all = document.getElementsByClassName('textInputField') as HTMLCollectionOf<HTMLElement>;
     for (var i = 0; i < all.length; i++)
     {
       all[i].style.border = '0px';
+      correct = 1;
     }
 
     if(this.user.name.length == 0)
     {
       this.errorBorderColor(all[0]);
+      this.functions.makeToast("Fornavn tomt felt")
+      correct = 1;
     }
 
     if(this.user.surname.length == 0)
     {
       this.errorBorderColor(all[1]);
+      this.functions.makeToast("Etternavn tomt felt")
+      correct = 1;
     }
 
     if(this.user.phone.toString().length != 8)
     {
+      this.functions.makeToast("Mobil nummer trenger 8 siffre")
+      correct = 1;
       this.errorBorderColor(all[2]);
     }
 
     if(this.user.adress.length == 0)
     {
+      correct = 1;
       this.errorBorderColor(all[4]);
     }
 
@@ -75,10 +84,13 @@ export class RegisterPage
       .createUserAndRetrieveDataWithEmailAndPassword(this.user.email, this.user.password)
       .then((resp) =>
       {
-        console.log(resp);
-        this.registerUserInDB(); //Store userdata in db
+        if (correct = 0)
+        {
+          console.log(resp);
+          this.registerUserInDB(); //Store userdata in db
         
-        this.navCtrl.push('TabsPage');
+          this.navCtrl.push('TabsPage');
+        }
       })
       .catch((error) =>
       {
