@@ -3,6 +3,11 @@ ion-navbar
     height: 66px;
 }
 
+h1, h2, h3, p, h4, h5
+{
+    text-shadow: #2b232e solid 1px, 1px, 1px;
+}
+
 .navbarStyle 
 {
     border-bottom: 1px color($colors, color2) solid;

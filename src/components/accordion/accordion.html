@@ -10,14 +10,14 @@
 
   <ion-card-content #cc class="mainCard">
     <div *ngIf="planned">
-      <ion-item (click)="pushRecipeDetails()" class="recipeCard" color="color3">
+      <ion-item (click)="pushRecipeDetails()" class="recipeCard" color="color1">
         <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg" class="image">
-        <h2 class="imageText">{{recipe.recipeName}}</h2>
+        <h2 text-wrap class="imageText">{{recipe.recipeName}}</h2>
         <button block ion-button (click)="removeDayPlans()" class="delete" color="color3">
           <p item-left>Slett</p>
           <ion-icon class="trash" name="trash"></ion-icon>
         </button>
-        <button block ion-button (click)="addRecipes()" class="change" color="color3">
+        <button block ion-button (click)="addRecipes()" class="change" color="color7">
           <p item-left>Endre</p>
           <ion-icon class="trash" name="brush"></ion-icon>
         </button>

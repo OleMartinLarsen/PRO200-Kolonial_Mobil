@@ -36,6 +36,13 @@
     </ion-item>
   </ion-list>
 
+  <div class="container">
+    <button block ion-button (click)="emptyCart()" class="delete deleteCart" color="color3">
+      <p item-left>Tøm handlekurv</p>
+      <ion-icon class="trash" name="trash"></ion-icon>
+    </button>
+  </div>
+  
   <p class="white-text">Total pris: {{cartPrice}} kr</p>
 
   <div class="container">
