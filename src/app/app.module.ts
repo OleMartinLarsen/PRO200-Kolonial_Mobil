@@ -21,6 +21,8 @@ import { RecipehistoryPage } from '../pages/recipehistory/recipehistory';
 import { AccordionComponent } from '../components/accordion/accordion';
 import { RecipesPageModule } from '../pages/recipes/recipes.module';
 import { IonicStorageModule } from '@ionic/storage';
+import { SettingsPage } from '../pages/settings/settings';
+import { SettingsPageModule } from '../pages/settings/settings.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { IonicStorageModule } from '@ionic/storage';
     HomePage,
     CartPage,
     RecipehistoryPage,
-    AccordionComponent
+    AccordionComponent,
   ],
   imports: [
     BrowserModule,

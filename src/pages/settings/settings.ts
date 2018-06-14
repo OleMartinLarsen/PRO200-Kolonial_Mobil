@@ -2,17 +2,16 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { User } from '../../models/user';
 import { GlobalFunctionsProvider } from '../../providers/global-functions/global-functions';
-import { contains } from '@firebase/util';
+import { User } from '../../models/user';
 
 @IonicPage()
 @Component({
-  selector: 'page-register',
-  templateUrl: 'register.html',
+  selector: 'page-settings',
+  templateUrl: 'settings.html',
 })
-export class RegisterPage 
-{
+export class SettingsPage {
+
   public userCollection :AngularFirestoreCollection<User>;
   public user =
   {
@@ -29,8 +28,7 @@ export class RegisterPage
     public navParams: NavParams,
     private af: AngularFirestore,
     private afAuth: AngularFireAuth,
-    private functions :GlobalFunctionsProvider) 
-  {
+    private functions :GlobalFunctionsProvider) {
     this.userCollection = af.collection<User>('users');
   }
 
@@ -39,7 +37,7 @@ export class RegisterPage
     element.style.border = "solid 5px #ff0000";
   }
 
-  registerUser()
+  updateUser()
   {
 
     let all = document.getElementsByClassName('textInputField') as HTMLCollectionOf<HTMLElement>;
@@ -70,13 +68,12 @@ export class RegisterPage
 
     if(this.user.password.match(this.user.repeatPassword) && this.user.password.length != 0) //Make sure the user has typed the correct password twice
     { 
-      //Register with email and password
       this.afAuth.auth
       .createUserAndRetrieveDataWithEmailAndPassword(this.user.email, this.user.password)
       .then((resp) =>
       {
         console.log(resp);
-        this.registerUserInDB(); //Store userdata in db
+        this.updateUserInDB();
         
         this.navCtrl.push('TabsPage');
       })
@@ -115,7 +112,7 @@ export class RegisterPage
     }
   }
 
-  registerUserInDB()
+  updateUserInDB()
   {
     //DO NOT store password! user.email and user.password is stored (hashed) with afAuth
     this.userCollection.add(
@@ -127,4 +124,5 @@ export class RegisterPage
         userAdress: this.user.adress
       } as User);
   }
+
 }
