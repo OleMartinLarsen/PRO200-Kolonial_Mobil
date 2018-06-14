@@ -38,6 +38,7 @@
 
   <br>
   
-  <button block ion-button class="darkText" onclick="window.open('https://kolonial.no/kundeservice/', '_system', 'location=yes'); return false;">Hjelp</button>
-  <button block ion-button (click)="logoutUser()" class="darkText">Logg ut</button>
+  <button block ion-button color (click)="changeSettings()" class="userButtons">Innstillinger</button>
+  <button block ion-button class="userButtons" onclick="window.open('https://kolonial.no/kundeservice/', '_system', 'location=yes'); return false;">Hjelp</button>
+  <button block ion-button (click)="logoutUser()" class="userButtons">Logg ut</button>
 </ion-content>
