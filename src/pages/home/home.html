@@ -4,7 +4,7 @@
       Min ukesliste
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="pushSettings()"> 
+      <button ion-button icon-only (click)="pushPreferences()"> 
         <ion-icon name="cog" class="ion-icon-with-text">
           <p class="ion-icon-text">Preferanser</p>
         </ion-icon>
@@ -21,9 +21,7 @@
 </ion-header>
 
 <ion-content padding class="contentStyle">
-  <!-- <ion-title gravity="left"> -->
-    <h1>{{displayWeek}}</h1>
-  <!-- </ion-title> -->
+  <h1>{{displayWeek}}</h1>
   <ion-list no-lines>
     <ion-item *ngFor="let days of week" class="ion-item-background-aubergine">
       <accordion></accordion>
@@ -31,4 +29,5 @@
   </ion-list>
 
   <button block ion-button (click)="addToCart()"> <p id="addToCartText">Legg til i handlekurv </p></button>
+  <!-- <button block ion-button (click)="emptyPlanner()"><p id="addToCartText">Tøm liste</p></button> -->
 </ion-content>

@@ -22,17 +22,11 @@ export class AccordionComponent implements OnInit
     private functions: GlobalFunctionsProvider) 
   {
     this.setDisplayDate();
-    var attempts = 0;
     while(this.displaydate == null)
-    {
+    { 
+      //Reset and retry
+      this.functions.resetNextDayFromOneWeakAheadArrayIndex();
       this.setDisplayDate();
-      attempts++;
-      if(attempts > 10)
-      {
-        //Crash? Reload?
-        this.functions.makeToast("Oops, det skjedde en feil");
-        return;
-      }
     }
   }
   
@@ -41,6 +35,7 @@ export class AccordionComponent implements OnInit
     this.displaydate = this.functions.getNextDayFromOneWeakAheadArray();
   }
 
+  //legger til recipes per kort, endrings knappen bruker også denne
   addRecipes()
   {
     if(!this.planned)
@@ -53,23 +48,15 @@ export class AccordionComponent implements OnInit
     }
     else
     {
-      //this.functions.makeToast("Vil du endre?"); 
-
-      //TODO change recipe | temp button
-      //1. separate button
-      //2. clear array for that day OR overwrite recipe
-      /*var acceptedChangePlans = false;
-      if(acceptedChangePlans)
-      {*/
         this.removeDayPlans();
         this.functions.setIsPlanning(true);
         this.functions.setDayPlanningFor(this.displaydate);
         this.renderer.setElementStyle(this.content.nativeElement, "height", "150px")
         this.navCtrl.push("RecipesPage");
-      //}
     }
   }
 
+  //ser på om det er en planlagt middag, og hvis det er det vil den endre stylen til å vise bilde + knapper
   public checkPlannedStatus()
   {
     this.recipe = this.functions.getRecipeOfPlannedDayInDayPlans(this.displaydate).recipe;
@@ -124,7 +111,6 @@ export class AccordionComponent implements OnInit
     this.count ++;
     if (this.count == 5)
     {
-      //console.log("wa" + this.count)
       this.checkPlannedStatus();
       this.count = 0
     }  

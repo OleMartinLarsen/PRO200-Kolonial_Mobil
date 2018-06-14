@@ -48,7 +48,8 @@ $colors: (
   color2: #FFA700,
   color3: #921420,
   color4: #0f1,
-  color5: #2b232e
+  color5: #2b232e,
+  color6: #007c45
 );
 
 
@@ -93,24 +94,22 @@ $searchbar-ios-toolbar-input-background:	#fff;
 // Fonts
 // --------------------------------------------------
 
+
 @import "roboto";
 @import "noto-sans";
 
 @font-face 
 {
   font-family: 'Poppins-Regular';
-  src: url('../assets/fonts/Poppins-Regular.ttf') format('truetype');
-  font-weight: normal;
   font-style: normal;
+  font-weight: normal;
+  src: url('../assets/fonts/Poppins-Regular.ttf') format('truetype');
 }
 
-//TODO? ???
-// p, h1, h2, h3
-font
+ion-header, ion-content, ion-icon p, ion-tabs
 {
   font-family: 'Poppins-Regular' !important;
 }
-
 
 //globale classes
 //--------------------------------------------------

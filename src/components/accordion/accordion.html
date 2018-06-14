@@ -11,8 +11,8 @@
   <ion-card-content #cc class="mainCard">
     <div *ngIf="planned">
       <ion-item (click)="pushRecipeDetails()" class="recipeCard" color="color3">
-        <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg" class="acordianImg">
-        <p>{{recipe.recipeName}}</p>
+        <img *ngIf="recipe.recipeImg" [src]="recipe.recipeImg" class="image">
+        <h2 class="imageText">{{recipe.recipeName}}</h2>
         <button block ion-button (click)="removeDayPlans()" class="delete" color="color3">
           <p item-left>Slett</p>
           <ion-icon class="trash" name="trash"></ion-icon>
@@ -21,11 +21,6 @@
           <p item-left>Endre</p>
           <ion-icon class="trash" name="brush"></ion-icon>
         </button>
-       <!-- TODO removing plans leaves whitespace -->
-        <!-- {{recipe.recipeTimeInMinutes}}
-        {{recipe.recipePortions}}
-        {{recipe.recipeGrade}} 
-        -->
       </ion-item>
     </div>
   </ion-card-content>
