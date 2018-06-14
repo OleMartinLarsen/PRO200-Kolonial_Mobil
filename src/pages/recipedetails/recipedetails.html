@@ -40,14 +40,14 @@
 
     <p>{{recipe.recipeTimeInMinutes}} minutter, {{recipe.recipePortions}} porsjoner</p>
 
-    <p>Ingredienser</p>
+    <h2>Ingredienser</h2>
     <ion-list no-lines>
       <ion-item class="default" *ngFor="let ingredient of ingredients; let i = index">
         <p class="text" text-wrap>{{ingredientsQ[i]}} {{ingredient.wareName}}</p>
       </ion-item>
     </ion-list>
     
-    <p>Instrukser</p>
+    <h2>Instrukser</h2>
     <ion-list no-lines>
       <ion-item *ngFor="let step of instructions" class="default">
         <p class="text" text-wrap>{{step}}</p>
