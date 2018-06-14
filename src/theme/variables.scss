@@ -99,13 +99,14 @@ $searchbar-ios-toolbar-input-background:	#fff;
 @font-face 
 {
   font-family: 'Poppins-Regular';
-  src: url('../fonts/Poppins-Regular.ttf') format('truetype');
+  src: url('../assets/fonts/Poppins-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 //TODO? ???
-.font //*
+// p, h1, h2, h3
+font
 {
   font-family: 'Poppins-Regular' !important;
 }
