@@ -17,16 +17,6 @@ export class UserPage
   private currentUserEmail: string;
   private users: Observable<any[]>;
 
-  private user: //Variable for user data (WIP)
-  {
-    name: "",
-    surname,
-    img,
-    phone,
-    email,
-    adress
-  }
-
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     private af: AngularFirestore,
@@ -69,6 +59,13 @@ export class UserPage
     this.navCtrl.push("CreaterecipePage");
     //TODO uncomment
     // this.navCtrl.push("SettingsPage");
+  }
+
+  changeSettings() {
+    console.log("Før");
+    this.navCtrl.push("SettingsPage");
+    console.log("Etter");
+    
   }
 
   logoutUser()
