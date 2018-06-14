@@ -28,6 +28,8 @@ export class GlobalFunctionsProvider
     this.recipeFavorites.push.apply(this.recipeFavorites, JSON.parse(localStorage.getItem("recipeFavorites")));
     this.myRecipes.push.apply(this.myRecipes, JSON.parse(localStorage.getItem("myRecipes")));
     this.dayPlans.push.apply(this.dayPlans, JSON.parse(localStorage.getItem("dayPlans")));
+
+    this.clearOutOfBoundsRecipes();
   }
 
   //TODO? tests?
@@ -123,8 +125,8 @@ export class GlobalFunctionsProvider
     var res = this.myRecipes.find((e) => e === recipe);
     if(res)
     {
-      var i = this.myRecipes.indexOf(res);
-      this.myRecipes.splice(i, 1);
+      var index = this.myRecipes.indexOf(res);
+      this.myRecipes.splice(index, 1);
       localStorage.removeItem("myRecipes"); //Clear
       localStorage.setItem("myRecipes", JSON.stringify(this.myRecipes)); //Updated array
       return true;
@@ -133,6 +135,12 @@ export class GlobalFunctionsProvider
   }
 
   // --- Planning for dinner --- 
+
+  clearOutOfBoundsRecipes()
+  {
+    var length = this.dayPlans.length;
+    this.dayPlans.slice(7, (length - 7));
+  }
 
   addRecipeToDayPlans(recipe: any)
   {
@@ -148,6 +156,7 @@ export class GlobalFunctionsProvider
     {
       var index = this.dayPlans.indexOf(res);
       this.dayPlans.splice(index, 1);
+      localStorage.removeItem("dayPlans"); //Clear
       localStorage.setItem("dayPlans", JSON.stringify(this.dayPlans));
       return true;
     }
@@ -224,6 +233,11 @@ export class GlobalFunctionsProvider
     var res = this.oneWeakAheadArray[this.nextDayFromOneWeakAheadArrayIndex];
     this.nextDayFromOneWeakAheadArrayIndex++;
     return res;
+  }
+
+  resetNextDayFromOneWeakAheadArrayIndex()
+  {
+    this.nextDayFromOneWeakAheadArrayIndex = 0;
   }
 
   getNextDay(day: number, month: number)
@@ -359,11 +373,6 @@ export class GlobalFunctionsProvider
   }
 
   // --- Cart handeling --- 
-  
-  getRecipesCart()
-  {
-    return this.recipesCart;
-  }
 
   addRecipesToCart()
   {
@@ -382,5 +391,18 @@ export class GlobalFunctionsProvider
       return true;
     }
     return false;
+  }
+  
+  getRecipesCart()
+  {
+    return this.recipesCart;
+  }
+
+  emptyPlanner()
+  {
+    var length = this.dayPlans.length;
+    this.dayPlans.slice(0, length);
+    localStorage.removeItem("dayPlans"); //Clear
+    return true;
   }
 }

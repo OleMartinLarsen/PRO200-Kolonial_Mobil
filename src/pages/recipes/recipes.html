@@ -2,7 +2,7 @@
   <ion-navbar class="navbarStyle">
     <ion-searchbar placeholder="Søk etter en oppskrift..." [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
     <ion-buttons end>
-      <button ion-button icon-only (click)="pushSettings()"> 
+      <button ion-button icon-only (click)="pushPreferences()"> 
         <ion-icon name="cog" class="ion-icon-with-text">
           <p class="ion-icon-text">Preferanser</p>
         </ion-icon>

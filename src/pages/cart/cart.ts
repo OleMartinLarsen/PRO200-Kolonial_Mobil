@@ -44,10 +44,10 @@ export class CartPage
     this.navCtrl.push('UserPage');
   }
 
-  pushSettings()
+  pushPreferences()
   {
     //TODO uncomment
-    // this.navCtrl.push("SettingsPage");
+    // this.navCtrl.push("PreferencesPage");
   }
 
   getPrice()
@@ -80,8 +80,9 @@ export class CartPage
 
   emptyCart()
   {
-    var length = this.recipesInCart.length;
+    var length = this.functions.getRecipesCart().length;
     this.recipesInCart.splice(0, length);
+    this.functions.getRecipesCart().slice(0, length);
     this.getCurrentPrice();
   }
 

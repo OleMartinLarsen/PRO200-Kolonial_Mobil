@@ -30,11 +30,18 @@ export class HomePage
     if(this.functions.addRecipesToCart())
     {
       this.functions.makeToast("Lagt til i handlevogn.");
-      // this.navCtrl.push("CartPage"); //TODO bug
     }
     else
     {
       this.functions.makeToast("Legg til minst én oppskrift!");
+    }
+  }
+
+  emptyPlanner()
+  {
+    if(!this.functions.emptyPlanner())
+    {
+      this.functions.makeToast("Listen er allerede tom!");
     }
   }
 
@@ -43,9 +50,9 @@ export class HomePage
     this.navCtrl.push("UserPage");
   }
 
-  pushSettings()
+  pushPreferences()
   {
     //TODO uncomment
-    // this.navCtrl.push("SettingsPage");
+    // this.navCtrl.push("PreferencesPage");
   }
 }

@@ -62,14 +62,10 @@ export class RecipesPage
     this.navCtrl.push("CreaterecipePage");
   }
 
-  pushSettings()
+  pushPreferences()
   {
-    this.favorites = this.functions.getRecipeFavorites();
-    this.myRecipes = this.functions.getMyRecipes();
-    this.showAllRecipes();
-    this.loading = false;
     //TODO uncomment
-    // this.navCtrl.push("SettingsPage");
+    // this.navCtrl.push("PreferencesPage");
   }
 
   pushUser()
