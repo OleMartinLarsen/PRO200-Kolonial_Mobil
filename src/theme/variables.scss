@@ -99,18 +99,15 @@ $searchbar-ios-toolbar-input-background:	#fff;
 @font-face 
 {
   font-family: 'Poppins-Regular';
-  src: url('../assets/fonts/Poppins-Regular.ttf') format('truetype');
-  font-weight: normal;
   font-style: normal;
+  font-weight: normal;
+  src: url('../assets/fonts/Poppins-Regular.ttf') format('truetype');
 }
 
-//TODO? ???
-// p, h1, h2, h3
-font
+ion-header, ion-content, ion-icon p, ion-tabs
 {
   font-family: 'Poppins-Regular' !important;
 }
-
 
 //globale classes
 //--------------------------------------------------
