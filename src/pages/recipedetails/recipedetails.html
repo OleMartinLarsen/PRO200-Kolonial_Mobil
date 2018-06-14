@@ -60,7 +60,10 @@
     </div>
 
     <div *ngIf="myRecipe">
-      <button block ion-button class="darkText" (click)="deleteMyRecipe()">Slett Oppskrift</button>
+        <button block ion-button (click)="removeDayPlans()" class="delete" color="color3">
+            <p item-left>Slett</p>
+            <ion-icon class="trash" name="trash"></ion-icon>
+          </button>
     </div>
 </ion-content>
 

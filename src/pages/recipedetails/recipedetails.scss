@@ -24,6 +24,17 @@ page-recipedetails {
         border: black solid 0px;
     }
 
+    .trash
+    {
+        position: absolute;
+        right: 30%;
+    }
+    .delete
+    {
+        position: relative;
+        width: 100%;
+    }
+
     .static-planning-button
     {
         position: fixed;
