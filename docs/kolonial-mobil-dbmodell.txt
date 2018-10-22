@@ -1,0 +1,23 @@
+
+	users---+
+			+userName: string
+			+userSurname: string
+			+userPhone: number
+			+userEmail: string
+			+userAdress: string
+			+userImg?: string
+
+	wares---+
+			+wareName: string
+			+warePrice: number
+			+wareType: string
+			+wareImg?: number
+
+	recipes-+
+			+recipeName: string
+			+recipeGrade: string
+			+recipeTimeInMinutes: number
+			+recipePortions: number
+			+recipeIngredients: object[]
+			+recipeInstructions: string[]
+			+recipeImg?: string
