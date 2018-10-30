@@ -278,6 +278,7 @@ export class GlobalFunctionsProvider
       }
     }
 
+    
     var findDayInFuture = day - (new Date().getDate());
     var findDayFor = findDayInFuture + (new Date().getDay());
 
@@ -286,6 +287,11 @@ export class GlobalFunctionsProvider
     {
       findDayFor -= 7;
     }
+    if(findDayFor < 1)
+    {
+      findDayFor = (new Date().getDay()) + day + 1;
+    }
+    //TODO still not getting some days
 
     var dayNo = this.getDayInNorwegian(findDayFor);
 
