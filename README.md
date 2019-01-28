@@ -1,4 +1,4 @@
-Kolonial app, Smidig Prosjekt V18
+##Kolonial app, Smidig Prosjekt V18##
 
 Gruppeprosjekt i Smidig Prosjekt, emne Kolonial.no.
 Oppgaven var å forbedre Kolonials tjenester, trekke inn flere kunder, forhindre tap av kunde, eller en kombinasjon av disse oppgavene.
